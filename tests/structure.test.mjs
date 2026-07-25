@@ -34,7 +34,7 @@ test("reading tools expose accessible controls", () => {
   assert.match(html, /<button[^>]+data-font-step="-1"/);
   assert.match(html, /<button[^>]+data-font-step="1"/);
   assert.match(html, /<span[^>]+data-reading-progress/);
-  assert.match(html, /<span[^>]+data-completion-count/);
+  assert.match(html, /<button[^>]+data-completion-count/);
 });
 
 test("search dialog has a labeled field, results, and close control", () => {
@@ -131,6 +131,11 @@ test("reading completion state is persisted and rendered per chapter", () => {
   assert.match(appSource, /hw-guide-completed/);
   assert.match(appSource, /data-chapter-complete/);
   assert.match(appSource, /aria-pressed/);
+});
+
+test("header completion count toggles the currently visible chapter", () => {
+  assert.match(appSource, /completionCount\?\.addEventListener\("click"/);
+  assert.match(appSource, /toggleChapterCompletion\(currentChapter\)/);
 });
 
 test("print mode removes controls that do not belong on paper", () => {

@@ -136,9 +136,26 @@ a {
 
 .completion-count {
   min-width: 2.8rem;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
   color: var(--ink-muted);
   font: 750 0.7rem/1 ui-monospace, "D2Coding", monospace;
   text-align: center;
+  cursor: pointer;
+}
+
+.completion-count:hover {
+  border-color: var(--line);
+  background: var(--paper-raised);
+  color: var(--ink);
+}
+
+.completion-count[aria-pressed="true"] {
+  background: var(--accent-soft);
+  color: var(--signal);
 }
 
 .tool-button {

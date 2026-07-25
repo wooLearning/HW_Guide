@@ -103,6 +103,7 @@
 
   const completedChapters = parseCompleted();
   const completionCount = document.querySelector("[data-completion-count]");
+  let currentChapter = chapters[0] ?? null;
 
   const renderCompletion = () => {
     chapters.forEach((chapter) => {
@@ -119,13 +120,33 @@
       link?.toggleAttribute("data-completed", complete);
     });
     if (completionCount) {
+      const currentComplete =
+        currentChapter !== null && completedChapters.has(currentChapter.id);
+      const currentHeading =
+        currentChapter?.querySelector("h2")?.textContent?.trim() ?? "현재 장";
       completionCount.textContent = `${completedChapters.size}/${chapters.length}`;
+      completionCount.setAttribute("aria-pressed", String(currentComplete));
       completionCount.setAttribute(
         "aria-label",
-        `${chapters.length}개 장 중 ${completedChapters.size}개 학습 완료`,
+        `${currentHeading} ${currentComplete ? "완료 취소" : "학습 완료로 표시"}. 전체 ${chapters.length}개 장 중 ${completedChapters.size}개 완료`,
       );
     }
   };
+
+  const toggleChapterCompletion = (chapter) => {
+    if (!chapter) return;
+    if (completedChapters.has(chapter.id)) completedChapters.delete(chapter.id);
+    else completedChapters.add(chapter.id);
+    safeStorage.set(
+      "hw-guide-completed",
+      JSON.stringify([...completedChapters]),
+    );
+    renderCompletion();
+  };
+
+  completionCount?.addEventListener("click", () => {
+    toggleChapterCompletion(currentChapter);
+  });
 
   chapters.forEach((chapter) => {
     const completion = document.createElement("div");
@@ -134,13 +155,7 @@
     button.type = "button";
     button.dataset.chapterComplete = chapter.id;
     button.addEventListener("click", () => {
-      if (completedChapters.has(chapter.id)) completedChapters.delete(chapter.id);
-      else completedChapters.add(chapter.id);
-      safeStorage.set(
-        "hw-guide-completed",
-        JSON.stringify([...completedChapters]),
-      );
-      renderCompletion();
+      toggleChapterCompletion(chapter);
     });
     completion.append(button);
     chapter.append(completion);
@@ -170,6 +185,7 @@
 
   const setCurrentChapter = (chapter) => {
     if (!chapter) return;
+    currentChapter = chapter;
     tocLinks.forEach((link) => {
       const current = link.getAttribute("href") === `#${chapter.id}`;
       if (current) link.setAttribute("aria-current", "location");
@@ -181,6 +197,7 @@
     const title = heading?.textContent?.replace(number, "").trim() ?? "";
     if (railNumber) railNumber.textContent = number;
     if (railTitle) railTitle.textContent = title;
+    renderCompletion();
   };
 
   if ("IntersectionObserver" in window) {
