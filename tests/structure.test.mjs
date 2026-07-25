@@ -20,10 +20,10 @@ test("book has the core reading landmarks", () => {
 });
 
 test("book references only local runtime assets", () => {
-  assert.match(html, /href="assets\/styles\.css"/);
+  assert.match(html, /href="assets\/styles\.css\?v=[^"]+"/);
   assert.match(html, /src="assets\/calculators\.js"/);
   assert.match(html, /src="assets\/visualizations\.js"/);
-  assert.match(html, /src="assets\/app\.js"/);
+  assert.match(html, /src="assets\/app\.js\?v=[^"]+"/);
   assert.doesNotMatch(html, /(?:src|href)="https?:\/\/[^"']+\.(?:js|css)(?:\?[^"']*)?"/);
 });
 
