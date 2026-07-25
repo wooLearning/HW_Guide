@@ -2,6 +2,8 @@
 
 검증일: 2026-07-25
 
+배포: [GitHub Pages](https://woolearning.github.io/HW_Guide/) · `main` 브랜치 루트
+
 ## 자동 검사
 
 - 명령: `node --test tests/*.test.mjs`

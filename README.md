@@ -6,6 +6,8 @@
 
 ## 바로 열기
 
+배포본: [https://woolearning.github.io/HW_Guide/](https://woolearning.github.io/HW_Guide/)
+
 `index.html`을 더블클릭하면 네트워크 연결이나 설치 없이 읽을 수 있습니다.
 
 로컬 웹 서버에서 보려면 이 폴더에서 다음 중 하나를 실행합니다.
