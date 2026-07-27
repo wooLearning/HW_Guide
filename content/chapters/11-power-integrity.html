@@ -1,0 +1,148 @@
+<section class="chapter" id="chapter-11" data-part="3">
+          <p class="chapter-kicker">PART III · THE PHYSICAL BOARD</p>
+          <h2><span>11</span> Power Integrity</h2>
+          <p class="chapter-lead">PDN과 target impedance로 전원 노이즈를 설계한다.</p>
+          <div class="keyword-row"><span>PDN</span><span>target impedance</span><span>decoupling</span><span>anti-resonance</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              Power Integrity의 목표는 “capacitor를 많이 놓기”가 아니라, load current가 변하는 전체 주파수
+              범위에서 <strong>전원 분배망의 impedance를 허용값 아래로 유지</strong>하는 것이다.
+            </p>
+            <p>
+              regulator는 낮은 주파수, bulk capacitor는 중저주파, plane과 package·small capacitor는 더 높은
+              주파수에서 energy를 공급한다. VRM control loop, capacitor C/ESR/ESL, mounting inductance,
+              plane spreading inductance, package와 die capacitance가 하나의 PDN을 이룬다. 각 부품을 따로
+              보면 낮은 impedance여도 조합의 resonance와 anti-resonance가 peak를 만들 수 있다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">Target impedance</p>
+            <div class="formula">Z<sub>target</sub> = ΔV<sub>allowed</sub> / ΔI<sub>step</sub></div>
+            <p>
+              1 V rail이 ±5%를 허용하고 load step이 2 A라면 target은 50 mV/2 A = 25 mΩ다. 이것은 모든
+              frequency에서 정확히 25 mΩ라는 말이 아니라 current transient가 차지하는 band에서 PDN impedance
+              peak가 허용 droop를 넘기지 않게 하는 설계 목표다. 짧은 시간 구간의 charge 부족은
+              ΔV = ΔI·Δt/C로 1차 추정하되 ESL과 loop L을 별도로 본다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="pdn-impedance" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 11</span><h3>PDN impedance와 target line</h3></div>
+              <p>bulk·MLCC·mounting ESL 조합에서 resonance peak가 생기는 위치를 본다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>허용 ripple <input data-input="ripple" type="range" min="10" max="100" value="50"><output data-out="ripple">50 mV</output></label>
+              <label>load step <input data-input="step" type="range" min="0.5" max="5" step="0.1" value="2"><output data-out="step">2.0 A</output></label>
+              <label>mount ESL <input data-input="esl" type="range" min="0.2" max="5" step="0.1" value="1"><output data-out="esl">1.00 nH</output></label>
+            </div>
+            <div class="visual-stage" data-stage>
+              <canvas width="900" height="430" role="img" aria-label="주파수별 PDN 임피던스와 target impedance"></canvas>
+            </div>
+            <div class="result-strip"><span>Ztarget <strong data-result="ztarget">25.0 mΩ</strong></span><span>가장 큰 peak <strong data-result="peak">검토 필요</strong></span></div>
+          </div>
+
+          <figure class="visual-panel media-figure" data-visual-medium="imagegen">
+            <div class="visual-heading">
+              <div><span class="visual-number">PLATE 11</span><h3>decoupling은 C 값보다 전류 루프다</h3></div>
+              <p>IC–capacitor–plane–IC가 닫히는 경로 전체의 L을 줄여야 빠른 전류를 전달한다.</p>
+            </div>
+            <img src="assets/images/decoupling-current-loop.png" width="1536" height="1024" loading="lazy"
+              alt="IC와 디커플링 커패시터, 전원·접지면을 잇는 짧은 자홍색 전류 루프와 흐린 긴 우회 루프">
+            <figcaption>
+              MLCC의 표시 용량이 같아도 pad와 via의 위치, plane 간격, pin까지의 연결이 mounting ESL을 바꾼다.
+              오른쪽의 흐린 우회 경로처럼 loop가 길어지면 가장 필요한 빠른 edge에서 capacitor가 멀어진다.
+            </figcaption>
+          </figure>
+
+          <div class="visual-panel three-figure" data-visual-medium="three">
+            <div class="visual-heading">
+              <div><span class="visual-number">3D 11</span><h3>PDN 전류 루프를 입체로 추적하기</h3></div>
+              <p>보드 층을 회전하며 capacitor와 IC 사이의 공급·귀환 경로를 하나의 닫힌 루프로 본다.</p>
+            </div>
+            <div class="visual-stage three-stage" data-three-scene="pdn-current-loop-3d"
+              data-fallback-image="assets/images/decoupling-current-loop.png"
+              role="img" aria-label="회전 가능한 IC, 디커플링 커패시터, 전원면과 접지면의 닫힌 전류 루프">
+            </div>
+            <p class="visual-caption">
+              전원 trace만 짧게 하고 ground via가 멀면 루프는 여전히 크다. 공급과 귀환을 동시에 따라가야
+              placement의 효과를 판단할 수 있다.
+            </p>
+          </div>
+
+          <article class="deep-dive" role="region" aria-labelledby="deep-pdn-title">
+            <header>
+              <span>원리 더 깊게</span>
+              <h3 id="deep-pdn-title">전류 요구의 시간축과 에너지 공급 계층</h3>
+            </header>
+            <div class="time-scale">
+              <article><span>ps–ns</span><h4>die·package</h4><p>on-die capacitance와 package field가 가장 빠른 edge를 담당한다.</p></article>
+              <article><span>ns–µs</span><h4>local MLCC</h4><p>작은 mounting loop의 ceramic capacitor와 plane pair가 charge를 보충한다.</p></article>
+              <article><span>µs–ms</span><h4>bulk·regulator</h4><p>polymer/electrolytic과 control loop가 낮은 주파수의 load 변화를 따라간다.</p></article>
+              <article><span>ms+</span><h4>source system</h4><p>converter 입력, cable, connector와 상위 전원이 평균 에너지를 공급한다.</p></article>
+            </div>
+            <p>
+              capacitor 한 개의 impedance는 이상적으로 1/(jωC)지만 실제 부품은 ESR과 ESL이 직렬로 붙는다.
+              self-resonant frequency 아래에서는 capacitive, 위에서는 inductive하게 보인다. 서로 다른 C와
+              ESL을 병렬로 놓으면 두 branch 사이 anti-resonance가 생겨 특정 주파수의 impedance가 오히려
+              높아질 수 있다. 그래서 “0.1 µF를 많이”보다 부품·mount·plane·package를 포함한 impedance 곡선과
+              load-current spectrum을 비교한다.
+            </p>
+            <p class="derivation-note">
+              target impedance는 허용 droop를 current spectrum에 배분하는 출발점이다.
+              <b>Ztarget=ΔVallow/ΔIstep</b>만 맞춰도 phase margin이나 regulator stability가 자동 보장되는 것은
+              아니다. time-domain load step과 frequency-domain impedance를 함께 확인한다.
+            </p>
+          </article>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 10 ns load step</p>
+            <p>
+              2 A current step 동안 50 mV droop만 허용하고 local energy가 10 ns를 담당한다고 단순화하면
+              C ≥ ΔI·Δt/ΔV = 2×10 ns/50 mV = 400 nF다. 그러나 1 nH connection에서 2 A가 1 ns에 변하면
+              L·di/dt = 2 V가 되어 capacitance만 늘려서는 해결되지 않는다. 낮은 loop inductance, die/package
+              capacitance, slew control이 함께 필요하다.
+            </p>
+            <p class="sanity-check">상식 점검: 허용 ripple을 절반으로 줄이면 같은 transient를 위한 C와 요구 impedance가 각각 두 배, 절반 방향으로 바뀐다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              decoupling의 핵심은 nominal C 총합보다 mounting loop다. capacitor pad에서 power/ground via까지
+              짧고 넓게 연결하고 IC pin과의 current loop를 최소화한다. 같은 값 여러 개는 impedance를 낮출 수
+              있지만 anti-resonance와 DC-bias derating을 simulation/measurement로 확인한다. plane pair의
+              resonance와 connector를 통한 cable current까지 시스템 PDN에 포함한다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              rail ripple은 probe tip과 ground를 capacitor 양단에 직접 짧게 대고 bandwidth limit의 유무를
+              기록한다. 긴 ground clip으로 본 고주파 spike는 loop pickup일 수 있다. impedance analyzer,
+              VNA와 2-port shunt-through 방법은 낮은 mΩ PDN을 frequency domain에서 볼 수 있지만 fixture
+              parasitic과 dynamic range 보정이 중요하다. load transient test는 time-domain 검증이다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“서로 다른 값의 capacitor를 많이 섞으면 주파수 전 범위를 자동으로 덮는다.”</strong></p>
+            <p>
+              값이 다른 C와 ESL의 조합은 resonance 사이에 큰 anti-resonance peak를 만들 수 있다. modern
+              low-ESR MLCC에서는 같은 값 여러 개와 낮은 mounting inductance, 적절한 damping이 더 예측 가능할
+              때도 있다. 부품 목록 규칙 대신 impedance curve로 판단한다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>target impedance의 분자는 무엇인가?</summary><p>rail이 허용하는 voltage deviation ΔV이며, nominal voltage 자체가 아니다.</p></details>
+            <details><summary>capacitor를 IC 가까이 두는 핵심 이유는?</summary><p>거리 자체보다 power–capacitor–ground–IC로 이어지는 high-frequency current loop inductance를 줄이기 위해서다.</p></details>
+            <details><summary>PDN peak가 위험한 이유는?</summary><p>해당 frequency 성분의 load current가 작은 변화만 일으켜도 큰 rail noise로 변환될 수 있기 때문이다.</p></details>
+          </div>
+        </section>

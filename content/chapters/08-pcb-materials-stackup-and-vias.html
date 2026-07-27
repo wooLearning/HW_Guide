@@ -1,0 +1,102 @@
+<section class="chapter" id="chapter-8" data-part="3">
+          <p class="chapter-kicker">PART III · THE PHYSICAL BOARD</p>
+          <h2><span>08</span> PCB 재료·제조·스택업</h2>
+          <p class="chapter-lead">동박, 유전체, 비아와 제조 공차를 전기적 구조로 읽는다.</p>
+          <div class="keyword-row"><span>stackup</span><span>Dk/Df</span><span>via</span><span>fabrication</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              PCB는 회로를 올리는 판이 아니라, <strong>도체와 유전체를 적층해 impedance·귀환·열·기계
+              신뢰성을 동시에 만드는 부품</strong>이다.
+            </p>
+            <p>
+              core는 양면 copper가 붙은 경화 laminate, prepreg는 압착 과정에서 층을 접착하는 수지 함침
+              유리섬유다. fabrication은 imaging과 etching으로 pattern을 만들고 lamination, drilling,
+              plating, solder mask와 surface finish를 거친다. 이 과정의 공차 때문에 설계값과 실물의 trace
+              width, dielectric height, copper profile, finished hole이 달라진다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">재료와 도체의 첫 계산</p>
+            <div class="formula-grid">
+              <div><b>R = ρℓ/(w·t)</b><span>DC trace resistance 1차 근사</span></div>
+              <div><b>v<sub>p</sub> ≈ c/√ε<sub>eff</sub></b><span>전파 속도</span></div>
+              <div><b>tanδ ≈ Df</b><span>유전체 손실 척도</span></div>
+              <div><b>δ = √(2ρ/ωμ)</b><span>skin depth</span></div>
+            </div>
+            <p>
+              Dk는 field가 재료에 저장되는 정도와 속도·impedance에, Df는 유전체 손실에 영향을 준다. FR-4는
+              하나의 고정 재료값이 아니라 여러 resin/glass 조합의 계열이며 Dk는 시험 방법과 주파수에 따라
+              달라진다. impedance는 fabricator가 사용하는 stackup과 material data로 확인한다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="pcb-stackup" data-visual-medium="three">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 08</span><h3>4층 stackup field view</h3></div>
+              <p>signal layer의 reference plane과 dielectric 두께를 바꿔 field 분포를 비교한다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>L1–L2 간격 <input data-input="height" type="range" min="60" max="400" value="120"><output data-out="height">0.12 mm</output></label>
+              <label>trace 폭 <input data-input="width" type="range" min="80" max="400" value="180"><output data-out="width">0.18 mm</output></label>
+              <label>Dk <input data-input="dk" type="range" min="3" max="5" step="0.1" value="4.1"><output data-out="dk">4.1</output></label>
+            </div>
+            <div class="visual-stage three-stage" data-stage data-three-scene="pcb-stackup-3d"
+              data-fallback-image="assets/images/field-energy-return-path.png"
+              role="img" aria-label="회전 가능한 signal, ground, power, signal 4층 PCB 단면과 전계 분포">
+            </div>
+            <div class="result-strip"><span>상대 Z0 경향 <strong data-result="ztrend">기준</strong></span><span>field confinement <strong data-result="field">높음</strong></span></div>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 가는 trace의 DC 저항</p>
+            <p>
+              copper resistivity ρ = 1.72×10<sup>−8</sup> Ω·m, 길이 100 mm, 폭 0.20 mm, 두께 35 µm이면
+              단면적은 7×10<sup>−9</sup> m²이고 R ≈ 0.246 Ω다. 1 A에서 전압강하는 0.246 V,
+              손실은 0.246 W다. 실제 온도상승은 주변 copper, layer 위치, airflow와 허용 온도에 의존하므로
+              이 계산만으로 current capacity를 선언하지 않는다.
+            </p>
+            <p class="sanity-check">상식 점검: 폭이나 두께를 두 배로 하면 DC 저항은 절반이 되어야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">설계에서</p>
+            <p>
+              stackup은 routing을 끝내고 fabricator가 정하는 사후 문서가 아니다. signal layer마다 인접
+              reference plane을 확보하고, power/ground plane pair, overall thickness, via aspect ratio,
+              minimum annular ring, impedance tolerance를 초기에 협의한다. blind/buried/microvia는 density를
+              높이지만 비용과 reliability 검증 요구도 높인다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">검사와 측정에서</p>
+            <p>
+              bare-board electrical test는 open/short를 찾지만 모든 impedance와 high-speed 성능을 보장하지
+              않는다. controlled impedance coupon, microsection, finished copper/hole 치수, warpage,
+              solderability 자료를 요구사항에 맞춰 사용한다. IPC-2221 계열은 generic design 요구, IPC-6012
+              계열은 rigid board qualification/performance와 연결해 읽는다. 널리 인용되는 IPC-2141과
+              IPC-2152는 공식 revision table상 더 이상 유지관리되지 않는 상태이므로 최신 요구사항처럼
+              단독 인용하지 않고 현재 표준·fabricator data와 함께 검토한다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“1 oz copper는 정확히 35 µm이고 어디서나 같은 두께다.”</strong></p>
+            <p>
+              oz는 면적당 copper 무게의 관습 표현이며 base foil과 plating, process 공차 때문에 finished
+              thickness가 달라진다. outer layer는 hole plating과 함께 copper가 더해질 수 있고 trace sidewall은
+              이상적인 직사각형이 아니다. 계산과 fabrication note의 기준을 명확히 한다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>Dk가 커지면 전파 속도는 어떻게 되는가?</summary><p>다른 조건이 같다면 vp≈c/√εeff이므로 느려진다.</p></details>
+            <details><summary>stackup을 routing 전에 정해야 하는 이유는?</summary><p>reference plane, impedance geometry, via 구조와 제조 공차가 routing 규칙 자체를 정하기 때문이다.</p></details>
+            <details><summary>DC 저항 계산만으로 trace current를 정할 수 없는 이유는?</summary><p>허용 온도상승은 board 구조, 주변 copper, layer, airflow, pulse 조건 등 열 경계조건에 달려 있기 때문이다.</p></details>
+          </div>
+        </section>

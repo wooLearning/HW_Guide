@@ -1,0 +1,51 @@
+<article class="reference-content appendix-block" aria-labelledby="checklist-title">
+            <div class="appendix-heading">
+              <span>A.3</span><h3 id="checklist-title">인쇄용 체크리스트</h3>
+            </div>
+            <div class="checklist-collection">
+              <div class="print-checklist">
+                <h4>회로도·PCB 설계 검토</h4>
+                <label><input type="checkbox"> 전압·전류·power/thermal budget과 tolerance가 있다</label>
+                <label><input type="checkbox"> power tree, sequencing, reset dependency가 보인다</label>
+                <label><input type="checkbox"> 모든 signal의 source–load–return path를 설명할 수 있다</label>
+                <label><input type="checkbox"> stackup과 controlled impedance를 fabricator와 맞췄다</label>
+                <label><input type="checkbox"> layer transition의 reference via와 connector return pin을 봤다</label>
+                <label><input type="checkbox"> decoupling은 값뿐 아니라 mounting loop를 검토했다</label>
+                <label><input type="checkbox"> high dv/dt/di/dt node의 면적과 coupling path를 제한했다</label>
+                <label><input type="checkbox"> test point, isolation option, debug port가 있다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>전원 인가 전·첫 전원</h4>
+                <label><input type="checkbox"> board/BOM/schematic/firmware revision을 기록했다</label>
+                <label><input type="checkbox"> IC·diode·electrolytic polarity와 solder를 검사했다</label>
+                <label><input type="checkbox"> 입력과 각 rail의 ground resistance를 기록했다</label>
+                <label><input type="checkbox"> supply polarity, voltage, current limit을 소리 내어 재확인했다</label>
+                <label><input type="checkbox"> input current와 모든 rail sequence를 single-shot으로 잡았다</label>
+                <label><input type="checkbox"> hotspot과 비정상 냄새·소리를 즉시 감시했다</label>
+                <label><input type="checkbox"> clock, reset, enable, boot strap을 dependency 순서로 봤다</label>
+                <label><input type="checkbox"> 변경 한 번당 결과와 waveform을 저장했다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>오실로스코프 측정</h4>
+                <label><input type="checkbox"> 최대 voltage와 scope/probe category를 확인했다</label>
+                <label><input type="checkbox"> probe attenuation·compensation·offset을 맞췄다</label>
+                <label><input type="checkbox"> ground connection이 earth에 short를 만들지 않는다</label>
+                <label><input type="checkbox"> DUT source impedance 대비 probe R/C loading을 계산했다</label>
+                <label><input type="checkbox"> spring ground 또는 적절한 differential probe를 썼다</label>
+                <label><input type="checkbox"> bandwidth, sample rate, record length, channel 수를 기록했다</label>
+                <label><input type="checkbox"> trigger source/level/slope와 acquisition mode를 기록했다</label>
+                <label><input type="checkbox"> 다른 probe/setup으로 의심 파형을 재현했다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>SI·PI·EMC 사전 점검</h4>
+                <label><input type="checkbox"> fastest edge와 interconnect delay의 비를 계산했다</label>
+                <label><input type="checkbox"> impedance discontinuity와 coupled length를 검토했다</label>
+                <label><input type="checkbox"> rail별 ΔV/ΔI target impedance가 있다</label>
+                <label><input type="checkbox"> DC bias가 반영된 capacitor model을 썼다</label>
+                <label><input type="checkbox"> cable/connector common-mode return을 그렸다</label>
+                <label><input type="checkbox"> source–path–victim 가설로 hotspot을 분류했다</label>
+                <label><input type="checkbox"> near-field/current probe before–after 조건을 고정했다</label>
+                <label><input type="checkbox"> 적용 EMC standard와 edition을 공식 경로로 확인했다</label>
+              </div>
+            </div>
+          </article>

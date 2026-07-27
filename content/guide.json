@@ -1,0 +1,30 @@
+{
+  "title": "PCB HW Design & Validation",
+  "edition": "2026.2",
+  "parts": [
+    { "id": "part-0", "label": "Orientation", "title": "모델과 학습 지도" },
+    { "id": "part-1", "label": "Circuit Language", "title": "회로를 읽는 언어" },
+    { "id": "part-2", "label": "Fields & Waves", "title": "회로도 밖의 물리" },
+    { "id": "part-3", "label": "PCB Physics", "title": "PCB라는 물리 구조" },
+    { "id": "part-4", "label": "Measurement", "title": "보이는 것과 실제 신호" },
+    { "id": "part-5", "label": "Validation", "title": "검증과 문제 해결" }
+  ],
+  "chapters": [
+    { "id": "chapter-0", "number": "00", "part": "part-0", "slug": "00-models-and-scale", "title": "지도를 먼저 보자", "lead": "집중소자 회로에서 실제 PCB까지, 언제 모델을 바꿔야 하는지 배운다." },
+    { "id": "chapter-1", "number": "01", "part": "part-1", "slug": "01-electrical-quantities", "title": "단위·전하·전압·전류·전력", "lead": "전기량을 에너지와 보존법칙의 언어로 다시 정의한다." },
+    { "id": "chapter-2", "number": "02", "part": "part-1", "slug": "02-dc-circuits", "title": "DC 회로", "lead": "Ohm, KCL/KVL, 등가회로와 부하 효과를 연결한다." },
+    { "id": "chapter-3", "number": "03", "part": "part-1", "slug": "03-capacitors-and-inductors", "title": "커패시터와 인덕터", "lead": "에너지 저장과 연속조건으로 과도응답을 이해한다." },
+    { "id": "chapter-4", "number": "04", "part": "part-1", "slug": "04-ac-frequency-and-resonance", "title": "AC와 주파수", "lead": "복소수, 페이저, 임피던스, 공진과 Bode 관점을 익힌다." },
+    { "id": "chapter-5", "number": "05", "part": "part-1", "slug": "05-real-components", "title": "실제 부품", "lead": "기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다." },
+    { "id": "chapter-6", "number": "06", "part": "part-2", "slug": "06-electromagnetics", "title": "전자기학의 최소 골격", "lead": "E, H, B, flux와 Maxwell 방정식의 물리적 메시지를 잡는다." },
+    { "id": "chapter-7", "number": "07", "part": "part-2", "slug": "07-transmission-lines", "title": "전송선로", "lead": "파동, 특성임피던스, 지연, 반사와 종단을 이해한다." },
+    { "id": "chapter-8", "number": "08", "part": "part-3", "slug": "08-pcb-materials-stackup-and-vias", "title": "PCB 재료·스택업·비아", "lead": "동박, 유전체, 비아와 제조 공차를 전기적 구조로 읽는다." },
+    { "id": "chapter-9", "number": "09", "part": "part-3", "slug": "09-placement-routing-and-return-paths", "title": "배치·배선·귀환 경로", "lead": "신호선만이 아니라 닫힌 전류 루프를 설계한다." },
+    { "id": "chapter-10", "number": "10", "part": "part-3", "slug": "10-signal-integrity", "title": "Signal Integrity", "lead": "빠른 edge, 불연속, 크로스토크와 타이밍 여유를 연결한다." },
+    { "id": "chapter-11", "number": "11", "part": "part-3", "slug": "11-power-integrity", "title": "Power Integrity", "lead": "PDN과 target impedance로 전원 노이즈를 설계한다." },
+    { "id": "chapter-12", "number": "12", "part": "part-3", "slug": "12-emc-and-emi", "title": "EMC와 EMI", "lead": "source–path–victim과 공통 모드 관점으로 방출과 내성을 본다." },
+    { "id": "chapter-13", "number": "13", "part": "part-4", "slug": "13-oscilloscope-fundamentals", "title": "오실로스코프", "lead": "대역폭, 샘플링, 메모리와 트리거가 화면을 만드는 방식을 익힌다." },
+    { "id": "chapter-14", "number": "14", "part": "part-4", "slug": "14-probing-and-measurement", "title": "프로브와 측정", "lead": "프로브 로딩, ground lead와 안전이 측정 결과에 미치는 영향을 본다." },
+    { "id": "chapter-15", "number": "15", "part": "part-5", "slug": "15-bringup-validation-and-debug", "title": "Bring-up·검증·고장분석", "lead": "가설–측정–판정의 반복으로 안전하게 원인을 좁힌다." }
+  ]
+}

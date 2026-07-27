@@ -1,0 +1,93 @@
+<section class="chapter" id="chapter-1" data-part="1">
+          <p class="chapter-kicker">PART I · CIRCUIT LANGUAGE</p>
+          <h2><span>01</span> 단위·전하·전압·전류·전력</h2>
+          <p class="chapter-lead">전기량을 에너지와 보존법칙의 언어로 다시 정의한다.</p>
+          <div class="keyword-row"><span>charge</span><span>potential</span><span>current</span><span>power</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              전압은 “흐르는 양”이 아니라 <strong>단위 전하가 이동할 때 바뀌는 에너지</strong>,
+              전류는 단면을 통과하는 전하의 시간당 변화량이다.
+            </p>
+            <p>
+              전하 Q의 단위는 coulomb(C)이고 전자 하나는 약 −1.602×10<sup>−19</sup> C를 가진다.
+              전류 1 A는 매초 1 C가 기준 단면을 통과한다는 뜻이다. 전압 1 V는 1 C당 1 J의 에너지 차이다.
+              따라서 전압은 반드시 두 점 사이에서 정의한다. “이 노드는 3.3 V”라는 말에는
+              “선택한 0 V 기준에 비해”라는 문장이 생략돼 있다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">정의와 차원</p>
+            <div class="formula-grid">
+              <div><b>I = dQ/dt</b><span>A = C/s</span></div>
+              <div><b>V = dW/dQ</b><span>V = J/C</span></div>
+              <div><b>P = dW/dt = VI</b><span>W = J/s</span></div>
+              <div><b>E = ∫P dt</b><span>J = W·s</span></div>
+            </div>
+            <p>
+              식을 외울 때 단위를 함께 확인하면 오류를 빠르게 잡을 수 있다. 예를 들어 3.3 V × 0.2 A =
+              0.66 VA이고 DC 저항성 부하에서는 0.66 W다. 전력에 시간을 곱하면 에너지가 된다. 0.66 W를
+              10 s 동안 소비하면 6.6 J다.
+            </p>
+          </div>
+
+          <div class="visual-panel" data-visualization="energy-flow" data-visual-medium="html">
+            <div class="visual-heading">
+              <div><span class="visual-number">VIS 01</span><h3>에너지 장부</h3></div>
+              <p>전원에서 부하로 전달되는 전력과 열로 바뀌는 에너지를 추적한다.</p>
+            </div>
+            <div class="energy-flow-static" role="img" aria-label="전원, 배선, 부하 사이의 에너지 흐름">
+              <div><small>SOURCE</small><strong>12 V</strong><span>화학·전기에너지</span></div>
+              <i aria-hidden="true">P = VI →</i>
+              <div><small>LOAD</small><strong>6 W</strong><span>열·빛·운동</span></div>
+            </div>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 레귤레이터 입력과 출력</p>
+            <p>
+              12 V 입력에서 5 V, 1 A를 만드는 선형 레귤레이터를 생각하자. 출력 전력은 5 W다. 입력 전류를
+              대략 1 A로 보면 입력 전력은 12 W이고 차이 7 W는 주로 레귤레이터에서 열이 된다. 이상적인
+              switching converter라면 90% 효율에서 필요한 입력 전력은 5/0.9 = 5.56 W, 입력 전류는 약
+              0.463 A다. topology가 바뀌어도 에너지 보존은 계산의 중심이다.
+            </p>
+            <p class="sanity-check">상식 점검: 수동 회로의 총 출력 전력이 입력 전력보다 크다면 부호나 기준을 다시 확인한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              trace 폭과 copper area는 단순히 “전류가 많이 흐르니 넓게”가 아니다. 허용 전압 강하, I²R 손실,
+              온도 상승, 주변 plane의 열 확산, duty cycle을 함께 정한다. ground는 전하가 사라지는 구멍이
+              아니라 회로가 선택한 전위 기준이자 귀환 도체다. 서로 떨어진 ground 지점은 전류와 임피던스
+              때문에 같은 순간에도 다른 전압을 가질 수 있다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              DMM의 전압 모드는 높은 입력저항으로 두 점 사이 전위를 읽고, 전류 모드는 내부 shunt를 회로에
+              직렬로 삽입한다. 전류계를 전압원에 병렬 연결하면 거의 단락이 되어 퓨즈나 회로를 손상시킬 수
+              있다. 전력은 동시에 측정한 V와 I의 곱이며, 시간 변화가 있으면 평균·RMS·peak의 정의를 구분한다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“전원은 전류를 밀어 넣고 부품이 그 전류를 받아 쓴다.”</strong></p>
+            <p>
+              이상 전압원은 전압 조건을 만들고 실제 전류는 연결된 회로의 임피던스가 결정한다. 전원 정격 3 A는
+              항상 3 A를 강제로 흘린다는 뜻이 아니라, 규정된 전압을 유지하며 공급할 수 있는 범위다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>전압은 왜 한 점의 절대값이 아닌가?</summary><p>전압은 단위 전하당 에너지의 차이이므로 반드시 기준점과 측정점 두 곳이 필요하다.</p></details>
+            <details><summary>1 A가 의미하는 전하 흐름은?</summary><p>선택한 단면을 1초에 1 C가 통과하는 비율이다. 전자의 이동 방향과 관습적 전류 방향은 반대일 수 있다.</p></details>
+            <details><summary>전력과 에너지의 차이는?</summary><p>전력은 에너지 변화율 W=J/s, 에너지는 전력을 시간에 대해 적분한 J다.</p></details>
+          </div>
+        </section>

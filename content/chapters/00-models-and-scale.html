@@ -1,0 +1,97 @@
+<section class="chapter" id="chapter-0" data-part="0">
+          <p class="chapter-kicker">PART 0 · ORIENTATION</p>
+          <h2><span>00</span> 지도를 먼저 보자</h2>
+          <p class="chapter-lead">집중소자 회로에서 실제 PCB까지, 언제 모델을 바꿔야 하는지 배운다.</p>
+          <div class="keyword-row" aria-label="핵심어">
+            <span>model</span><span>scale</span><span>edge rate</span><span>return path</span>
+          </div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              좋은 하드웨어 엔지니어링은 복잡한 현실을 무조건 자세히 보는 일이 아니라,
+              <strong>질문에 맞는 가장 단순한 모델을 선택하고 그 모델이 깨지는 경계</strong>를 아는 일이다.
+            </p>
+            <p>
+              회로도에서 선은 전압이 어디서나 같은 이상적인 연결이다. 실제 PCB에서 선은 폭·두께·길이와
+              주변 유전체를 가진 전자기 구조다. 신호 변화가 충분히 느리고 배선이 짧으면 두 관점은 거의 같은
+              답을 준다. 그러나 전파 지연이 rise time에 비해 무시할 수 없거나, 전류의 귀환 경로가 끊기거나,
+              전원 임피던스가 커지면 회로도만으로는 현상을 설명하지 못한다.
+            </p>
+          </div>
+
+          <div class="visual-panel" data-visualization="model-ladder" data-visual-medium="html">
+            <div class="visual-heading">
+              <div><span class="visual-number">VIS 00</span><h3>모델의 사다리</h3></div>
+              <p>주파수·edge·구조가 바뀌면 필요한 모델도 바뀐다.</p>
+            </div>
+            <div class="model-ladder" role="img" aria-label="DC 회로, 과도 회로, 전송선로, 전자기장 모델의 적용 범위">
+              <article><b>01</b><strong>DC lumped</strong><span>저항망 · 정상상태</span></article>
+              <article><b>02</b><strong>Transient</strong><span>C/L · 시간상수</span></article>
+              <article><b>03</b><strong>Transmission line</strong><span>지연 · 반사 · 종단</span></article>
+              <article><b>04</b><strong>Full-wave field</strong><span>방사 · 공진 · 결합</span></article>
+            </div>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">모델 전환의 첫 판단</p>
+            <div class="formula">t<sub>d</sub> / t<sub>r</sub> ≪ 1 <span>→ 집중소자 근사가 대체로 유효</span></div>
+            <dl class="symbol-list">
+              <div><dt>t<sub>d</sub></dt><dd>배선을 편도로 통과하는 전파 지연</dd></div>
+              <div><dt>t<sub>r</sub></dt><dd>신호의 10–90% rise time. clock 주기보다 edge가 기준이다.</dd></div>
+            </dl>
+            <p>
+              정확한 경계는 허용 오차와 토폴로지에 따라 달라진다. 실무에서는 배선의 편도 지연이 rise time의
+              약 1/6 이상이면 전송선로 효과를 검토하는 보수적 출발점이 유용하다. 이것은 자연법칙의 경계가
+              아니라 해석을 시작하게 해 주는 경험적 기준이다.
+            </p>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 10 cm 배선</p>
+            <p>
+              FR-4 위 신호의 전파 속도를 약 160 mm/ns로 잡으면 100 mm의 편도 지연은 약 0.625 ns다.
+              rise time이 10 ns이면 t<sub>d</sub>/t<sub>r</sub> = 0.0625로 작다. 같은 배선에 1 ns edge를
+              넣으면 비는 0.625가 되어 “짧은 선”이라 부르기 어렵다. 두 경우 모두 clock 주파수가 같아도
+              edge가 다르면 필요한 모델이 달라진다.
+            </p>
+            <p class="sanity-check">상식 점검: 배선 길이가 0에 가까워지면 지연도 0에 가까워져야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              설계 규칙을 외우기 전에 “어떤 전류가 어디서 출발해 어떤 경로로 돌아오는가”, “에너지는 어느
+              유전체 공간에 저장되는가”, “어떤 구조 변화가 임피던스를 바꾸는가”를 묻는다. 이 질문 하나가
+              placement, stackup, decoupling, SI, PI, EMC를 같은 물리로 묶는다. 신호선 폭만 계산하고 기준면과
+              층 전환을 무시하면 닫힌 회로의 절반만 설계한 셈이다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              측정값은 DUT의 “진짜 값”을 그대로 읽은 것이 아니다. 측정 시스템은
+              <code>DUT + test point + probe + cable + instrument + setup</code>의 결합이다. 파형이 이상하면
+              설계를 의심하기 전에 대역폭 제한, probe loading, ground lead, 샘플링과 trigger 조건을 함께
+              기록한다. 반복 가능한 측정은 숫자뿐 아니라 구성 사진과 설정을 남긴다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“고속 설계는 clock 주파수가 높을 때만 필요하다.”</strong></p>
+            <p>
+              10 MHz 신호라도 500 ps edge를 가지면 GHz 대역 성분이 존재한다. 반대로 완만한 10 MHz sine은
+              훨씬 다루기 쉽다. PCB의 전송선로·크로스토크·EMI 문제를 결정하는 첫 변수는 반복 주파수 하나가
+              아니라 edge와 구조의 전파 지연이다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>왜 clock period보다 rise time을 먼저 보는가?</summary><p>공간적 전압·전류 분포를 만드는 고주파 성분은 전이가 얼마나 급한지에 의해 정해지기 때문이다.</p></details>
+            <details><summary>모델이 복잡할수록 항상 더 좋은가?</summary><p>아니다. 필요한 정확도를 넘는 모델은 입력 자료와 해석 비용만 늘린다. 가정을 밝히고 가장 단순한 유효 모델을 고르는 편이 낫다.</p></details>
+            <details><summary>이 책을 읽을 때 반복할 세 질문은?</summary><p>에너지는 어디에 저장되는가, 전류는 어떤 닫힌 경로를 도는가, 측정 시스템이 회로를 얼마나 바꾸는가이다.</p></details>
+          </div>
+        </section>

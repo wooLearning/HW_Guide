@@ -1,0 +1,189 @@
+<section class="chapter" id="chapter-6" data-part="2">
+          <p class="chapter-kicker">PART II · FIELDS &amp; WAVES</p>
+          <h2><span>06</span> 전자기학의 최소 골격</h2>
+          <p class="chapter-lead">E, H, B, flux와 Maxwell 방정식의 물리적 메시지를 잡는다.</p>
+          <div class="keyword-row"><span>electric field</span><span>magnetic field</span><span>flux</span><span>Poynting</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              회로가 전달하는 에너지는 전자가 동박 안을 빠르게 달려 부하로 운반하는 것이 아니라,
+              주로 <strong>도체 주변 유전체 공간의 전기장과 자기장</strong>을 통해 이동한다.
+            </p>
+            <p>
+              전기장 E는 전하가 받는 힘의 방향과 크기를, 자기 flux density B는 움직이는 전하와 자성체가
+              경험하는 효과를 기술한다. 회로 엔지니어링에서는 재료를 포함하기 위해 D = εE, B = μH로
+              electric flux density D와 magnetic field H도 쓴다. field는 보이지 않지만 capacitance,
+              inductance, coupling, propagation, radiation이라는 측정 가능한 결과를 만든다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">Maxwell 방정식이 말하는 네 가지</p>
+            <div class="maxwell-grid">
+              <article><b>∇·D = ρ</b><span>전하는 electric flux의 source/sink다.</span></article>
+              <article><b>∇·B = 0</b><span>고립된 magnetic monopole은 관측되지 않는다.</span></article>
+              <article><b>∇×E = −∂B/∂t</b><span>변하는 B는 순환하는 E를 만든다.</span></article>
+              <article><b>∇×H = J + ∂D/∂t</b><span>전도전류와 변하는 E가 H를 만든다.</span></article>
+            </div>
+            <p>
+              식을 풀지 못해도 의미는 설계에 직접 쓰인다. current loop를 줄이면 magnetic coupling이 줄고,
+              빠른 dv/dt 노드의 면적을 줄이면 capacitive coupling이 줄며, 기준면을 가까이 두면 field가 좁은
+              공간에 갇혀 외부 결합과 loop inductance가 함께 작아진다. 에너지 흐름 밀도는
+              S = E × H인 Poynting vector로 표현한다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="field-energy" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 06</span><h3>도체 쌍 주변의 장과 에너지 흐름</h3></div>
+              <p>trace와 reference plane 사이 간격이 field confinement를 어떻게 바꾸는지 본다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>plane 간격 <input data-input="height" type="range" min="20" max="160" value="70"><output data-out="height">0.18 mm</output></label>
+              <label>edge 세기 <input data-input="slew" type="range" min="1" max="10" value="6"><output data-out="slew">6</output></label>
+            </div>
+            <div class="visual-stage" data-stage>
+              <canvas width="900" height="420" role="img" aria-label="신호 trace와 기준면 사이의 전기장, 자기장, 에너지 흐름"></canvas>
+            </div>
+            <p class="visual-caption">도식은 정성적이다. 실제 field는 geometry와 유전체 경계조건을 푸는 field solver로 구한다.</p>
+          </div>
+
+          <figure class="visual-panel media-figure" data-visual-medium="imagegen">
+            <div class="visual-heading">
+              <div><span class="visual-number">PLATE 06A</span><h3>마이크로스트립 주변의 E·H field</h3></div>
+              <p>전기장은 두 도체 사이에서 끝나고, 자기장은 전류를 감싸는 닫힌 고리를 만든다.</p>
+            </div>
+            <img src="assets/images/em-field-around-trace.png" width="1568" height="1003" loading="lazy"
+              alt="구리 마이크로스트립과 기준면 사이의 파란 전기장선, 전류를 감싸는 자홍색 자기장 고리">
+            <figcaption>
+              파란 선은 전위차가 만드는 E field, 자홍 고리는 전류가 만드는 H field의 정성적 방향이다.
+              실제 장은 trace 가장자리에서 강해지고 공기·solder mask·laminate의 유전율 경계에서 굴절한다.
+            </figcaption>
+          </figure>
+
+          <figure class="visual-panel media-figure" data-visual-medium="imagegen">
+            <div class="visual-heading">
+              <div><span class="visual-number">PLATE 06B</span><h3>에너지는 구리 안보다 유전체 공간을 지난다</h3></div>
+              <p>Poynting vector는 E와 H가 겹치는 공간에서 전원에서 부하로 향한다.</p>
+            </div>
+            <img src="assets/images/field-energy-return-path.png" width="1568" height="1003" loading="lazy"
+              alt="신호 trace와 기준면 사이 유전체에 집중된 파란 에너지 흐름과 자홍색 귀환 전류 밀도">
+            <figcaption>
+              도체는 경계조건과 손실을 제공하고, 전달 에너지의 대부분은 trace와 기준면 사이 field에 저장되어
+              진행한다. 기준면을 가까이 두면 같은 신호에서 field 부피와 loop inductance가 함께 줄어든다.
+            </figcaption>
+          </figure>
+
+          <figure class="visual-panel media-figure" data-visual-medium="imagegen">
+            <div class="visual-heading">
+              <div><span class="visual-number">PLATE 06C</span><h3>Near field에서 far field로</h3></div>
+              <p>source 가까이서는 반응성 저장 에너지가, 멀리서는 진행파가 지배한다.</p>
+            </div>
+            <img src="assets/images/near-far-field.png" width="1586" height="992" loading="lazy"
+              alt="소스 가까이의 닫힌 반응성 장 고리와 멀리 퍼져나가는 전자기 파면의 비교">
+            <figcaption>
+              near field의 E/H 비는 source geometry에 따라 크게 달라지므로 작은 E probe와 H probe가 서로
+              다른 hotspot을 본다. far field에서는 E, H와 진행 방향이 서로 직교하는 파동 관계로 수렴한다.
+            </figcaption>
+          </figure>
+
+          <article class="deep-dive" role="region" aria-labelledby="deep-field-title">
+            <header>
+              <span>원리 더 깊게</span>
+              <h3 id="deep-field-title">Maxwell 방정식에서 PCB의 장까지</h3>
+            </header>
+            <div class="principle-grid">
+              <article>
+                <h4>전하는 E field의 시작과 끝이다</h4>
+                <p>
+                  ∇·D=ρ는 free charge가 electric flux의 source임을 뜻한다. 신호 trace의 표면전하 분포는
+                  길이 방향 전압 변화와 주변 E field를 만든다. edge가 진행할 때 “전자가 선 끝까지 즉시
+                  이동”하는 것이 아니라 표면전하와 field의 재배치가 유한한 속도로 전파된다.
+                </p>
+              </article>
+              <article>
+                <h4>전류와 변위전류가 H field를 닫는다</h4>
+                <p>
+                  ∇×H=J+∂D/∂t에서 ∂D/∂t는 유전체를 가로지르는 displacement current다. capacitor의
+                  dielectric에 전자가 통과하지 않아도 외부 도선의 전류가 연속일 수 있는 이유다. 빠른
+                  switch node의 stray C가 chassis에 common-mode current를 보내는 것도 같은 항이다.
+                </p>
+              </article>
+              <article>
+                <h4>변하는 E와 H는 서로를 만든다</h4>
+                <p>
+                  ∇×E=−∂B/∂t는 시간에 따라 바뀌는 magnetic flux가 순환 E field를 만든다는 뜻이다.
+                  loop area와 di/dt가 커질수록 이 유도 전압이 커진다. 그래서 “ground 저항이 낮다”만으로는
+                  빠른 귀환 경로가 좋은지 판단할 수 없고 loop inductance를 봐야 한다.
+                </p>
+              </article>
+              <article>
+                <h4>경계조건이 field의 모양을 정한다</h4>
+                <p>
+                  좋은 도체 표면의 tangential E는 매우 작고, 표면전하가 normal D의 불연속을, 표면전류가
+                  tangential H의 불연속을 만든다. trace 폭·plane 거리·유전체가 바뀌면 이 경계조건을
+                  만족하는 field 분포가 바뀌므로 C′, L′, Z0와 지연이 함께 바뀐다.
+                </p>
+              </article>
+            </div>
+            <p class="derivation-note">
+              Poynting 정리 <b>∂u/∂t + ∇·S = −J·E</b>는 field energy의 감소, 공간을 빠져나간 전력,
+              도체에서 열로 바뀐 전력을 하나의 보존식으로 묶는다. 회로의 <b>P=VI</b>는 이 장 에너지
+              흐름을 단자에서 적분해 본 표현이다.
+            </p>
+          </article>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 작은 capacitance의 에너지</p>
+            <p>
+              50 pF 구조가 3.3 V로 충전되면 저장 에너지는 ½CV² = 0.5×50 pF×(3.3 V)² ≈ 272 pJ다.
+              이 전압이 매초 100만 번 0→3.3 V로 충전되고 매번 저항에서 소산된다면 동적 전력의 1차 근사는
+              C·V²·f = 0.545 mW다. 실제 CMOS에서는 activity factor와 여러 내부 capacitance가 곱해진다.
+            </p>
+            <p class="sanity-check">상식 점검: 전압을 두 배로 하면 저장 에너지와 dynamic power는 네 배가 된다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              microstrip의 field 일부는 solder mask와 공기에, 일부는 laminate에 존재한다. stripline은
+              두 reference plane 사이에 field가 더 강하게 갇힌다. trace 폭, plane 거리, εr가 capacitance와
+              inductance per length를 바꾸고 결국 characteristic impedance와 propagation velocity를 정한다.
+              connector, via, plane gap에서 field geometry가 급히 바뀌면 discontinuity가 된다.
+            </p>
+            <p>
+              source에 가까운 near field에서는 E/H 비가 자유공간 파동 impedance로 고정되지 않고 source의
+              capacitive/inductive 성격이 강하다. 충분히 먼 far field에서는 E와 H가 결합된 traveling wave로
+              거동한다. λ/(2π)는 작은 source의 전이 영역을 짐작하는 출발점일 뿐, board·cable 크기와 geometry에
+              따라 경계가 달라진다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              near-field probe는 E 또는 H field에 민감한 작은 sensor로 board 위의 결합 hotspot을 찾는다.
+              절대 방사량을 바로 말해 주는 안테나는 아니지만 원인 위치를 좁히는 데 유용하다. probe 방향과
+              높이를 고정하고 before/after를 같은 조건으로 비교해야 한다. scope probe loop도 원치 않는
+              H-field sensor가 될 수 있다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“전기 에너지는 copper 안을 흐르고 절연체는 아무 일도 하지 않는다.”</strong></p>
+            <p>
+              conductor는 경계조건과 전류 경로를 만들지만 energy density는 도체 사이 유전체의 E와 H에
+              존재한다. laminate의 Dk와 Df, plane 간격, solder mask가 신호 속도·손실·임피던스에 영향을 주는
+              이유다. “ground plane은 단지 0 V 금속판”이라는 생각도 field와 return path를 놓친다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>변하는 magnetic field가 만드는 것은?</summary><p>Maxwell–Faraday 법칙에 따라 순환하는 electric field, 즉 유도 전압을 만든다.</p></details>
+            <details><summary>reference plane을 trace 가까이에 두면 좋은 이유는?</summary><p>field가 좁은 공간에 집중되고 return loop inductance와 외부 coupling이 줄기 때문이다.</p></details>
+            <details><summary>Poynting vector의 방향은?</summary><p>E×H 방향이며 단위 면적당 electromagnetic power flow를 나타낸다.</p></details>
+          </div>
+        </section>

@@ -1,0 +1,100 @@
+<section class="chapter" id="chapter-10" data-part="3">
+          <p class="chapter-kicker">PART III · THE PHYSICAL BOARD</p>
+          <h2><span>10</span> Signal Integrity</h2>
+          <p class="chapter-lead">빠른 edge, 불연속, 크로스토크와 타이밍 여유를 연결한다.</p>
+          <div class="keyword-row"><span>edge rate</span><span>discontinuity</span><span>crosstalk</span><span>eye diagram</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              Signal Integrity는 파형을 “예쁘게” 만드는 일이 아니라 receiver가 약속된 시간에
+              <strong>유효한 logic level과 timing margin</strong>을 갖도록 interconnect를 설계하는 일이다.
+            </p>
+            <p>
+              source waveform은 package, trace, via, connector, load를 지나며 반사·손실·분산·crosstalk와
+              power/ground noise의 영향을 받는다. monotonic edge가 중요한 interface도 있고 일정 eye
+              opening이 중요한 serial link도 있다. protocol frequency보다 driver rise/fall time,
+              interconnect delay, receiver threshold와 jitter budget을 기준으로 판단한다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">margin을 훼손하는 항</p>
+            <div class="formula-grid">
+              <div><b>Γ = ΔZ/(Z<sub>after</sub>+Z<sub>before</sub>)</b><span>impedance step 반사</span></div>
+              <div><b>t<sub>flight</sub> = ℓ/v<sub>p</sub></b><span>interconnect delay</span></div>
+              <div><b>V<sub>noise</sub> ≈ C<sub>m</sub>(dv/dt)Z<sub>v</sub></b><span>capacitive crosstalk 감각</span></div>
+              <div><b>margin = window − setup − hold − jitter</b><span>timing budget 관점</span></div>
+            </div>
+            <p>
+              crosstalk은 mutual capacitance와 mutual inductance가 함께 만든다. spacing을 늘리고 parallel
+              coupled length를 줄이며 reference plane을 가까이 두면 결합을 줄일 수 있다. differential pair는
+              두 선의 “길이만 같게”가 아니라 pair impedance, intra-pair skew, reference continuity,
+              common-mode conversion을 함께 관리한다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="crosstalk" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 10</span><h3>spacing·coupled length·edge의 영향</h3></div>
+              <p>aggressor가 victim에 만드는 near-end noise의 정성적 변화를 비교한다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>spacing <input data-input="spacing" type="range" min="1" max="8" value="3"><output data-out="spacing">3 W</output></label>
+              <label>평행 길이 <input data-input="length" type="range" min="5" max="100" value="40"><output data-out="length">40 mm</output></label>
+              <label>rise time <input data-input="rise" type="range" min="0.2" max="5" step="0.1" value="1"><output data-out="rise">1.0 ns</output></label>
+            </div>
+            <div class="visual-stage" data-stage>
+              <canvas width="900" height="420" role="img" aria-label="aggressor와 victim 배선 사이의 크로스토크 파형"></canvas>
+            </div>
+            <div class="result-strip"><span>상대 coupling <strong data-result="coupling">중간</strong></span><span>대응 <strong data-result="action">spacing 우선</strong></span></div>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 50 Ω에서 75 Ω로</p>
+            <p>
+              50 Ω line이 짧은 구간에서 75 Ω로 바뀌면 Γ = (75−50)/(75+50) = 0.2다. 그 경계에 도달한
+              3.3 V traveling-wave component의 20%, 즉 0.66 V 상당이 같은 극성으로 반사될 수 있다.
+              실제 pin에서 보이는 peak는 source impedance, 앞뒤 경계, 구간 길이와 여러 반사의 합이다.
+              discontinuity가 짧아 왕복 지연이 edge보다 훨씬 작으면 lumped C/L로 보일 수도 있다.
+            </p>
+            <p class="sanity-check">상식 점검: 두 impedance가 같아지면 Γ는 0이어야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              via pad와 anti-pad는 capacitive, via barrel과 return detour는 inductive discontinuity를 만든다.
+              connector pin assignment는 signal 옆 reference pin을 제공해야 한다. length matching은 propagation
+              delay budget에 필요할 때만 적용하고, 불필요한 serpentine은 coupling과 loss를 늘릴 수 있다.
+              slow control과 fast bus를 같은 “digital” 규칙 하나로 다루지 않는다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              eye diagram은 여러 unit interval을 겹쳐 voltage와 timing margin을 보여준다. 넓게 열린 eye가
+              좋지만 probe bandwidth, fixture, clock recovery와 mask 조건을 알아야 해석할 수 있다. TDR/TDT,
+              VNA의 S-parameter, scope waveform은 같은 interconnect를 서로 다른 domain에서 본다. 문제의
+              위치·주파수·시간 특성에 맞춰 도구를 고른다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“모든 신호에 3W spacing과 length matching을 적용하면 SI가 해결된다.”</strong></p>
+            <p>
+              규칙은 coupling geometry와 timing budget에서 나와야 한다. 3W도 보편 법칙이 아니고 adjacent
+              reference distance와 coupled length가 다르면 효과가 달라진다. 과도한 length tuning은 면적,
+              loss, 자체 crosstalk을 늘린다. 무엇을 얼마까지 줄여야 하는지 수치 budget이 먼저다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>SI의 성공 기준은 파형 모양 자체인가?</summary><p>아니다. receiver의 voltage·timing requirement와 margin을 만족하는지가 기준이다.</p></details>
+            <details><summary>crosstalk을 줄이는 세 가지 기본 방법은?</summary><p>spacing을 늘리고, 평행 결합 길이를 줄이고, reference plane을 가깝고 연속적으로 둔다.</p></details>
+            <details><summary>왜 clock frequency보다 edge rate를 보는가?</summary><p>interconnect가 반응하는 spectrum과 electrical length를 빠른 전이가 결정하기 때문이다.</p></details>
+          </div>
+        </section>

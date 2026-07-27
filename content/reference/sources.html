@@ -1,0 +1,127 @@
+<article class="reference-content appendix" aria-labelledby="references-title">
+          <p class="chapter-kicker">SOURCE TRAIL</p>
+          <h2 id="references-title">참고문헌과 검증 기준</h2>
+          <p class="chapter-lead">
+            설명은 아래 층위를 우선해 교차검증했다. 표준 전문은 유료일 수 있으며 이 가이드는 표준을
+            대체하지 않는다. 제품의 적용 규격·edition·시험 조건은 공식 기관과 공인 시험소에서 다시 확인한다.
+          </p>
+
+          <div class="source-tier">
+            <h3><span>TIER 1</span> 표준·공식 기관</h3>
+            <ol class="source-list">
+              <li class="source-entry">
+                <a href="https://www.ipc.org/ipc-design-standards" target="_blank" rel="noreferrer">
+                  IPC · PCB Design Standards
+                </a>
+                <p>IPC-2221/2222/2228, IPC-7351 등 board design 표준의 공식 색인. 2026-07-25 확인.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ipc.org/ipc-document-revision-table" target="_blank" rel="noreferrer">
+                  IPC · Document Revision Table
+                </a>
+                <p>현재 revision, obsolete/superseded/no-longer-maintained 상태 확인용. 2026-07-25 확인.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ipc.org/TOC/IPC-2152.pdf" target="_blank" rel="noreferrer">
+                  IPC-2152 · Current Carrying Capacity — Official TOC
+                </a>
+                <p>PCB conductor current/temperature 주제의 공식 공개 목차. IPC revision table상 더 이상 유지관리되지 않는 상태이므로 현재 요구사항으로 단독 적용하지 않는다.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://webstore.iec.ch/en/publication/70473" target="_blank" rel="noreferrer">
+                  IEC TR 61000-1-1:2023
+                </a>
+                <p>EMC 기본 정의, electromagnetic environment, source–coupling–victim 개념의 공식 기술보고서.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15" target="_blank" rel="noreferrer">
+                  U.S. eCFR · 47 CFR Part 15
+                </a>
+                <p>미국 radio-frequency device 관련 현행 공식 규정. 적용 subpart와 최신 날짜를 제품별로 확인.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://standards.ieee.org/ieee/370/6165/" target="_blank" rel="noreferrer">
+                  IEEE Std 370 · Electrical Characterization of PCB Interconnects
+                </a>
+                <p>interconnect measurement와 fixture/de-embedding 품질을 다루는 IEEE 표준 정보 페이지.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="source-tier">
+            <h3><span>TIER 2</span> 계측기·반도체 제조사 공식 자료</h3>
+            <ol class="source-list" start="7">
+              <li class="source-entry">
+                <a href="https://www.tek.com/en/documents/whitepaper/abcs-probes-primer" target="_blank" rel="noreferrer">
+                  Tektronix · ABCs of Probes Primer
+                </a>
+                <p>probe bandwidth, loading, attenuation, ground lead와 probe 종류의 기초.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.tek.com/en/documents/primer/xyzs-oscilloscopes-primer" target="_blank" rel="noreferrer">
+                  Tektronix · XYZs of Oscilloscopes Primer
+                </a>
+                <p>oscilloscope architecture, bandwidth, sampling, acquisition과 trigger 입문.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.tek.com/en/products/oscilloscopes/oscilloscope-probes" target="_blank" rel="noreferrer">
+                  Tektronix · Oscilloscope Probes Fundamentals
+                </a>
+                <p>probe 선택, attenuation, voltage rating, scope compatibility 공식 안내.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ti.com/lit/an/scaa082/scaa082.pdf" target="_blank" rel="noreferrer">
+                  Texas Instruments · High-Speed Layout Guidelines
+                </a>
+                <p>fast digital interface의 layout, return, crosstalk과 termination에 관한 application report.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ti.com/lit/an/slla414/slla414.pdf" target="_blank" rel="noreferrer">
+                  Texas Instruments · High-Speed Interface Layout Guidelines
+                </a>
+                <p>여러 high-speed interface의 routing와 layout 고려사항을 정리한 공식 application note.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.analog.com/media/en/training-seminars/tutorials/MT-031.pdf" target="_blank" rel="noreferrer">
+                  Analog Devices · MT-031 Grounding Data Converters
+                </a>
+                <p>mixed-signal grounding, return current와 partitioning을 설명하는 공식 tutorial.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf" target="_blank" rel="noreferrer">
+                  Analog Devices · MT-101 Decoupling Techniques
+                </a>
+                <p>capacitor parasitic, local decoupling과 connection inductance 기초.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/Oscilloscope-Fundamentals_bro_en_3608-2720-62_v0200.pdf" target="_blank" rel="noreferrer">
+                  Rohde &amp; Schwarz · Oscilloscope Fundamentals
+                </a>
+                <p>digital oscilloscope의 기본 설정, trigger와 measurement 개념.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="source-tier">
+            <h3><span>TIER 3</span> 정평 있는 교재</h3>
+            <ol class="source-list" start="15">
+              <li class="source-entry"><cite>Eric Bogatin, Signal and Power Integrity—Simplified, 3rd ed.</cite><p>transmission line, SI/PI와 측정의 직관적 연결.</p></li>
+              <li class="source-entry"><cite>Henry W. Ott, Electromagnetic Compatibility Engineering.</cite><p>coupling, grounding, shielding, filtering과 EMC 설계 원리.</p></li>
+              <li class="source-entry"><cite>Howard Johnson &amp; Martin Graham, High-Speed Digital Design.</cite><p>fast logic의 interconnect, return current와 measurement.</p></li>
+              <li class="source-entry"><cite>Stephen H. Hall &amp; Howard L. Heck, Advanced Signal Integrity for High-Speed Digital Designs.</cite><p>channel modeling, via, crosstalk과 serial-link SI.</p></li>
+              <li class="source-entry"><cite>Paul Horowitz &amp; Winfield Hill, The Art of Electronics, 3rd ed.</cite><p>실제 component와 measurement를 잇는 회로 설계 참고서.</p></li>
+              <li class="source-entry"><cite>David J. Griffiths, Introduction to Electrodynamics.</cite><p>electric/magnetic field와 Maxwell equation의 이론적 기초.</p></li>
+              <li class="source-entry"><cite>Charles K. Alexander &amp; Matthew N. O. Sadiku, Fundamentals of Electric Circuits.</cite><p>회로법칙, transient, AC와 network analysis 기초.</p></li>
+            </ol>
+          </div>
+
+          <aside class="source-policy">
+            <h3>이 자료의 주장 처리 방식</h3>
+            <ul>
+              <li>정의와 표준 번호는 공식 기관 페이지에서 revision 상태를 확인한다.</li>
+              <li>경험칙은 법칙처럼 쓰지 않고 edge, geometry, 허용오차 등 적용 조건을 함께 적는다.</li>
+              <li>제조사 자료는 유용하지만 특정 제품과 fixture 조건이 있으므로 다른 자료와 교차검증한다.</li>
+              <li>안전·규제·제품 합격 판정은 이 가이드가 아니라 적용 표준, 장비 매뉴얼, 자격 있는 책임자의 절차를 따른다.</li>
+            </ul>
+          </aside>
+        </article>

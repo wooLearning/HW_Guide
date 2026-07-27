@@ -1,0 +1,131 @@
+<section class="chapter" id="chapter-5" data-part="1">
+          <p class="chapter-kicker">PART I · CIRCUIT LANGUAGE</p>
+          <h2><span>05</span> 실제 부품</h2>
+          <p class="chapter-lead">기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다.</p>
+          <div class="keyword-row"><span>parasitic</span><span>ESR</span><span>ESL</span><span>operating point</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              부품의 이름은 지배적인 성질을 말할 뿐이다. 실제 부품은 언제나
+              <strong>R·L·C와 비선형성이 함께 있는 주파수·전압·온도 의존 구조</strong>다.
+            </p>
+            <p>
+              저항은 lead와 패턴 때문에 inductance와 capacitance를 갖고, capacitor에는 ESR·ESL·leakage가,
+              inductor에는 winding resistance·inter-winding capacitance·core loss와 saturation이 있다.
+              datasheet의 “typical” curve는 이상 기호와 실물 사이를 잇는 지도다. nominal 값 하나가 아니라
+              bias, tolerance, temperature, frequency 조건을 함께 읽는다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">실제 capacitor의 1차 모델</p>
+            <div class="formula">Z(jω) = ESR + jω·ESL + 1/(jωC)</div>
+            <p>
+              낮은 주파수에서는 1/(ωC)가 지배해 주파수가 오를수록 |Z|가 내려간다. self-resonant frequency
+              f<sub>SR</sub> = 1/(2π√(ESL·C)) 부근에서는 L과 C reactance가 상쇄되어 ESR 근처까지 내려간다.
+              그 위에서는 ESL이 지배해 capacitor가 inductive하게 보인다. MLCC의 유효 C는 DC bias에서
+              nominal보다 크게 줄 수 있다.
+            </p>
+          </div>
+
+          <div class="reality-grid" aria-label="실제 digital I/O와 전원 부품을 읽는 관점">
+            <article>
+              <span>CMOS I/O</span>
+              <h3>논리 기호 안의 analog 회로</h3>
+              <p>
+                output은 유한한 pull-up/pull-down impedance와 package RLC를 가진다. input에는 capacitance,
+                leakage, threshold와 ESD clamp가 있다. VOH/VOL은 정해진 IOH/IOL 조건에서 읽고,
+                VIH/VIL 사이 undefined region을 noise margin으로 관리한다.
+              </p>
+            </article>
+            <article>
+              <span>DRIVE MODES</span>
+              <h3>push-pull · open-drain · tri-state</h3>
+              <p>
+                push-pull은 두 방향을 능동 구동하고, open-drain은 low만 구동해 external pull-up과 RC rise를
+                만든다. tri-state는 bus를 놓지만 pin capacitance와 clamp는 남는다. slew/drive 설정은 SI와
+                EMI를 바꾸는 설계 변수다.
+              </p>
+            </article>
+            <article>
+              <span>RATINGS</span>
+              <h3>Absolute max는 동작 조건이 아니다</h3>
+              <p>
+                absolute maximum은 넘으면 손상 가능성이 있는 경계이고 정상 기능을 보증하는 범위가 아니다.
+                recommended operating condition, DC characteristic, timing, power-on/off injection 조건을
+                함께 확인한다.
+              </p>
+            </article>
+            <article>
+              <span>REGULATION</span>
+              <h3>레귤레이터도 loop다</h3>
+              <p>
+                LDO와 switching regulator는 dropout·current limit·thermal뿐 아니라 feedback loop stability,
+                input/output capacitor ESR·C 조건, startup과 transient response를 가진 동적 시스템이다.
+              </p>
+            </article>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="real-capacitor" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 05</span><h3>실제 capacitor impedance</h3></div>
+              <p>C, ESR, ESL을 바꾸며 capacitive–resistive–inductive 영역을 찾는다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>C <input data-input="c" type="range" min="1" max="1000" value="100"><output data-out="c">100 nF</output></label>
+              <label>ESR <input data-input="esr" type="range" min="1" max="500" value="50"><output data-out="esr">50.0 mΩ</output></label>
+              <label>ESL <input data-input="esl" type="range" min="0.2" max="5" step="0.1" value="1"><output data-out="esl">1.00 nH</output></label>
+            </div>
+            <div class="visual-stage" data-stage><canvas width="900" height="400" role="img" aria-label="실제 커패시터의 주파수별 임피던스 곡선"></canvas></div>
+            <div class="result-strip"><span>Self resonance <strong data-result="fsr">15.9 MHz</strong></span><span>최소 |Z| <strong data-result="zmin">50.0 mΩ</strong></span></div>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 100 nF decoupling</p>
+            <p>
+              C = 100 nF, ESL = 1 nH이면 fSR ≈ 15.9 MHz다. 1 MHz에서 ideal capacitive reactance는 약
+              1.59 Ω이고 ESL reactance는 6.3 mΩ라 C가 지배한다. 100 MHz에서는 C가 15.9 mΩ인 반면 ESL은
+              0.628 Ω이어서 전체는 inductive하다. “100 nF가 고주파를 모두 bypass한다”는 결론은 패키지와
+              연결 inductance를 무시한 것이다.
+            </p>
+            <p class="sanity-check">상식 점검: ESL을 줄이면 self resonance가 더 높은 주파수로 이동해야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              같은 100 nF라도 작은 package, 짧고 넓은 연결, 가까운 power/ground via는 loop inductance를
+              줄인다. MOSFET은 RDS(on)뿐 아니라 gate charge, Miller capacitance, body diode와 SOA를 본다.
+              regulator는 dropout, loop stability, output capacitor 조건, transient response, thermal
+              resistance를 확인한다. 부품 선택은 footprint와 placement까지 포함한 시스템 결정이다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              LCR meter가 표시하는 값은 선택 주파수와 등가 series/parallel 모델에 따라 달라진다. semiconductor
+              diode는 DMM diode mode의 작은 전류에서 측정한 forward voltage와 실제 부하 전류의 값이 다르다.
+              rail의 ripple을 볼 때 capacitor 양단을 긴 probe ground로 재면 capacitor가 아니라 측정 loop의
+              inductive pickup을 크게 볼 수 있다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“부품값은 body에 적힌 nominal 값이다.”</strong></p>
+            <p>
+              nominal은 출발점이다. 10 µF X5R MLCC는 voltage bias, temperature, tolerance 때문에 실제
+              동작점에서 몇 µF만 남을 수 있다. inductor도 saturation current와 temperature rise current가
+              다르다. 설계 계산에는 동작 조건의 유효값과 worst case를 사용한다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>capacitor가 self resonance 위에서 inductive한 이유는?</summary><p>주파수가 오르면 1/(ωC)는 작아지고 ωESL은 커져 결국 직렬 기생 인덕턴스가 지배하기 때문이다.</p></details>
+            <details><summary>MLCC의 capacitance를 어떤 조건에서 확인해야 하는가?</summary><p>DC bias, 온도, 주파수, tolerance와 aging을 실제 동작점에 맞춰 확인한다.</p></details>
+            <details><summary>MOSFET 선택에서 RDS(on)만 보면 놓치는 것은?</summary><p>switching loss를 만드는 gate charge·capacitance, diode reverse recovery, voltage/current transient, SOA와 열 조건을 놓친다.</p></details>
+          </div>
+        </section>
