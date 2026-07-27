@@ -147,7 +147,7 @@ test("reading completion state is persisted and rendered per chapter", () => {
 
 test("header completion count toggles the currently visible chapter", () => {
   assert.match(appSource, /completionCount\?\.addEventListener\("click"/);
-  assert.match(appSource, /toggleChapterCompletion\(currentChapter\)/);
+  assert.match(appSource, /toggleChapterCompletion\(pageData\.chapterId\)/);
 });
 
 test("print mode removes controls that do not belong on paper", () => {
