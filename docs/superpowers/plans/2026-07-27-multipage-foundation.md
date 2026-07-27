@@ -8,6 +8,10 @@
 
 **Tech Stack:** Semantic HTML5, CSS custom properties, vanilla JavaScript/ESM, Node built-in modules, Node test runner, self-hosted WOFF2 fonts, Canvas, locally pinned Three.js, GitHub Pages.
 
+**Completion:** Tasks 1–9 completed on 2026-07-27. The final browser pass covered
+1536 × 1024, 834 × 1194, and 390 × 844; all 55 automated tests passed. Follow-on
+content and scientific-visual plans are recorded beside this plan.
+
 ---
 
 ## Plan Boundary
@@ -68,7 +72,7 @@ At the end of this plan, the public site is complete and usable, even before tho
 
 ---
 
-### Task 1: Protect the Legacy Build and Define Multi-page Contracts
+### Task 1: Protect the Legacy Build and Define Multi-page Contracts — COMPLETE
 
 **Files:**
 - Modify: `.gitignore`
@@ -177,7 +181,7 @@ git commit -m "test: define multipage guide contracts"
 
 ---
 
-### Task 2: Extract Sixteen Authoring Fragments
+### Task 2: Extract Sixteen Authoring Fragments — COMPLETE
 
 **Files:**
 - Create: `scripts/migrate-single-page.mjs`
@@ -307,7 +311,7 @@ git commit -m "build: extract guide authoring sources"
 
 ---
 
-### Task 3: Build the Static Page Generator
+### Task 3: Build the Static Page Generator — COMPLETE
 
 **Files:**
 - Create: `package.json`
@@ -481,7 +485,7 @@ git commit -m "build: generate multipage guide"
 
 ---
 
-### Task 4: Implement the Approved Typography and Layout System
+### Task 4: Implement the Approved Typography and Layout System — COMPLETE
 
 **Files:**
 - Create: `assets/fonts/pretendard-variable.woff2`
@@ -627,7 +631,7 @@ git commit -m "style: add editorial engineering reading system"
 
 ---
 
-### Task 5: Refactor Reading State for Multiple Pages
+### Task 5: Refactor Reading State for Multiple Pages — COMPLETE
 
 **Files:**
 - Modify: `assets/app.js`
@@ -737,7 +741,7 @@ git commit -m "feat: preserve reading state across chapter pages"
 
 ---
 
-### Task 6: Build Cross-page Search
+### Task 6: Build Cross-page Search — COMPLETE
 
 **Files:**
 - Create: `assets/search.js`
@@ -812,7 +816,7 @@ git commit -m "feat: add cross-page guide search"
 
 ---
 
-### Task 7: Recompose Chapter 14 to Match the Approved Visual Target
+### Task 7: Recompose Chapter 14 to Match the Approved Visual Target — COMPLETE
 
 **Files:**
 - Modify: `content/chapters/14-probing-and-measurement.html`
@@ -918,7 +922,7 @@ git commit -m "feat: redesign probing chapter as editorial field guide"
 
 ---
 
-### Task 8: Make Every Migrated Chapter Complete and Navigable
+### Task 8: Make Every Migrated Chapter Complete and Navigable — COMPLETE
 
 **Files:**
 - Modify: `content/chapters/*.html`
@@ -998,7 +1002,7 @@ git commit -m "content: normalize all chapter reading flows"
 
 ---
 
-### Task 9: Browser QA, Documentation, and Pages-ready Checkpoint
+### Task 9: Browser QA, Documentation, and Pages-ready Checkpoint — COMPLETE
 
 **Files:**
 - Modify: `README.md`
