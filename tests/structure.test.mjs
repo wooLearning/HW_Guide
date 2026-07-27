@@ -156,10 +156,10 @@ test("print mode removes controls that do not belong on paper", () => {
 });
 
 test("visual system uses a neutral Apple-style palette", () => {
-  assert.match(styles, /--paper:\s*#f5f5f7/i);
-  assert.match(styles, /--ink:\s*#1d1d1f/i);
-  assert.match(styles, /--accent:\s*#0071e3/i);
-  assert.doesNotMatch(styles, /--copper:/);
+  assert.match(styles, /--paper:\s*#fffefa/i);
+  assert.match(styles, /--ink:\s*#16171a/i);
+  assert.match(styles, /--blue:\s*#075fda/i);
+  assert.match(styles, /--copper:\s*#b96831/i);
 });
 
 test("explanatory cards do not use colored vertical rules", () => {
@@ -171,4 +171,16 @@ test("explanatory cards do not use colored vertical rules", () => {
   assert.doesNotMatch(cardRules, /border-left/);
   assert.match(cardRules, /border:\s*1px solid var\(--line\)/);
   assert.match(cardRules, /border-radius:\s*(?:1rem|16px|18px|20px)/);
+});
+
+test("reading system self-hosts Korean sans and serif fonts", () => {
+  assert.match(styles, /font-family:\s*"Pretendard Variable"/);
+  assert.match(styles, /font-family:\s*"Noto Serif KR"/);
+  assert.match(styles, /url\("fonts\/pretendard-variable\.woff2"\)/);
+  assert.match(styles, /url\("fonts\/noto-serif-kr-semibold\.woff2"\)/);
+});
+
+test("body and captions meet the new readable type floor", () => {
+  assert.match(styles, /--body-size:\s*1\.0625rem/);
+  assert.match(styles, /--caption-size:\s*0\.8125rem/);
 });
