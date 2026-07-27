@@ -39,3 +39,14 @@ test("chapter pages expose shared reading contracts", async () => {
   assert.match(html, /class="context-rail"/);
   assert.match(html, /data-chapter-complete/);
 });
+
+test("search index covers every chapter and uses deep links", async () => {
+  const entries = JSON.parse(
+    await readFile(new URL("../assets/search-index.json", import.meta.url), "utf8"),
+  );
+  assert.deepEqual(
+    new Set(entries.map((entry) => entry.chapterId)),
+    new Set(Array.from({ length: 16 }, (_, index) => `chapter-${index}`)),
+  );
+  assert.ok(entries.every((entry) => /^chapters\/.+\.html#.+/.test(entry.href)));
+});
