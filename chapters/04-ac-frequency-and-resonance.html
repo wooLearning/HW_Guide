@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="복소수, 페이저, 임피던스, 공진과 Bode 관점을 익힌다.">
+    <meta name="theme-color" content="#fffefa">
+    <title>04 AC와 주파수 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="chapter">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid" data-chapter-id="chapter-4">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+              aria-current="page"
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column" id="main-content">
+        <section class="chapter" id="chapter-4" data-part="1">
+          <p class="chapter-kicker">PART I · CIRCUIT LANGUAGE</p>
+          <h2><span>04</span> AC와 주파수</h2>
+          <p class="chapter-lead">복소수, 페이저, 임피던스, 공진과 Bode 관점을 익힌다.</p>
+          <div class="keyword-row"><span>phasor</span><span>impedance</span><span>resonance</span><span>Bode</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              주파수 영역은 시간을 없애는 마술이 아니라, <strong>선형 회로가 각 sine 성분을 얼마나
+              키우고 늦추는지</strong> 따로 보는 좌표계다.
+            </p>
+            <p>
+              sine은 선형 시불변 회로를 통과해도 같은 주파수의 sine으로 남고 크기와 위상만 바뀐다. 그래서
+              미분을 jω 곱셈으로 바꾸는 복소수 표현이 편리하다. 실제 square wave는 기본파와 홀수 harmonic의
+              합이므로 높은 harmonic이 감쇠되면 edge가 둥글어지고, 공진으로 특정 harmonic이 커지면 ringing이
+              생긴다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">주파수 영역의 핵심</p>
+            <div class="formula-grid">
+              <div><b>Z<sub>R</sub> = R</b><span>위상 0°</span></div>
+              <div><b>Z<sub>L</sub> = jωL</b><span>전압이 전류보다 +90°</span></div>
+              <div><b>Z<sub>C</sub> = 1/(jωC)</b><span>전압이 전류보다 −90°</span></div>
+              <div><b>f<sub>0</sub> = 1/(2π√LC)</b><span>이상 LC 공진</span></div>
+            </div>
+            <p>
+              magnitude 비를 dB로 쓸 때 전압·전류·임피던스처럼 amplitude 비는 20log<sub>10</sub>(A2/A1),
+              같은 임피던스에서 power 비는 10log<sub>10</sub>(P2/P1)를 쓴다. −3 dB는 amplitude 약 0.707,
+              power 절반이다. 위상은 시간 지연과 다르지만 한 주파수에서는 Δt = φ/(360°f)로 환산할 수 있다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="phasor" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 04A</span><h3 id="section-04-1">회전 벡터와 sine</h3></div>
+              <p>phasor의 x축 투영이 시간파형이 되는 모습을 본다.</p>
+            </div>
+            <div class="interactive-layout">
+              <div class="interactive-controls">
+                <label>위상 <span><output data-out="phase">30°</output></span>
+                  <input data-input="phase" type="range" min="-180" max="180" step="1" value="30">
+                </label>
+                <label>진폭 <span><output data-out="amplitude">1.00</output></span>
+                  <input data-input="amplitude" type="range" min="0.2" max="1" step="0.01" value="1">
+                </label>
+              </div>
+              <div class="visual-stage" data-stage>
+                <canvas width="760" height="340" role="img" aria-label="회전하는 페이저와 대응하는 사인파"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="rlc-response" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 04B</span><h3 id="section-04-2">직렬 RLC 공진</h3></div>
+              <p>R은 peak를 낮추고 넓히며, L과 C는 공진 위치를 정한다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>R <input data-input="r" type="range" min="1" max="100" value="10"><output data-out="r">10 Ω</output></label>
+              <label>L <input data-input="l" type="range" min="1" max="100" value="10"><output data-out="l">10 mH</output></label>
+              <label>C <input data-input="c" type="range" min="0.1" max="10" step="0.1" value="1"><output data-out="c">1.00 µF</output></label>
+            </div>
+            <div class="visual-stage" data-stage><canvas width="900" height="400" role="img" aria-label="로그 주파수축의 직렬 RLC 전류 응답"></canvas></div>
+            <div class="result-strip"><span>공진 <strong data-result="f0">1.59 kHz</strong></span><span>Q <strong data-result="q">3.16</strong></span></div>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · RC low-pass</p>
+            <p>
+              R = 1 kΩ, C = 100 nF이면 cutoff f<sub>c</sub> = 1/(2πRC) ≈ 1.59 kHz다. 159 Hz에서는
+              f/fc = 0.1이라 magnitude는 약 0.995, 위상은 −5.7°다. fc에서는 0.707과 −45°,
+              15.9 kHz에서는 약 0.0995와 −84.3°다. 한 decade 위에서 약 −20 dB가 되는 1차 pole의
+              기울기를 확인할 수 있다.
+            </p>
+            <p class="sanity-check">상식 점검: f→0이면 capacitor가 open처럼 보여 출력이 입력에 가까워야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              decoupling, filter, impedance control은 모두 “어느 주파수 범위에서 어떤 경로의 임피던스를 낮출
+              것인가”라는 문제다. 단일 숫자 capacitance만으로 capacitor를 고르면 self-resonance 위에서
+              inductive가 되는 사실을 놓친다. digital signal의 “주파수”도 clock fundamental 하나가 아니라
+              edge를 구성하는 spectrum으로 본다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              time-domain ringing의 주기를 재면 공진 주파수 f≈1/T를 추정할 수 있다. FFT는 원인을 찾는 힌트가
+              되지만 window, record length, sample rate, noise floor에 따라 spectrum이 달라진다. amplitude가
+              −3 dB인 지점을 scope bandwidth로 읽을 때 probe와 cable을 포함한 전체 경로의 응답임을 기억한다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“고주파 전류는 저항이 가장 작은 길로 흐른다.”</strong></p>
+            <p>
+              모든 전류는 가능한 모든 경로로 임피던스에 따라 나뉜다. 고주파에서는 inductance와 capacitance가
+              지배적이어서 저항이 조금 낮은 먼 경로보다 loop inductance가 낮은 가까운 귀환 경로에 집중된다.
+              “최소 저항” 대신 “주파수에 따른 최소 임피던스”를 생각한다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>왜 복소수 임피던스를 쓰는가?</summary><p>미분 관계를 jω의 곱셈으로 바꾸고 magnitude와 phase를 한 수에 담아 선형 회로 계산을 단순화하기 때문이다.</p></details>
+            <details><summary>−3 dB는 전압이 절반이라는 뜻인가?</summary><p>아니다. 같은 임피던스에서 amplitude는 약 0.707, power가 절반이다.</p></details>
+            <details><summary>square wave의 edge가 둥글어진 이유는?</summary><p>측정 또는 회로 경로가 edge를 구성하는 높은 harmonic을 감쇠했기 때문이다.</p></details>
+          </div>
+        </section>
+
+
+  <nav class="chapter-pager" aria-label="장 이동">
+
+  <a class="pager-link pager-previous" href="03-capacitors-and-inductors.html">
+    <span>이전 장</span>
+    <strong>03 · 커패시터와 인덕터</strong>
+  </a>
+
+  <a class="pager-link pager-next" href="05-real-components.html">
+    <span>다음 장</span>
+    <strong>05 · 실제 부품</strong>
+  </a>
+  </nav>
+      </main>
+
+  <aside class="context-rail" aria-label="현재 장 정보">
+    <section class="rail-current">
+      <p class="eyebrow">NOW READING</p>
+      <strong>04</strong>
+      <h2>AC와 주파수</h2>
+      <button type="button" class="chapter-complete-button"
+        data-chapter-complete="chapter-4" aria-pressed="false">이 장을 학습 완료로 표시</button>
+    </section>
+    <section>
+      <p class="rail-label">KEY TERMS</p>
+      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+    </section>
+    <section>
+      <p class="rail-label">SOURCE CHECK</p>
+      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+    </section>
+  </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"chapter","chapterId":"chapter-4","chapterCount":16,"chapterSlug":"04-ac-frequency-and-resonance","assetPrefix":"../"}</script>
+  </body>
+</html>

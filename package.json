@@ -1,0 +1,11 @@
+{
+  "name": "pcb-hw-design-validation-guide",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check": "npm run build && npm test",
+    "dev": "python -m http.server"
+  }
+}

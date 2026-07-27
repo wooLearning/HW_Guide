@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="설계 검토와 벤치 측정을 빠뜨리지 않기 위한 인쇄용 목록.">
+    <meta name="theme-color" content="#fffefa">
+    <title>설계·측정 체크리스트 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="reference">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid reference-grid">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column reference-page" id="main-content">
+        <header class="reference-header">
+          <p class="chapter-kicker">REFERENCE · A.3</p>
+          <h1>설계·측정 체크리스트</h1>
+          <p>설계 검토와 벤치 측정을 빠뜨리지 않기 위한 인쇄용 목록.</p>
+        </header>
+        <article class="reference-content appendix-block" aria-labelledby="checklist-title">
+            <div class="appendix-heading">
+              <span>A.3</span><h3 id="checklist-title">인쇄용 체크리스트</h3>
+            </div>
+            <div class="checklist-collection">
+              <div class="print-checklist">
+                <h4>회로도·PCB 설계 검토</h4>
+                <label><input type="checkbox"> 전압·전류·power/thermal budget과 tolerance가 있다</label>
+                <label><input type="checkbox"> power tree, sequencing, reset dependency가 보인다</label>
+                <label><input type="checkbox"> 모든 signal의 source–load–return path를 설명할 수 있다</label>
+                <label><input type="checkbox"> stackup과 controlled impedance를 fabricator와 맞췄다</label>
+                <label><input type="checkbox"> layer transition의 reference via와 connector return pin을 봤다</label>
+                <label><input type="checkbox"> decoupling은 값뿐 아니라 mounting loop를 검토했다</label>
+                <label><input type="checkbox"> high dv/dt/di/dt node의 면적과 coupling path를 제한했다</label>
+                <label><input type="checkbox"> test point, isolation option, debug port가 있다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>전원 인가 전·첫 전원</h4>
+                <label><input type="checkbox"> board/BOM/schematic/firmware revision을 기록했다</label>
+                <label><input type="checkbox"> IC·diode·electrolytic polarity와 solder를 검사했다</label>
+                <label><input type="checkbox"> 입력과 각 rail의 ground resistance를 기록했다</label>
+                <label><input type="checkbox"> supply polarity, voltage, current limit을 소리 내어 재확인했다</label>
+                <label><input type="checkbox"> input current와 모든 rail sequence를 single-shot으로 잡았다</label>
+                <label><input type="checkbox"> hotspot과 비정상 냄새·소리를 즉시 감시했다</label>
+                <label><input type="checkbox"> clock, reset, enable, boot strap을 dependency 순서로 봤다</label>
+                <label><input type="checkbox"> 변경 한 번당 결과와 waveform을 저장했다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>오실로스코프 측정</h4>
+                <label><input type="checkbox"> 최대 voltage와 scope/probe category를 확인했다</label>
+                <label><input type="checkbox"> probe attenuation·compensation·offset을 맞췄다</label>
+                <label><input type="checkbox"> ground connection이 earth에 short를 만들지 않는다</label>
+                <label><input type="checkbox"> DUT source impedance 대비 probe R/C loading을 계산했다</label>
+                <label><input type="checkbox"> spring ground 또는 적절한 differential probe를 썼다</label>
+                <label><input type="checkbox"> bandwidth, sample rate, record length, channel 수를 기록했다</label>
+                <label><input type="checkbox"> trigger source/level/slope와 acquisition mode를 기록했다</label>
+                <label><input type="checkbox"> 다른 probe/setup으로 의심 파형을 재현했다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>SI·PI·EMC 사전 점검</h4>
+                <label><input type="checkbox"> fastest edge와 interconnect delay의 비를 계산했다</label>
+                <label><input type="checkbox"> impedance discontinuity와 coupled length를 검토했다</label>
+                <label><input type="checkbox"> rail별 ΔV/ΔI target impedance가 있다</label>
+                <label><input type="checkbox"> DC bias가 반영된 capacitor model을 썼다</label>
+                <label><input type="checkbox"> cable/connector common-mode return을 그렸다</label>
+                <label><input type="checkbox"> source–path–victim 가설로 hotspot을 분류했다</label>
+                <label><input type="checkbox"> near-field/current probe before–after 조건을 고정했다</label>
+                <label><input type="checkbox"> 적용 EMC standard와 edition을 공식 경로로 확인했다</label>
+              </div>
+            </div>
+          </article>
+
+      </main>
+      <aside class="context-rail reference-rail">
+        <p class="eyebrow">REFERENCE DESK</p>
+        <nav aria-label="참조 자료">
+          <a href="formulas.html">공식·단위</a>
+          <a href="glossary.html">한–영 용어집</a>
+          <a href="checklists.html">체크리스트</a>
+          <a href="sources.html">출처·검증</a>
+        </nav>
+      </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"reference","chapterCount":16,"assetPrefix":"../"}</script>
+  </body>
+</html>

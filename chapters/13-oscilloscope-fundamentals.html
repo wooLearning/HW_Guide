@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="대역폭, 샘플링, 메모리와 트리거가 화면을 만드는 방식을 익힌다.">
+    <meta name="theme-color" content="#fffefa">
+    <title>13 오실로스코프 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="chapter">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid" data-chapter-id="chapter-13">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+              aria-current="page"
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column" id="main-content">
+        <section class="chapter" id="chapter-13" data-part="4">
+          <p class="chapter-kicker">PART IV · MEASUREMENT</p>
+          <h2><span>13</span> 오실로스코프</h2>
+          <p class="chapter-lead">대역폭, 샘플링, 메모리와 트리거가 화면을 만드는 방식을 익힌다.</p>
+          <div class="keyword-row"><span>bandwidth</span><span>sample rate</span><span>record length</span><span>trigger</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              오실로스코프 화면은 신호의 사진이 아니라, analog front-end와 ADC·memory·trigger·display
+              알고리즘이 만든 <strong>대역 제한된 추정치</strong>다.
+            </p>
+            <p>
+              입력 신호는 attenuator와 amplifier를 거쳐 analog bandwidth로 제한되고, ADC가 일정 시간 간격으로
+              sample을 만든다. acquisition memory에 저장된 점을 interpolation, averaging, peak detect 등으로
+              표시한다. vertical scale, timebase, channel 수를 바꾸면 sample rate와 record length가 자동으로
+              바뀌는 장비가 있으므로 화면에 표시된 acquisition 상태를 확인한다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">대역폭·rise time·기록 시간</p>
+            <div class="formula-grid">
+              <div><b>t<sub>r,scope</sub> ≈ 0.35/BW</b><span>Gaussian형 1차 감각</span></div>
+              <div><b>t<sub>r,obs</sub> ≈ √(t<sub>r,sig</sub>²+t<sub>r,scope</sub>²)</b><span>독립 rise-time 결합 근사</span></div>
+              <div><b>T<sub>record</sub> = N/f<sub>s</sub></b><span>memory와 sample rate</span></div>
+              <div><b>f<sub>alias</sub> = |f−k·f<sub>s</sub>|</b><span>Nyquist zone으로 접힌 성분</span></div>
+            </div>
+            <p>
+              Nyquist의 fs&gt;2f는 band-limited sine을 복원하는 이론적 최소 조건이다. edge 모양, noise와
+              interpolation에 충분한 점을 얻으려면 더 높은 oversampling이 필요하다. bandwidth와 sample rate는
+              다른 제한이다. ADC sample이 많아도 analog front-end가 감쇠한 성분은 돌아오지 않고, bandwidth가
+              넓어도 sample이 부족하면 alias가 생긴다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="sampling-alias" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 13A</span><h3 id="section-13-1">샘플링과 alias</h3></div>
+              <p>signal/sample 주파수 비를 바꾸고 같은 sample을 설명하는 느린 가짜 파형을 본다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>signal <input data-input="signal" type="range" min="1" max="190" value="90"><output data-out="signal">90 MHz</output></label>
+              <label>sample <input data-input="sample" type="range" min="20" max="250" value="100"><output data-out="sample">100 MS/s</output></label>
+            </div>
+            <div class="visual-stage" data-stage>
+              <canvas width="900" height="420" role="img" aria-label="연속 sine, sample 점과 alias sine 비교"></canvas>
+            </div>
+            <div class="result-strip"><span>Nyquist <strong data-result="nyquist">50 MHz</strong></span><span>화면 alias <strong data-result="alias">10 MHz</strong></span></div>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="scope-bandwidth" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 13B</span><h3 id="section-13-2">대역폭이 edge를 느리게 보이는 정도</h3></div>
+              <p>실제 signal rise time과 scope bandwidth의 root-sum-square 결합을 계산한다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>signal tr <input data-input="signal-rise" type="range" min="0.2" max="10" step="0.1" value="1"><output data-out="signal-rise">1.0 ns</output></label>
+              <label>scope BW <input data-input="bandwidth" type="range" min="50" max="2000" step="50" value="500"><output data-out="bandwidth">500 MHz</output></label>
+            </div>
+            <div class="visual-stage" data-stage>
+              <canvas width="900" height="360" role="img" aria-label="원래 edge와 대역 제한된 관측 edge 비교"></canvas>
+            </div>
+            <div class="result-strip"><span>scope tr <strong data-result="scope-rise">0.70 ns</strong></span><span>관측 tr <strong data-result="observed-rise">1.22 ns</strong></span><span>오차 <strong data-result="rise-error">22%</strong></span></div>
+          </div>
+
+          <figure class="visual-panel media-figure" data-visual-medium="draw">
+            <div class="visual-heading">
+              <div><span class="visual-number">DRAW 13</span><h3 id="section-13-3">화면까지 이어지는 전체 측정 체인</h3></div>
+              <p>각 블록은 정보를 전달하면서 동시에 loading·noise·bandwidth 제한을 더한다.</p>
+            </div>
+            <img src="../assets/diagrams/measurement-chain.png" width="1536" height="1024" loading="lazy"
+              alt="DUT 노드에서 test point, probe, scope front end, ADC와 화면으로 이어지는 측정 체인과 각 오차 요인">
+            <figcaption>
+              화면 파형은 DUT 하나의 속성이 아니라 DUT와 측정 시스템의 결합 응답이다. 오류를 줄이려면
+              probe만 바꾸지 말고 test point geometry, ground, front-end 설정과 acquisition 상태를 함께 기록한다.
+            </figcaption>
+          </figure>
+
+          <article class="deep-dive" role="region" aria-labelledby="deep-scope-title">
+            <header>
+              <span>원리 더 깊게</span>
+              <h3 id="deep-scope-title">오실로스코프를 선형 시스템으로 보기</h3>
+            </header>
+            <p>
+              작은 신호 범위에서 probe와 front end를 LTI 시스템으로 근사하면 측정 파형은
+              <b>ymeas(t)=xDUT(t)*hprobe(t)*hscope(t)</b>처럼 impulse response와의 convolution이다.
+              주파수 영역에서는 곱셈 <b>Y(f)=X(f)Hprobe(f)Hscope(f)</b>가 되어 bandwidth 제한, phase
+              distortion과 resonance가 파형에 어떻게 섞이는지 설명한다.
+            </p>
+            <div class="principle-grid">
+              <article>
+                <h4>Amplitude response</h4>
+                <p>−3 dB bandwidth는 amplitude가 약 0.707배가 되는 한 점이며, 그 아래가 완전히 평탄하다는 보장은 아니다.</p>
+              </article>
+              <article>
+                <h4>Phase response</h4>
+                <p>harmonic마다 delay가 다르면 amplitude가 맞아도 edge overshoot와 settling이 달라진다.</p>
+              </article>
+              <article>
+                <h4>Noise와 quantization</h4>
+                <p>vertical scale, front-end noise, ADC ENOB와 averaging 방식이 작은 ripple의 uncertainty를 정한다.</p>
+              </article>
+              <article>
+                <h4>Trigger bias</h4>
+                <p>trigger 조건에 맞은 사건만 화면에 모이므로 드문 glitch의 분포를 대표하지 않을 수 있다.</p>
+              </article>
+            </div>
+            <p class="derivation-note">
+              de-embedding은 H(f)를 나누는 역문제라 H가 작은 대역에서는 noise를 크게 증폭한다. 장비가
+              보정 기능을 제공해도 fixture characterization 범위, reference plane과 regularization 조건을
+              기록하고 보정 전 파형을 함께 남긴다.
+            </p>
+          </article>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 1 ns edge를 500 MHz로</p>
+            <p>
+              500 MHz scope의 자체 rise time 근사는 0.35/500 MHz = 0.70 ns다. 실제 1.00 ns signal을 재면
+              관측 rise time은 √(1.00²+0.70²) = 1.22 ns다. 반대로 1.22 ns를 측정했고 scope 0.70 ns를
+              안다면 signal은 √(1.22²−0.70²) ≈ 1.00 ns로 추정한다. 이 근사는 response shape와 독립 오차
+              가정이 맞을 때만 쓴다.
+            </p>
+            <p class="sanity-check">상식 점검: scope bandwidth가 무한히 커지면 관측 rise time은 signal 자체 값에 가까워져야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">보드 검증에서</p>
+            <p>
+              rail은 DC level, startup ramp, ripple, transient를 서로 다른 timebase와 coupling 설정으로 본다.
+              clock은 frequency뿐 아니라 amplitude, duty, startup, jitter와 enable 조건을 확인한다. reset은
+              rail 안정과 clock 이후의 sequencing을 함께 기록한다. single-shot event를 볼 때 필요한 record
+              length는 관찰 시간×sample rate이며, 너무 긴 record가 update rate를 낮출 수 있다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정 절차</p>
+            <p>
+              먼저 예상 amplitude와 최대 안전전압을 확인하고 probe attenuation을 scope와 일치시킨다. vertical
+              scale을 waveform이 화면을 충분히 채우도록, timebase는 원인과 결과가 함께 보이도록 잡는다.
+              edge trigger의 source, level, slope, coupling을 명시하고 bandwidth limit/averaging을 켠 경우
+              원본 acquisition과 비교한다. 자동 측정 숫자는 cursor와 파형으로 sanity check한다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“1 GS/s면 500 MHz까지 항상 정확히 볼 수 있다.”</strong></p>
+            <p>
+              500 MHz sine에 cycle당 2점뿐인 이론적 경계이며 amplitude/phase가 sample clock 관계에 매우
+              민감하다. scope analog bandwidth, anti-alias filter, interpolation, channel interleaving과
+              record 설정도 필요하다. edge 측정에는 대체로 여러 배의 sample과 충분한 analog bandwidth가
+              요구된다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>bandwidth와 sample rate의 차이는?</summary><p>bandwidth는 analog front-end가 통과시키는 주파수 범위, sample rate는 ADC가 시간당 얻는 점의 수다.</p></details>
+            <details><summary>record length가 부족하면 어떤 문제가 생기는가?</summary><p>높은 sample rate로 긴 사건을 동시에 담지 못해 시작과 원인 또는 느린 modulation을 놓칠 수 있다.</p></details>
+            <details><summary>trigger의 목적은?</summary><p>관심 사건을 시간 기준에 맞춰 안정적으로 획득하고 드문 event를 조건부로 포착하는 것이다.</p></details>
+          </div>
+        </section>
+
+
+  <nav class="chapter-pager" aria-label="장 이동">
+
+  <a class="pager-link pager-previous" href="12-emc-and-emi.html">
+    <span>이전 장</span>
+    <strong>12 · EMC와 EMI</strong>
+  </a>
+
+  <a class="pager-link pager-next" href="14-probing-and-measurement.html">
+    <span>다음 장</span>
+    <strong>14 · 프로브와 측정</strong>
+  </a>
+  </nav>
+      </main>
+
+  <aside class="context-rail" aria-label="현재 장 정보">
+    <section class="rail-current">
+      <p class="eyebrow">NOW READING</p>
+      <strong>13</strong>
+      <h2>오실로스코프</h2>
+      <button type="button" class="chapter-complete-button"
+        data-chapter-complete="chapter-13" aria-pressed="false">이 장을 학습 완료로 표시</button>
+    </section>
+    <section>
+      <p class="rail-label">KEY TERMS</p>
+      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+    </section>
+    <section>
+      <p class="rail-label">SOURCE CHECK</p>
+      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+    </section>
+  </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"chapter","chapterId":"chapter-13","chapterCount":16,"chapterSlug":"13-oscilloscope-fundamentals","assetPrefix":"../"}</script>
+  </body>
+</html>

@@ -48,6 +48,16 @@ await writeFile(
 );
 
 await writeFile(
+  path.join(root, "content/home-routes.html"),
+  extractArticle(
+    '<article class="appendix-block" aria-labelledby="routes-title"',
+    '<article class="appendix-block" aria-labelledby="checklist-title"',
+  )
+    .replace('class="reference-content appendix-block"', 'class="study-schedules appendix-block"'),
+  "utf8",
+);
+
+await writeFile(
   path.join(referenceDirectory, "checklists.html"),
   extractArticle(
     '<article class="appendix-block" aria-labelledby="checklist-title"',

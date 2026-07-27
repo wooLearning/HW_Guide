@@ -1,8 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { readFile, readdir } from "node:fs/promises";
 
-const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+const chapterDirectory = new URL("../chapters/", import.meta.url);
+const chapterFiles = (await readdir(chapterDirectory))
+  .filter((name) => name.endsWith(".html"))
+  .sort();
+const html = (await Promise.all(
+  chapterFiles.map((name) => readFile(new URL(name, chapterDirectory), "utf8")),
+)).join("\n");
 const scenes = await readFile(new URL("../assets/three-scenes.js", import.meta.url), "utf8")
   .catch(() => "");
 const threeModule = await readFile(

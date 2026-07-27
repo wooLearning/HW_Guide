@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다.">
+    <meta name="theme-color" content="#fffefa">
+    <title>05 실제 부품 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="chapter">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid" data-chapter-id="chapter-5">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+              aria-current="page"
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column" id="main-content">
+        <section class="chapter" id="chapter-5" data-part="1">
+          <p class="chapter-kicker">PART I · CIRCUIT LANGUAGE</p>
+          <h2><span>05</span> 실제 부품</h2>
+          <p class="chapter-lead">기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다.</p>
+          <div class="keyword-row"><span>parasitic</span><span>ESR</span><span>ESL</span><span>operating point</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              부품의 이름은 지배적인 성질을 말할 뿐이다. 실제 부품은 언제나
+              <strong>R·L·C와 비선형성이 함께 있는 주파수·전압·온도 의존 구조</strong>다.
+            </p>
+            <p>
+              저항은 lead와 패턴 때문에 inductance와 capacitance를 갖고, capacitor에는 ESR·ESL·leakage가,
+              inductor에는 winding resistance·inter-winding capacitance·core loss와 saturation이 있다.
+              datasheet의 “typical” curve는 이상 기호와 실물 사이를 잇는 지도다. nominal 값 하나가 아니라
+              bias, tolerance, temperature, frequency 조건을 함께 읽는다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">실제 capacitor의 1차 모델</p>
+            <div class="formula">Z(jω) = ESR + jω·ESL + 1/(jωC)</div>
+            <p>
+              낮은 주파수에서는 1/(ωC)가 지배해 주파수가 오를수록 |Z|가 내려간다. self-resonant frequency
+              f<sub>SR</sub> = 1/(2π√(ESL·C)) 부근에서는 L과 C reactance가 상쇄되어 ESR 근처까지 내려간다.
+              그 위에서는 ESL이 지배해 capacitor가 inductive하게 보인다. MLCC의 유효 C는 DC bias에서
+              nominal보다 크게 줄 수 있다.
+            </p>
+          </div>
+
+          <div class="reality-grid" aria-label="실제 digital I/O와 전원 부품을 읽는 관점">
+            <article>
+              <span>CMOS I/O</span>
+              <h3 id="section-05-1">논리 기호 안의 analog 회로</h3>
+              <p>
+                output은 유한한 pull-up/pull-down impedance와 package RLC를 가진다. input에는 capacitance,
+                leakage, threshold와 ESD clamp가 있다. VOH/VOL은 정해진 IOH/IOL 조건에서 읽고,
+                VIH/VIL 사이 undefined region을 noise margin으로 관리한다.
+              </p>
+            </article>
+            <article>
+              <span>DRIVE MODES</span>
+              <h3 id="section-05-2">push-pull · open-drain · tri-state</h3>
+              <p>
+                push-pull은 두 방향을 능동 구동하고, open-drain은 low만 구동해 external pull-up과 RC rise를
+                만든다. tri-state는 bus를 놓지만 pin capacitance와 clamp는 남는다. slew/drive 설정은 SI와
+                EMI를 바꾸는 설계 변수다.
+              </p>
+            </article>
+            <article>
+              <span>RATINGS</span>
+              <h3 id="section-05-3">Absolute max는 동작 조건이 아니다</h3>
+              <p>
+                absolute maximum은 넘으면 손상 가능성이 있는 경계이고 정상 기능을 보증하는 범위가 아니다.
+                recommended operating condition, DC characteristic, timing, power-on/off injection 조건을
+                함께 확인한다.
+              </p>
+            </article>
+            <article>
+              <span>REGULATION</span>
+              <h3 id="section-05-4">레귤레이터도 loop다</h3>
+              <p>
+                LDO와 switching regulator는 dropout·current limit·thermal뿐 아니라 feedback loop stability,
+                input/output capacitor ESR·C 조건, startup과 transient response를 가진 동적 시스템이다.
+              </p>
+            </article>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="real-capacitor" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 05</span><h3 id="section-05-5">실제 capacitor impedance</h3></div>
+              <p>C, ESR, ESL을 바꾸며 capacitive–resistive–inductive 영역을 찾는다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>C <input data-input="c" type="range" min="1" max="1000" value="100"><output data-out="c">100 nF</output></label>
+              <label>ESR <input data-input="esr" type="range" min="1" max="500" value="50"><output data-out="esr">50.0 mΩ</output></label>
+              <label>ESL <input data-input="esl" type="range" min="0.2" max="5" step="0.1" value="1"><output data-out="esl">1.00 nH</output></label>
+            </div>
+            <div class="visual-stage" data-stage><canvas width="900" height="400" role="img" aria-label="실제 커패시터의 주파수별 임피던스 곡선"></canvas></div>
+            <div class="result-strip"><span>Self resonance <strong data-result="fsr">15.9 MHz</strong></span><span>최소 |Z| <strong data-result="zmin">50.0 mΩ</strong></span></div>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 100 nF decoupling</p>
+            <p>
+              C = 100 nF, ESL = 1 nH이면 fSR ≈ 15.9 MHz다. 1 MHz에서 ideal capacitive reactance는 약
+              1.59 Ω이고 ESL reactance는 6.3 mΩ라 C가 지배한다. 100 MHz에서는 C가 15.9 mΩ인 반면 ESL은
+              0.628 Ω이어서 전체는 inductive하다. “100 nF가 고주파를 모두 bypass한다”는 결론은 패키지와
+              연결 inductance를 무시한 것이다.
+            </p>
+            <p class="sanity-check">상식 점검: ESL을 줄이면 self resonance가 더 높은 주파수로 이동해야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              같은 100 nF라도 작은 package, 짧고 넓은 연결, 가까운 power/ground via는 loop inductance를
+              줄인다. MOSFET은 RDS(on)뿐 아니라 gate charge, Miller capacitance, body diode와 SOA를 본다.
+              regulator는 dropout, loop stability, output capacitor 조건, transient response, thermal
+              resistance를 확인한다. 부품 선택은 footprint와 placement까지 포함한 시스템 결정이다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              LCR meter가 표시하는 값은 선택 주파수와 등가 series/parallel 모델에 따라 달라진다. semiconductor
+              diode는 DMM diode mode의 작은 전류에서 측정한 forward voltage와 실제 부하 전류의 값이 다르다.
+              rail의 ripple을 볼 때 capacitor 양단을 긴 probe ground로 재면 capacitor가 아니라 측정 loop의
+              inductive pickup을 크게 볼 수 있다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“부품값은 body에 적힌 nominal 값이다.”</strong></p>
+            <p>
+              nominal은 출발점이다. 10 µF X5R MLCC는 voltage bias, temperature, tolerance 때문에 실제
+              동작점에서 몇 µF만 남을 수 있다. inductor도 saturation current와 temperature rise current가
+              다르다. 설계 계산에는 동작 조건의 유효값과 worst case를 사용한다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>capacitor가 self resonance 위에서 inductive한 이유는?</summary><p>주파수가 오르면 1/(ωC)는 작아지고 ωESL은 커져 결국 직렬 기생 인덕턴스가 지배하기 때문이다.</p></details>
+            <details><summary>MLCC의 capacitance를 어떤 조건에서 확인해야 하는가?</summary><p>DC bias, 온도, 주파수, tolerance와 aging을 실제 동작점에 맞춰 확인한다.</p></details>
+            <details><summary>MOSFET 선택에서 RDS(on)만 보면 놓치는 것은?</summary><p>switching loss를 만드는 gate charge·capacitance, diode reverse recovery, voltage/current transient, SOA와 열 조건을 놓친다.</p></details>
+          </div>
+        </section>
+
+
+  <nav class="chapter-pager" aria-label="장 이동">
+
+  <a class="pager-link pager-previous" href="04-ac-frequency-and-resonance.html">
+    <span>이전 장</span>
+    <strong>04 · AC와 주파수</strong>
+  </a>
+
+  <a class="pager-link pager-next" href="06-electromagnetics.html">
+    <span>다음 장</span>
+    <strong>06 · 전자기학의 최소 골격</strong>
+  </a>
+  </nav>
+      </main>
+
+  <aside class="context-rail" aria-label="현재 장 정보">
+    <section class="rail-current">
+      <p class="eyebrow">NOW READING</p>
+      <strong>05</strong>
+      <h2>실제 부품</h2>
+      <button type="button" class="chapter-complete-button"
+        data-chapter-complete="chapter-5" aria-pressed="false">이 장을 학습 완료로 표시</button>
+    </section>
+    <section>
+      <p class="rail-label">KEY TERMS</p>
+      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+    </section>
+    <section>
+      <p class="rail-label">SOURCE CHECK</p>
+      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+    </section>
+  </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"chapter","chapterId":"chapter-5","chapterCount":16,"chapterSlug":"05-real-components","assetPrefix":"../"}</script>
+  </body>
+</html>

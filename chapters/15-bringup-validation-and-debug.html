@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="가설–측정–판정의 반복으로 안전하게 원인을 좁힌다.">
+    <meta name="theme-color" content="#fffefa">
+    <title>15 Bring-up·검증·고장분석 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="chapter">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid" data-chapter-id="chapter-15">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+              aria-current="page"
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column" id="main-content">
+        <section class="chapter" id="chapter-15" data-part="5">
+          <p class="chapter-kicker">PART V · VALIDATION</p>
+          <h2><span>15</span> Bring-up·검증·고장분석</h2>
+          <p class="chapter-lead">가설–측정–판정의 반복으로 안전하게 원인을 좁힌다.</p>
+          <div class="keyword-row"><span>bring-up</span><span>test plan</span><span>hypothesis</span><span>evidence</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              보드 검증은 무작정 probe를 대는 작업이 아니라, 위험을 제한한 상태에서
+              <strong>한 번에 하나의 가설을 반증하며 evidence를 쌓는 과정</strong>이다.
+            </p>
+            <p>
+              좋은 bring-up은 전원을 켜기 전에 시작한다. schematic, layout, BOM, datasheet, power tree와
+              expected value table을 준비하고 visual inspection과 resistance check를 한다. 첫 전원은
+              current limit과 thermal observation으로 damage energy를 제한한다. rail→clock→reset→boot strap→
+              interface 순으로 dependency를 따라가며 firmware issue와 hardware issue를 분리한다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">판정 가능한 시험 조건</p>
+            <div class="formula-grid">
+              <div><b>error = measured − expected</b><span>차이의 부호를 유지</span></div>
+              <div><b>%error = error/expected ×100</b><span>expected≠0일 때</span></div>
+              <div><b>U<sub>total</sub> ≈ √ΣU<sub>i</sub>²</b><span>독립 uncertainty의 RSS 근사</span></div>
+              <div><b>margin = limit − worst case</b><span>guardband 포함</span></div>
+            </div>
+            <p>
+              pass/fail 기준은 측정 후 정하지 않는다. nominal, tolerance, operating condition, settling time,
+              measurement bandwidth와 uncertainty를 시험계획에 먼저 쓴다. 예를 들어 “3.3 V rail 정상” 대신
+              “Vin 12 V, load 0.5 A, 25 °C에서 3.20–3.40 V; 20 MHz BW로 ripple p-p&lt;50 mV”처럼
+              재현 가능한 조건을 만든다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="bringup-flow" data-visual-medium="html">
+            <div class="visual-heading">
+              <div><span class="visual-number">FLOW 15</span><h3 id="section-15-1">증상에서 다음 측정으로</h3></div>
+              <p>현재 관측을 선택하면 가장 정보량이 큰 다음 검사를 보여준다.</p>
+            </div>
+            <div class="bringup-flow" data-stage>
+              <button type="button" data-flow="prepower">전원 인가 전</button>
+              <button type="button" data-flow="overcurrent">전류 제한 동작</button>
+              <button type="button" data-flow="rail">rail 이상</button>
+              <button type="button" data-flow="clock">clock 없음</button>
+              <button type="button" data-flow="reset">reset 고정</button>
+              <button type="button" data-flow="interface">interface 오류</button>
+              <article aria-live="polite">
+                <small>NEXT BEST TEST</small>
+                <h4 data-result="title">Power-off resistance map</h4>
+                <p data-result="body">각 rail–ground 저항을 방향과 settling까지 기록하고 golden board/BOM 예상과 비교한다.</p>
+              </article>
+            </div>
+          </div>
+
+          <figure class="visual-panel media-figure" data-visual-medium="draw">
+            <div class="visual-heading">
+              <div><span class="visual-number">DRAW 15</span><h3 id="section-15-2">안전한 첫 전원의 의사결정 흐름</h3></div>
+              <p>이상 징후가 보이면 limit을 올리지 않고 전원을 끈 뒤 가설을 좁힌다.</p>
+            </div>
+            <img src="../assets/diagrams/bringup-flow.png" width="1536" height="1024" loading="lazy"
+              alt="외관 검사, 전원 차단 저항, 전류 제한, rail, reset과 clock, interface 순서의 보드 bring-up 흐름도">
+            <figcaption>
+              흐름의 핵심은 dependency 순서와 fault energy 제한이다. 각 단계의 expected range, 계측 설정,
+              관측값과 다음 판단을 한 줄로 남기면 재현 가능한 검증 기록이 된다.
+            </figcaption>
+          </figure>
+
+          <div class="worked-example example-card">
+            <p class="block-label">판단 예제 · current limit에 걸린 새 보드</p>
+            <p>
+              12 V 입력, 예상 idle 120 mA 보드가 0.5 A limit에 즉시 붙는다고 하자. limit을 올리기 전에 전원을
+              끄고 입력·각 rail의 resistance를 재확인한다. current-limited 1–2 V처럼 손상 위험이 낮은 조건에서
+              thermal camera 또는 IPA 증발로 hotspot을 찾을 수 있다. shorted TVS, reversed IC, solder bridge,
+              wrong-value pull-down 가설을 하나씩 schematic net와 대조한다. “전원이 약하다”는 가설은 bench
+              supply 단자와 board input 양쪽 전압을 동시에 봐 cable drop과 분리한다.
+            </p>
+            <p class="sanity-check">안전 점검: current limit을 높이는 것은 원인 규명이 아니라 fault에 더 많은 에너지를 주는 행동일 수 있다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">설계에서 검증 가능성 만들기</p>
+            <p>
+              rail, reset, clock, critical bus와 analog node에 접근 가능한 test point를 둔다. series 0 Ω,
+              shunt, jumper와 isolation option은 subsystem을 분리하게 해 준다. debug UART/JTAG, boot strap
+              상태, current measurement point, fixture datum과 connector pinout을 문서화한다. design review에
+              “고장 시 어느 지점에서 무엇을 측정할 것인가”를 포함한다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">기본 순서</p>
+            <ol class="bringup-steps">
+              <li><b>문서 고정</b><span>revision, schematic, BOM, firmware, rework 상태를 기록</span></li>
+              <li><b>전원 전</b><span>polarity, orientation, solder, rail resistance, supply setting 확인</span></li>
+              <li><b>제한 전원</b><span>낮은 current limit, current/temperature 관찰, rail sequence 기록</span></li>
+              <li><b>생명 신호</b><span>regulator, reference, clock, reset, oscillator enable 확인</span></li>
+              <li><b>기능 격리</b><span>subsystem 단위 loopback·known stimulus·golden board 비교</span></li>
+              <li><b>margin</b><span>voltage, load, temperature, timing, EMI pre-check와 반복성 평가</span></li>
+            </ol>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“증상이 사라졌으니 root cause를 찾았다.”</strong></p>
+            <p>
+              probe를 대거나 손으로 눌러 증상이 사라지면 capacitance, grounding, pressure, temperature가
+              회로를 바꾼 것일 수 있다. workaround와 root cause를 구분한다. 가설은 “C를 추가하면 좋아진다”가
+              아니라 “return discontinuity로 생긴 180 MHz resonance가 원인이므로 local damping이 peak와
+              error rate를 함께 줄인다”처럼 예측 가능한 형태로 쓴다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>첫 전원 전에 최소한 무엇을 확인하는가?</summary><p>revision과 문서, polarity/orientation, visual defect, rail-to-ground resistance, supply voltage/current limit과 probe 안전 조건이다.</p></details>
+            <details><summary>clock이 없을 때 바로 oscillator를 교체해야 하는가?</summary><p>아니다. 먼저 rail, enable, reset/strap, load capacitance, crystal connection과 측정 loading을 dependency 순서로 확인한다.</p></details>
+            <details><summary>좋은 가설의 조건은?</summary><p>특정 mechanism을 제안하고, 맞다면 어떤 측정 결과가 바뀔지 예측하며, 반증 가능한 다음 시험을 가진다.</p></details>
+          </div>
+
+          <div class="validation-checklist" aria-labelledby="bringup-checklist-title">
+            <h3 id="bringup-checklist-title">첫 보드 bring-up 체크리스트</h3>
+            <div class="checklist-grid">
+              <label><input type="checkbox"> schematic/BOM/layout revision 일치</label>
+              <label><input type="checkbox"> polarized part와 IC orientation</label>
+              <label><input type="checkbox"> visible short/open/unsoldered pad</label>
+              <label><input type="checkbox"> rail–ground resistance map 기록</label>
+              <label><input type="checkbox"> supply voltage/current limit 재확인</label>
+              <label><input type="checkbox"> input rail과 local rail sequence 저장</label>
+              <label><input type="checkbox"> clock amplitude/frequency/startup 확인</label>
+              <label><input type="checkbox"> reset release timing 확인</label>
+              <label><input type="checkbox"> debug port와 firmware revision 기록</label>
+              <label><input type="checkbox"> idle/load current와 hotspot 확인</label>
+              <label><input type="checkbox"> known-good board/setup과 비교</label>
+              <label><input type="checkbox"> 변경 한 번당 결과 한 줄 기록</label>
+            </div>
+          </div>
+        </section>
+
+
+  <nav class="chapter-pager" aria-label="장 이동">
+
+  <a class="pager-link pager-previous" href="14-probing-and-measurement.html">
+    <span>이전 장</span>
+    <strong>14 · 프로브와 측정</strong>
+  </a>
+    <span></span>
+  </nav>
+      </main>
+
+  <aside class="context-rail" aria-label="현재 장 정보">
+    <section class="rail-current">
+      <p class="eyebrow">NOW READING</p>
+      <strong>15</strong>
+      <h2>Bring-up·검증·고장분석</h2>
+      <button type="button" class="chapter-complete-button"
+        data-chapter-complete="chapter-15" aria-pressed="false">이 장을 학습 완료로 표시</button>
+    </section>
+    <section>
+      <p class="rail-label">KEY TERMS</p>
+      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+    </section>
+    <section>
+      <p class="rail-label">SOURCE CHECK</p>
+      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+    </section>
+  </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"chapter","chapterId":"chapter-15","chapterCount":16,"chapterSlug":"15-bringup-validation-and-debug","assetPrefix":"../"}</script>
+  </body>
+</html>

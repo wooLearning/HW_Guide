@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="파동, 특성임피던스, 지연, 반사와 종단을 이해한다.">
+    <meta name="theme-color" content="#fffefa">
+    <title>07 전송선로 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="chapter">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid" data-chapter-id="chapter-7">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+              aria-current="page"
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column" id="main-content">
+        <section class="chapter" id="chapter-7" data-part="2">
+          <p class="chapter-kicker">PART II · FIELDS &amp; WAVES</p>
+          <h2><span>07</span> 전송선로</h2>
+          <p class="chapter-lead">파동, 특성임피던스, 지연, 반사와 종단을 이해한다.</p>
+          <div class="keyword-row"><span>Z0</span><span>delay</span><span>reflection</span><span>termination</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              긴 배선의 far end는 신호가 도착하기 전까지 source의 존재를 모르며, source도 load를 즉시 알 수
+              없다. 그래서 처음에는 선로 자체의 <strong>특성임피던스 Z0가 순간 부하</strong>로 보인다.
+            </p>
+            <p>
+              distributed inductance L′와 capacitance C′가 연속으로 이어진 구조에서 voltage와 current 변화는
+              유한한 속도로 전파된다. lossless 근사에서 Z0 = √(L′/C′), 속도 vp = 1/√(L′C′)다. Z0는 DC
+              저항이 아니라 traveling wave의 V/I 비다. load가 Z0와 다르면 경계조건을 만족시키기 위해
+              reflected wave가 생긴다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">반사와 지연</p>
+            <div class="formula-grid">
+              <div><b>Γ<sub>L</sub> = (Z<sub>L</sub>−Z0)/(Z<sub>L</sub>+Z0)</b><span>load 반사계수</span></div>
+              <div><b>V<sup>−</sup> = Γ·V<sup>+</sup></b><span>반사파 크기와 극성</span></div>
+              <div><b>v<sub>p</sub> ≈ c/√ε<sub>eff</sub></b><span>구조의 전파 속도 근사</span></div>
+              <div><b>t<sub>d</sub> = length/v<sub>p</sub></b><span>편도 지연</span></div>
+            </div>
+            <p>
+              matched load는 Γ=0, open은 +1, short는 −1이다. source에서도 ΓS =
+              (ZS−Z0)/(ZS+Z0)로 다시 반사된다. 손실이 작고 source·load가 mismatched면 왕복할 때마다
+              계단이 더해져 최종 DC 값으로 수렴하는 bounce diagram을 그릴 수 있다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="transmission-reflection" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 07</span><h3 id="section-07-1">step이 선로를 왕복하는 과정</h3></div>
+              <p>source, Z0, load를 바꾸며 incident·reflected wave와 load step을 관찰한다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>ZS <input data-input="zs" type="range" min="0" max="100" value="25"><output data-out="zs">25 Ω</output></label>
+              <label>Z0 <input data-input="z0" type="range" min="30" max="100" value="50"><output data-out="z0">50 Ω</output></label>
+              <label>ZL <input data-input="zl" type="range" min="0" max="200" value="100"><output data-out="zl">100 Ω</output></label>
+              <label>시간 <input data-input="time" type="range" min="0" max="6" step="0.05" value="1"><output data-out="time">1.0 td</output></label>
+            </div>
+            <div class="visual-stage" data-stage>
+              <canvas width="900" height="420" role="img" aria-label="source에서 load로 진행하고 반사되는 전압 step"></canvas>
+            </div>
+            <div class="result-strip">
+              <span>ΓL <strong data-result="gamma-l">+0.333</strong></span>
+              <span>incident <strong data-result="incident">0.667 V</strong></span>
+              <span>첫 load step <strong data-result="load-step">0.889 V</strong></span>
+            </div>
+          </div>
+
+          <div class="visual-panel three-figure" data-visual-medium="three">
+            <div class="visual-heading">
+              <div><span class="visual-number">3D 07</span><h3 id="section-07-2">진행파와 반사파의 공간적 겹침</h3></div>
+              <p>드래그하거나 방향키를 눌러 선로를 돌려 보고, load 경계에서 되돌아오는 파를 추적한다.</p>
+            </div>
+            <div class="visual-stage three-stage" data-three-scene="transmission-reflection-3d"
+              data-fallback-image="assets/images/field-energy-return-path.png"
+              role="img" aria-label="회전 가능한 전송선로 위 입사파와 부하에서 되돌아오는 반사파">
+            </div>
+            <p class="visual-caption">
+              한 위치의 전압은 입사파와 반사파의 합이다. 애니메이션을 멈추면 두 파의 방향과 경계조건을
+              차분히 비교할 수 있다.
+            </p>
+          </div>
+
+          <article class="deep-dive" role="region" aria-labelledby="deep-tline-title">
+            <header>
+              <span>원리 더 깊게</span>
+              <h3 id="deep-tline-title">왜 두 도체가 전송선로가 되는가</h3>
+            </header>
+            <p>
+              길이 Δx의 아주 짧은 조각을 series inductance L′Δx와 shunt capacitance C′Δx로 보면 KVL과
+              KCL에서 아래의 telegrapher equation이 나온다. 여기서 prime은 “단위 길이당”이라는 뜻이다.
+            </p>
+            <div class="derivation-row">
+              <code>∂v/∂x = −L′·∂i/∂t</code>
+              <code>∂i/∂x = −C′·∂v/∂t</code>
+              <code>Z0 = √(L′/C′)</code>
+              <code>vp = 1/√(L′C′)</code>
+            </div>
+            <p>
+              첫 식은 전류를 바꾸려면 분포 inductance에 전압 기울기가 필요함을, 둘째 식은 전압을 바꾸려면
+              분포 capacitance를 충전하는 전류 기울기가 필요함을 말한다. 두 식을 결합하면 파동방정식이 되고,
+              V/I 비가 Z0인 진행파가 vp로 이동한다. load가 이 비를 받아들이지 못하면 경계조건을 만족시키는
+              두 번째 파, 즉 반사파가 생긴다.
+            </p>
+            <p class="derivation-note">
+              손실이 있는 실제 선로에서는 R′과 G′가 추가되어
+              <b>γ=√((R′+jωL′)(G′+jωC′))</b>가 된다. attenuation과 phase constant가 주파수에 따라
+              달라지므로 긴 link에서는 단순 반사뿐 아니라 skin effect·dielectric loss·dispersion도 본다.
+            </p>
+          </article>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 1 V step</p>
+            <p>
+              VS = 1 V, ZS = 25 Ω, Z0 = 50 Ω, ZL = 100 Ω라면 incident voltage는
+              1×50/(25+50) = 0.667 V다. ΓL = (100−50)/(100+50) = 1/3이므로 load에 처음 도착할 때
+              전압은 0.667×(1+1/3) = 0.889 V다. ΓS = (25−50)/(25+50) = −1/3이어서 이후 작은 음의
+              재반사가 왕복하며 최종 0.8 V = 1×100/(25+100)에 수렴한다.
+            </p>
+            <p class="sanity-check">상식 점검: ZL=Z0이면 첫 도착 값 이후 load에서 반사가 없어야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              controlled impedance는 trace width 하나로 정하지 않는다. copper thickness, dielectric height,
+              Dk, solder mask, reference plane과 fabrication etch가 함께 정한다. source termination은
+              driver 가까이에 series resistor를 두어 ZS+R≈Z0로 맞추고, parallel termination은 load에서
+              ZL≈Z0를 만든다. topology와 DC power, receiver threshold를 고려해 방식을 고른다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              TDR은 빠른 step을 넣고 돌아오는 반사를 시간축에서 읽어 impedance 변화를 위치로 바꾼다. 위로
+              올라가는 반사는 더 높은 impedance, 아래로 내려가는 반사는 더 낮은 impedance를 시사한다.
+              connector launch, probe pad, via가 TDR feature가 될 수 있으므로 coupon과 fixture de-embedding
+              조건을 기록한다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“50 Ω trace는 끝에서 DMM으로 재면 50 Ω이다.”</strong></p>
+            <p>
+              Z0는 traveling wave의 V/I 비이며 DC resistance와 다르다. open 50 Ω cable을 DMM으로 재면
+              open으로 보이지만, step이 왕복하기 전 source에는 50 Ω처럼 보인다. distributed system의 시간과
+              공간을 빼면 특성임피던스를 이해할 수 없다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>matched load에서 반사가 없는 이유는?</summary><p>입사파의 V/I 비 Z0와 load의 V/I 조건이 같아 추가 파동 없이 경계조건을 만족하기 때문이다.</p></details>
+            <details><summary>open과 short의 Γ는 각각?</summary><p>open은 +1이라 같은 극성으로, short는 −1이라 반대 극성으로 완전 반사한다.</p></details>
+            <details><summary>termination resistor의 위치가 중요한 이유는?</summary><p>source 또는 load의 특정 경계에서 impedance를 맞춰야 하며 떨어진 배선 자체가 또 다른 line segment가 되기 때문이다.</p></details>
+          </div>
+        </section>
+
+
+  <nav class="chapter-pager" aria-label="장 이동">
+
+  <a class="pager-link pager-previous" href="06-electromagnetics.html">
+    <span>이전 장</span>
+    <strong>06 · 전자기학의 최소 골격</strong>
+  </a>
+
+  <a class="pager-link pager-next" href="08-pcb-materials-stackup-and-vias.html">
+    <span>다음 장</span>
+    <strong>08 · PCB 재료·스택업·비아</strong>
+  </a>
+  </nav>
+      </main>
+
+  <aside class="context-rail" aria-label="현재 장 정보">
+    <section class="rail-current">
+      <p class="eyebrow">NOW READING</p>
+      <strong>07</strong>
+      <h2>전송선로</h2>
+      <button type="button" class="chapter-complete-button"
+        data-chapter-complete="chapter-7" aria-pressed="false">이 장을 학습 완료로 표시</button>
+    </section>
+    <section>
+      <p class="rail-label">KEY TERMS</p>
+      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+    </section>
+    <section>
+      <p class="rail-label">SOURCE CHECK</p>
+      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+    </section>
+  </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"chapter","chapterId":"chapter-7","chapterCount":16,"chapterSlug":"07-transmission-lines","assetPrefix":"../"}</script>
+  </body>
+</html>

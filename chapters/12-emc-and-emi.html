@@ -1,0 +1,418 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="source–path–victim과 공통 모드 관점으로 방출과 내성을 본다.">
+    <meta name="theme-color" content="#fffefa">
+    <title>12 EMC와 EMI — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="chapter">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid" data-chapter-id="chapter-12">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+              aria-current="page"
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column" id="main-content">
+        <section class="chapter" id="chapter-12" data-part="3">
+          <p class="chapter-kicker">PART III · THE PHYSICAL BOARD</p>
+          <h2><span>12</span> EMC / EMI</h2>
+          <p class="chapter-lead">source–path–victim과 공통 모드 관점으로 방출과 내성을 본다.</p>
+          <div class="keyword-row"><span>source-path-victim</span><span>common mode</span><span>emission</span><span>immunity</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              EMC 문제는 <strong>noise source, coupling path, susceptible victim</strong> 세 요소가 동시에
+              있을 때 생기며, 셋 중 하나를 충분히 약하게 만들면 해결된다.
+            </p>
+            <p>
+              EMI는 원치 않는 electromagnetic disturbance, EMC는 장비가 환경을 과도하게 방해하지 않으면서
+              그 환경에서도 의도대로 동작하는 능력이다. emission은 conducted와 radiated로, immunity는 ESD,
+              EFT/burst, surge, RF field, conducted RF 등으로 나뉜다. 규격 시험은 재현 가능한 setup에서
+              limit과 performance criterion을 확인하는 것이며 설계 단계의 pre-compliance와 연결된다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">coupling을 키우는 변화율</p>
+            <div class="formula-grid">
+              <div><b>V<sub>L</sub> = M·di/dt</b><span>inductive coupling</span></div>
+              <div><b>I<sub>C</sub> = C<sub>m</sub>·dv/dt</b><span>capacitive coupling</span></div>
+              <div><b>V<sub>CM</sub> = (V<sub>+</sub>+V<sub>−</sub>)/2</b><span>common-mode voltage</span></div>
+              <div><b>V<sub>DM</sub> = V<sub>+</sub>−V<sub>−</sub></b><span>differential signal</span></div>
+            </div>
+            <p>
+              differential current는 한 conductor로 나가 다른 conductor로 돌아 loop가 작으면 far-field가
+              잘 상쇄된다. 두 conductor가 같은 방향으로 움직이는 common-mode current는 cable과 chassis를
+              큰 antenna로 사용할 수 있어 아주 작은 양도 방사를 지배한다. imbalance, asymmetry, reference
+              discontinuity가 differential energy를 common mode로 변환한다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="emc-modes" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 12</span><h3 id="section-12-1">Differential ↔ Common mode</h3></div>
+              <p>pair imbalance가 생길 때 cable 외부의 순전류가 커지는 모습을 본다.</p>
+            </div>
+            <div class="interactive-controls inline-controls">
+              <label>불균형 <input data-input="imbalance" type="range" min="0" max="100" value="10"><output data-out="imbalance">10%</output></label>
+              <label>edge <input data-input="edge" type="range" min="1" max="10" value="5"><output data-out="edge">5</output></label>
+            </div>
+            <div class="visual-stage" data-stage>
+              <canvas width="900" height="420" role="img" aria-label="차동 모드와 공통 모드 전류 방향 및 외부 자기장 비교"></canvas>
+            </div>
+            <div class="result-strip"><span>외부 순전류 <strong data-result="net-current">작음</strong></span><span>방사 위험 <strong data-result="risk">낮음–중간</strong></span></div>
+          </div>
+
+          <figure class="visual-panel media-figure" data-visual-medium="imagegen">
+            <div class="visual-heading">
+              <div><span class="visual-number">PLATE 12A</span><h3 id="section-12-2">Differential cancellation과 common-mode radiation</h3></div>
+              <p>같은 도체 수라도 전류의 상대 방향과 귀환 구조가 외부 장을 결정한다.</p>
+            </div>
+            <img src="../assets/images/differential-common-mode.png" width="1536" height="1024" loading="lazy"
+              alt="같고 반대인 차동 전류의 국소 장과 같은 방향 공통모드 전류의 넓게 퍼지는 방사장 비교">
+            <figcaption>
+              차동 pair의 두 전류가 크기와 경로에서 대칭이면 먼 곳의 장이 상쇄된다. connector pinout,
+              skew, plane 전환과 parasitic C의 불균형은 차동 에너지를 cable을 구동하는 common mode로 바꾼다.
+            </figcaption>
+          </figure>
+
+          <figure class="visual-panel media-figure" data-visual-medium="imagegen">
+            <div class="visual-heading">
+              <div><span class="visual-number">PLATE 12B</span><h3 id="section-12-3">Source–Path–Victim으로 문제를 분해한다</h3></div>
+              <p>EMC 대책은 세 요소 중 가장 지배적인 항을 약하게 만드는 일이다.</p>
+            </div>
+            <img src="../assets/images/source-coupling-victim.png" width="1536" height="1024" loading="lazy"
+              alt="노이즈 소스 보드와 피해 회로 사이의 파란 용량성 결합, 자홍색 유도성·전도성 결합 경로">
+            <figcaption>
+              source의 dv/dt·di/dt를 낮추고, mutual C·M 또는 공통 임피던스 경로를 줄이며, victim의
+              bandwidth·threshold·filtering을 조정한다. ferrite 하나보다 어느 경로를 끊는지 설명할 수 있어야 한다.
+            </figcaption>
+          </figure>
+
+          <article class="deep-dive" role="region" aria-labelledby="deep-emc-title">
+            <header>
+              <span>원리 더 깊게</span>
+              <h3 id="deep-emc-title">작은 common-mode 전류가 큰 방사를 만드는 이유</h3>
+            </header>
+            <p>
+              작은 current loop의 magnetic dipole radiation은 대략 loop area와 frequency의 제곱에 민감하고,
+              짧은 전기 dipole은 conductor 길이와 current에 민감하다. PCB 내부의 차동 loop가 작아도 수십 cm
+              cable에 수 mA의 common-mode current가 흘러가면 cable 길이가 파장의 의미 있는 비율이 되는
+              주파수에서 훨씬 효율적인 antenna가 된다. 이 때문에 cable current를 µA–mA 단위로 줄이는 일이
+              board trace의 차동 전류를 조금 줄이는 것보다 효과적일 수 있다.
+            </p>
+            <div class="principle-grid">
+              <article>
+                <h4>Source</h4>
+                <p>clock harmonic, converter switch node, motor commutation, ESD처럼 큰 dv/dt·di/dt와 반복성을 찾는다.</p>
+              </article>
+              <article>
+                <h4>Path</h4>
+                <p>stray C, mutual L, shared impedance, aperture, cable과 shield termination 중 실제 폐회로를 그린다.</p>
+              </article>
+              <article>
+                <h4>Victim</h4>
+                <p>threshold, bandwidth, CMRR, protection clamp와 firmware recovery가 어떤 disturbance에 취약한지 본다.</p>
+              </article>
+              <article>
+                <h4>검증</h4>
+                <p>한 번에 한 경로만 바꾸고 harmonic, cable current, error rate가 같은 방향으로 움직이는지 확인한다.</p>
+              </article>
+            </div>
+            <p class="derivation-note">
+              filter는 noise를 “없애는” 부품이 아니라 주파수별 impedance를 바꿔 원하는 귀환 경로로 보내는
+              network다. capacitor를 놓을 때는 신호 쪽 pad뿐 아니라 return pad가 chassis/reference에
+              짧고 낮은 L로 닫히는지까지 설계한다.
+            </p>
+          </article>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · 2 pF의 stray coupling</p>
+            <p>
+              switch node가 10 V/ns로 변하고 chassis 또는 cable에 대한 stray capacitance가 2 pF라면
+              displacement current는 I = C·dv/dt = 2 pF×10 V/ns = 20 mA다. 수 pF는 작아 보여도 빠른 edge에서는
+              상당한 common-mode current를 만든다. switch-node copper area를 줄이고 shield/reference에 대한
+              return을 제어하며 gate slew를 조절하는 이유다.
+            </p>
+            <p class="sanity-check">상식 점검: capacitance나 dv/dt를 절반으로 만들면 coupled current도 절반이 된다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              connector 경계에서 filter와 TVS를 가까이 두고 noise가 board 안으로 들어온 뒤 우회하지 않게 한다.
+              common-mode choke는 differential signal을 덜 방해하면서 common-mode impedance를 높이지만
+              saturation, parasitic capacitance, mode conversion을 본다. shield는 360° low-impedance
+              termination이 중요하며 긴 pigtail은 high-frequency inductance를 만든다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">시험과 진단에서</p>
+            <p>
+              spectrum analyzer와 near-field probe로 harmonic과 hotspot을 찾고, current probe로 cable
+              common-mode current를 비교한다. LISN은 power-port conducted emission 측정에 정의된 impedance와
+              coupling을 제공한다. 임시 copper tape, ferrite, absorber를 한 번에 하나씩 적용해 path 가설을
+              시험하되 최종 설계는 원인에 맞게 구조적으로 수정한다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“EMC는 설계가 끝난 뒤 ferrite와 shield로 통과시키는 시험 문제다.”</strong></p>
+            <p>
+              late fix는 비용이 크고 재현성이 낮다. stackup, connector pinout, return path, switch-node area,
+              enclosure seam과 cable termination은 layout 전부터 EMC를 결정한다. 인증 limit은 제품·port·환경에
+              따라 다르므로 적용 규격과 edition을 공식 기관·시험소와 확인한다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>EMC 문제의 세 요소는?</summary><p>noise source, coupling path, susceptible victim이다.</p></details>
+            <details><summary>작은 common-mode current가 위험할 수 있는 이유는?</summary><p>cable이나 chassis 같은 큰 구조를 효율적인 antenna로 구동할 수 있기 때문이다.</p></details>
+            <details><summary>filter를 connector 가까이 두는 이유는?</summary><p>외부와 내부의 경계에서 noise path를 끊어 filter 전후 배선이 다시 결합하거나 board 내부를 순환하지 않게 하기 위해서다.</p></details>
+          </div>
+        </section>
+
+
+  <nav class="chapter-pager" aria-label="장 이동">
+
+  <a class="pager-link pager-previous" href="11-power-integrity.html">
+    <span>이전 장</span>
+    <strong>11 · Power Integrity</strong>
+  </a>
+
+  <a class="pager-link pager-next" href="13-oscilloscope-fundamentals.html">
+    <span>다음 장</span>
+    <strong>13 · 오실로스코프</strong>
+  </a>
+  </nav>
+      </main>
+
+  <aside class="context-rail" aria-label="현재 장 정보">
+    <section class="rail-current">
+      <p class="eyebrow">NOW READING</p>
+      <strong>12</strong>
+      <h2>EMC와 EMI</h2>
+      <button type="button" class="chapter-complete-button"
+        data-chapter-complete="chapter-12" aria-pressed="false">이 장을 학습 완료로 표시</button>
+    </section>
+    <section>
+      <p class="rail-label">KEY TERMS</p>
+      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+    </section>
+    <section>
+      <p class="rail-label">SOURCE CHECK</p>
+      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+    </section>
+  </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"chapter","chapterId":"chapter-12","chapterCount":16,"chapterSlug":"12-emc-and-emi","assetPrefix":"../"}</script>
+  </body>
+</html>

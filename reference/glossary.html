@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="PCB 하드웨어 문서와 데이터시트를 읽기 위한 핵심 용어.">
+    <meta name="theme-color" content="#fffefa">
+    <title>한–영 용어집 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="reference">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid reference-grid">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column reference-page" id="main-content">
+        <header class="reference-header">
+          <p class="chapter-kicker">REFERENCE · A.2</p>
+          <h1>한–영 용어집</h1>
+          <p>PCB 하드웨어 문서와 데이터시트를 읽기 위한 핵심 용어.</p>
+        </header>
+        <article class="reference-content appendix-block" aria-labelledby="glossary-title">
+            <div class="appendix-heading">
+              <span>A.4</span><h3 id="glossary-title">한–영 용어집</h3>
+            </div>
+            <dl class="glossary-grid">
+              <div class="glossary-term"><dt>전압 · Voltage</dt><dd>두 점 사이의 단위 전하당 에너지 차이, J/C.</dd></div>
+              <div class="glossary-term"><dt>전류 · Current</dt><dd>기준 단면을 지나는 전하의 시간 변화율, dQ/dt.</dd></div>
+              <div class="glossary-term"><dt>전하 · Charge</dt><dd>electromagnetic interaction의 원천이 되는 보존량, C.</dd></div>
+              <div class="glossary-term"><dt>전력 · Power</dt><dd>에너지 전달 또는 변환 속도, J/s.</dd></div>
+              <div class="glossary-term"><dt>에너지 · Energy</dt><dd>일을 할 수 있는 물리량. 회로에서는 field와 source에 저장된다.</dd></div>
+              <div class="glossary-term"><dt>저항 · Resistance</dt><dd>DC/실수 성분의 V/I 비와 에너지 소산 척도.</dd></div>
+              <div class="glossary-term"><dt>컨덕턴스 · Conductance</dt><dd>저항의 역수 1/R, 단위 siemens.</dd></div>
+              <div class="glossary-term"><dt>커패시턴스 · Capacitance</dt><dd>전압당 저장 전하 Q/V와 electric-field energy 성질.</dd></div>
+              <div class="glossary-term"><dt>인덕턴스 · Inductance</dt><dd>전류당 flux linkage와 magnetic-field energy 성질.</dd></div>
+              <div class="glossary-term"><dt>임피던스 · Impedance</dt><dd>주파수 영역의 복소 V/I 비. resistance와 reactance를 포함한다.</dd></div>
+              <div class="glossary-term"><dt>리액턴스 · Reactance</dt><dd>에너지를 저장·반환하는 impedance의 허수 성분.</dd></div>
+              <div class="glossary-term"><dt>위상 · Phase</dt><dd>같은 주파수 sine 사이의 진행 각도 차이.</dd></div>
+              <div class="glossary-term"><dt>실효값 · RMS</dt><dd>저항에서 같은 평균전력을 만드는 DC 등가 크기.</dd></div>
+              <div class="glossary-term"><dt>키르히호프 전류법칙 · KCL</dt><dd>노드 전류의 대수합이 0이라는 전하 보존 표현.</dd></div>
+              <div class="glossary-term"><dt>키르히호프 전압법칙 · KVL</dt><dd>집중소자 closed loop 전압 변화의 대수합이 0이라는 표현.</dd></div>
+              <div class="glossary-term"><dt>테브난 등가 · Thevenin equivalent</dt><dd>선형 두 단자망을 전압원과 직렬저항으로 바꾼 모델.</dd></div>
+              <div class="glossary-term"><dt>노턴 등가 · Norton equivalent</dt><dd>선형 두 단자망을 전류원과 병렬저항으로 바꾼 모델.</dd></div>
+              <div class="glossary-term"><dt>시간상수 · Time constant</dt><dd>1차 응답 속도의 척도. RC 또는 L/R.</dd></div>
+              <div class="glossary-term"><dt>공진 · Resonance</dt><dd>inductive와 capacitive energy 교환이 특정 주파수에서 강화되는 현상.</dd></div>
+              <div class="glossary-term"><dt>품질계수 · Q factor</dt><dd>공진의 저장에너지 대 cycle당 손실을 나타내는 척도.</dd></div>
+              <div class="glossary-term"><dt>극점 · Pole</dt><dd>전달함수 denominator를 0으로 만드는 복소주파수 위치.</dd></div>
+              <div class="glossary-term"><dt>영점 · Zero</dt><dd>전달함수 numerator를 0으로 만드는 복소주파수 위치.</dd></div>
+              <div class="glossary-term"><dt>보드선도 · Bode plot</dt><dd>로그 주파수축에 magnitude와 phase를 그린 응답.</dd></div>
+              <div class="glossary-term"><dt>고조파 · Harmonic</dt><dd>기본 주파수의 정수배인 spectrum 성분.</dd></div>
+              <div class="glossary-term"><dt>푸리에 변환 · Fourier transform</dt><dd>시간 신호를 주파수 성분의 amplitude/phase로 표현하는 변환.</dd></div>
+              <div class="glossary-term"><dt>전기장 · Electric field</dt><dd>단위 전하가 받는 힘. 전압의 공간 gradient와 관련된다.</dd></div>
+              <div class="glossary-term"><dt>자기장 · Magnetic field</dt><dd>전류와 변하는 electric field가 만드는 순환 field.</dd></div>
+              <div class="glossary-term"><dt>자속 · Magnetic flux</dt><dd>면을 통과하는 B field의 적분.</dd></div>
+              <div class="glossary-term"><dt>유전율 · Permittivity</dt><dd>재료에서 D와 E를 잇고 electric energy 저장을 정하는 성질.</dd></div>
+              <div class="glossary-term"><dt>투자율 · Permeability</dt><dd>재료에서 B와 H를 잇는 magnetic 성질.</dd></div>
+              <div class="glossary-term"><dt>포인팅 벡터 · Poynting vector</dt><dd>E×H로 나타내는 electromagnetic power-flow density.</dd></div>
+              <div class="glossary-term"><dt>표피효과 · Skin effect</dt><dd>주파수가 오를수록 도체 표면에 current가 집중되는 현상.</dd></div>
+              <div class="glossary-term"><dt>유전체 손실 · Dielectric loss</dt><dd>변하는 field에서 유전체가 에너지를 열로 소산하는 현상.</dd></div>
+              <div class="glossary-term"><dt>전송선로 · Transmission line</dt><dd>전압·전류가 finite velocity wave로 분포하는 interconnect 모델.</dd></div>
+              <div class="glossary-term"><dt>특성임피던스 · Characteristic impedance</dt><dd>traveling wave의 voltage/current 비, √(L′/C′) 근사.</dd></div>
+              <div class="glossary-term"><dt>전파지연 · Propagation delay</dt><dd>변화가 interconnect 한쪽에서 다른 쪽으로 이동하는 시간.</dd></div>
+              <div class="glossary-term"><dt>반사계수 · Reflection coefficient</dt><dd>입사파 대비 반사파 amplitude와 polarity의 비.</dd></div>
+              <div class="glossary-term"><dt>종단 · Termination</dt><dd>경계 impedance를 조절해 reflection을 줄이는 network.</dd></div>
+              <div class="glossary-term"><dt>시간영역 반사계 · TDR</dt><dd>step 반사의 시간·크기로 interconnect impedance를 보는 측정.</dd></div>
+              <div class="glossary-term"><dt>스택업 · Stackup</dt><dd>PCB copper와 dielectric layer의 재료·순서·두께 구성.</dd></div>
+              <div class="glossary-term"><dt>프리프레그 · Prepreg</dt><dd>적층 때 녹고 경화돼 layer를 접착하는 수지 함침 glass fabric.</dd></div>
+              <div class="glossary-term"><dt>코어 · Core</dt><dd>완전히 경화된 dielectric과 copper foil로 된 PCB laminate.</dd></div>
+              <div class="glossary-term"><dt>유전율 상수 · Dk</dt><dd>상대 permittivity의 산업적 표현. 방법·주파수에 따라 달라진다.</dd></div>
+              <div class="glossary-term"><dt>손실계수 · Df</dt><dd>dielectric dissipation factor, 대개 tanδ로 표현.</dd></div>
+              <div class="glossary-term"><dt>비아 · Via</dt><dd>PCB layer 사이를 plating으로 연결하는 hole 구조.</dd></div>
+              <div class="glossary-term"><dt>안티패드 · Anti-pad</dt><dd>plane이 via/pad와 연결되지 않도록 비운 clearance 영역.</dd></div>
+              <div class="glossary-term"><dt>애뉼러링 · Annular ring</dt><dd>finished hole 주변에 남는 copper land의 폭.</dd></div>
+              <div class="glossary-term"><dt>기준면 · Reference plane</dt><dd>signal field와 return current가 결합하는 인접 conductor plane.</dd></div>
+              <div class="glossary-term"><dt>귀환전류 · Return current</dt><dd>source로 돌아가 circuit loop를 닫는 current 분포.</dd></div>
+              <div class="glossary-term"><dt>루프면적 · Loop area</dt><dd>outgoing/return 경로가 둘러싸는 면적. coupling과 radiation에 중요.</dd></div>
+              <div class="glossary-term"><dt>신호무결성 · Signal Integrity</dt><dd>receiver에서 voltage와 timing requirement를 유지하는 interconnect 품질.</dd></div>
+              <div class="glossary-term"><dt>크로스토크 · Crosstalk</dt><dd>인접 circuit 사이의 capacitive/inductive unwanted coupling.</dd></div>
+              <div class="glossary-term"><dt>아이 다이어그램 · Eye diagram</dt><dd>여러 unit interval을 겹쳐 voltage/timing margin을 보는 그림.</dd></div>
+              <div class="glossary-term"><dt>지터 · Jitter</dt><dd>signal edge timing이 이상적 위치에서 변하는 양.</dd></div>
+              <div class="glossary-term"><dt>스큐 · Skew</dt><dd>관련 신호 또는 pair member 사이 도착시간 차이.</dd></div>
+              <div class="glossary-term"><dt>S-파라미터 · S-parameter</dt><dd>port에 들어오고 나가는 wave 비로 network를 나타낸 주파수 데이터.</dd></div>
+              <div class="glossary-term"><dt>전원무결성 · Power Integrity</dt><dd>load가 요구하는 voltage quality를 PDN 전체에서 유지하는 설계.</dd></div>
+              <div class="glossary-term"><dt>전원분배망 · PDN</dt><dd>VRM, capacitor, plane, package와 die를 포함한 power delivery network.</dd></div>
+              <div class="glossary-term"><dt>목표임피던스 · Target impedance</dt><dd>허용 voltage ripple을 current step으로 나눈 PDN 목표.</dd></div>
+              <div class="glossary-term"><dt>디커플링 · Decoupling</dt><dd>local energy와 low-impedance return을 제공해 circuit 사이 noise 결합을 줄임.</dd></div>
+              <div class="glossary-term"><dt>등가직렬저항 · ESR</dt><dd>capacitor/inductor의 series loss를 나타내는 모델 항.</dd></div>
+              <div class="glossary-term"><dt>등가직렬인덕턴스 · ESL</dt><dd>capacitor package와 connection의 series inductance 모델 항.</dd></div>
+              <div class="glossary-term"><dt>반공진 · Anti-resonance</dt><dd>병렬 reactive branch 사이에서 impedance peak가 커지는 현상.</dd></div>
+              <div class="glossary-term"><dt>전자파장해 · EMI</dt><dd>의도치 않게 전달돼 다른 동작을 방해하는 electromagnetic disturbance.</dd></div>
+              <div class="glossary-term"><dt>전자파적합성 · EMC</dt><dd>과도한 disturbance를 내지 않고 주어진 환경에서 정상 동작하는 능력.</dd></div>
+              <div class="glossary-term"><dt>공통모드 · Common mode</dt><dd>둘 이상의 conductor가 reference에 대해 같은 방향으로 움직이는 성분.</dd></div>
+              <div class="glossary-term"><dt>차동모드 · Differential mode</dt><dd>conductor 사이의 반대 방향 signal/current 성분.</dd></div>
+              <div class="glossary-term"><dt>전도성 방출 · Conducted emission</dt><dd>cable/port를 따라 전달돼 측정되는 disturbance.</dd></div>
+              <div class="glossary-term"><dt>복사성 방출 · Radiated emission</dt><dd>공간의 electromagnetic field로 전달돼 측정되는 disturbance.</dd></div>
+              <div class="glossary-term"><dt>내성 · Immunity</dt><dd>외부 disturbance 아래에서도 요구 성능을 유지하는 능력.</dd></div>
+              <div class="glossary-term"><dt>LISN</dt><dd>전원 port에 정의 impedance를 제공하고 conducted noise를 분리하는 network.</dd></div>
+              <div class="glossary-term"><dt>근접장 프로브 · Near-field probe</dt><dd>board 가까운 E 또는 H field의 상대 hotspot을 탐색하는 sensor.</dd></div>
+              <div class="glossary-term"><dt>대역폭 · Bandwidth</dt><dd>system이 규정된 amplitude/phase 정확도로 통과시키는 주파수 범위.</dd></div>
+              <div class="glossary-term"><dt>샘플률 · Sample rate</dt><dd>ADC가 초당 얻는 sample 수.</dd></div>
+              <div class="glossary-term"><dt>기록길이 · Record length</dt><dd>한 acquisition에 저장하는 sample 수.</dd></div>
+              <div class="glossary-term"><dt>앨리어싱 · Aliasing</dt><dd>sampling이 부족해 고주파 성분이 낮은 가짜 주파수로 보이는 현상.</dd></div>
+              <div class="glossary-term"><dt>트리거 · Trigger</dt><dd>acquisition의 시간 기준을 정하고 관심 event를 포착하는 조건.</dd></div>
+              <div class="glossary-term"><dt>프로브 로딩 · Probe loading</dt><dd>probe의 R/C/L이 DUT 동작과 파형을 바꾸는 효과.</dd></div>
+              <div class="glossary-term"><dt>그라운드 바운스 · Ground bounce</dt><dd>common return inductance/resistance와 di/dt가 만드는 reference voltage 변화.</dd></div>
+              <div class="glossary-term"><dt>디임베딩 · De-embedding</dt><dd>fixture, cable, probe의 영향을 측정 데이터에서 수학적으로 제거하는 과정.</dd></div>
+              <div class="glossary-term"><dt>브링업 · Bring-up</dt><dd>새 board를 제한된 위험 아래 순차적으로 처음 동작·검증하는 과정.</dd></div>
+              <div class="glossary-term"><dt>가드밴드 · Guardband</dt><dd>uncertainty와 variation을 고려해 specification보다 안쪽에 둔 판정 여유.</dd></div>
+              <div class="glossary-term"><dt>골든보드 · Golden board</dt><dd>비교 기준으로 관리되는 known-good hardware sample.</dd></div>
+              <div class="glossary-term"><dt>근본원인 · Root cause</dt><dd>제거했을 때 문제의 재발 mechanism을 없애는 가장 근본적인 원인.</dd></div>
+              <div class="glossary-term"><dt>제조용이성 설계 · DFM</dt><dd>fabrication/assembly capability와 yield를 설계에 반영하는 활동.</dd></div>
+              <div class="glossary-term"><dt>연면거리 · Creepage</dt><dd>절연 표면을 따라 잰 두 conductor 사이 최단거리.</dd></div>
+              <div class="glossary-term"><dt>공간거리 · Clearance</dt><dd>공기 중으로 잰 두 conductor 사이 최단거리.</dd></div>
+              <div class="glossary-term"><dt>디레이팅 · Derating</dt><dd>신뢰성 margin을 위해 부품을 최대 정격보다 낮은 stress에서 쓰는 것.</dd></div>
+            </dl>
+          </article>
+
+      </main>
+      <aside class="context-rail reference-rail">
+        <p class="eyebrow">REFERENCE DESK</p>
+        <nav aria-label="참조 자료">
+          <a href="formulas.html">공식·단위</a>
+          <a href="glossary.html">한–영 용어집</a>
+          <a href="checklists.html">체크리스트</a>
+          <a href="sources.html">출처·검증</a>
+        </nav>
+      </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"reference","chapterCount":16,"assetPrefix":"../"}</script>
+  </body>
+</html>

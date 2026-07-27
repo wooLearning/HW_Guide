@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="에너지 저장과 연속조건으로 과도응답을 이해한다.">
+    <meta name="theme-color" content="#fffefa">
+    <title>03 커패시터와 인덕터 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="chapter">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid" data-chapter-id="chapter-3">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+              aria-current="page"
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column" id="main-content">
+        <section class="chapter" id="chapter-3" data-part="1">
+          <p class="chapter-kicker">PART I · CIRCUIT LANGUAGE</p>
+          <h2><span>03</span> 커패시터와 인덕터</h2>
+          <p class="chapter-lead">에너지 저장과 연속조건으로 과도응답을 이해한다.</p>
+          <div class="keyword-row"><span>energy storage</span><span>continuity</span><span>time constant</span></div>
+
+          <div class="intuition concept-block">
+            <p class="block-label">한 문장 직관</p>
+            <p class="big-idea">
+              커패시터는 전기장에, 인덕터는 자기장에 에너지를 저장하므로
+              <strong>커패시터 전압과 인덕터 전류는 이상적으로 순간 점프할 수 없다.</strong>
+            </p>
+            <p>
+              C의 관계 i = C·dv/dt는 전압을 매우 빠르게 바꾸려면 매우 큰 전류가 필요함을 말한다. L의 관계
+              v = L·di/dt는 전류를 매우 빠르게 바꾸려면 매우 큰 전압이 필요함을 말한다. 스위치를 켜고 끄는
+              순간의 overshoot, flyback diode, decoupling capacitor, reset delay는 모두 이 연속조건에서
+              출발한다.
+            </p>
+          </div>
+
+          <div class="equation equation-panel">
+            <p class="block-label">구성 관계와 저장 에너지</p>
+            <div class="formula-grid">
+              <div><b>i<sub>C</sub> = C·dv/dt</b><span>W<sub>C</sub> = ½CV²</span></div>
+              <div><b>v<sub>L</sub> = L·di/dt</b><span>W<sub>L</sub> = ½LI²</span></div>
+              <div><b>τ<sub>RC</sub> = RC</b><span>단위 Ω·F = s</span></div>
+              <div><b>τ<sub>RL</sub> = L/R</b><span>단위 H/Ω = s</span></div>
+            </div>
+            <p>
+              1차 회로의 오차는 e<sup>−t/τ</sup>로 줄어든다. 1τ에서 최종값의 63.2%, 3τ에서 95.0%,
+              5τ에서 99.3%에 도달한다. “완전히 충전되는 시간”은 수학적으로 무한하지만, 필요한 정확도를
+              먼저 정하면 실용적인 settling time을 말할 수 있다.
+            </p>
+          </div>
+
+          <div class="visual-panel interactive" data-visualization="rc-transient" data-visual-medium="canvas">
+            <div class="visual-heading">
+              <div><span class="visual-number">LAB 03</span><h3 id="section-03-1">RC 과도응답</h3></div>
+              <p>R과 C를 바꾸며 같은 지수곡선이 시간축에서 늘어나는 모습을 본다.</p>
+            </div>
+            <div class="interactive-layout">
+              <div class="interactive-controls">
+                <label>저항 R <span><output data-out="r">10.0 kΩ</output></span>
+                  <input data-input="r" type="range" min="1000" max="100000" step="1000" value="10000">
+                </label>
+                <label>커패시터 C <span><output data-out="c">100 nF</output></span>
+                  <input data-input="c" type="range" min="10" max="1000" step="10" value="100">
+                </label>
+                <label>관찰 시간 <span><output data-out="t">1.00 ms</output></span>
+                  <input data-input="t" type="range" min="0" max="5" step="0.05" value="1">
+                </label>
+              </div>
+              <div class="visual-stage" data-stage>
+                <canvas width="760" height="360" role="img" aria-label="RC 충전 전압의 시간에 따른 지수 곡선"></canvas>
+              </div>
+            </div>
+            <div class="result-strip" aria-live="polite">
+              <span>τ <strong data-result="tau">1.00 ms</strong></span>
+              <span>V(t)/Vfinal <strong data-result="ratio">63.2%</strong></span>
+              <span>5τ <strong data-result="five-tau">5.00 ms</strong></span>
+            </div>
+          </div>
+
+          <div class="worked-example example-card">
+            <p class="block-label">손으로 푸는 예제 · reset RC</p>
+            <p>
+              R = 10 kΩ, C = 100 nF이면 τ = 1 ms다. 3.3 V step을 인가한 뒤 1 ms의 커패시터 전압은
+              3.3(1−e<sup>−1</sup>) = 2.086 V다. 입력 임계값이 0.7·VDD = 2.31 V라면 crossing은
+              t = −RC ln(1−0.7) ≈ 1.204 ms다. 하지만 실제 reset pin의 leakage, Schmitt threshold,
+              power ramp와 capacitor tolerance 때문에 전용 supervisor보다 불확실하다.
+            </p>
+            <p class="sanity-check">상식 점검: R이나 C가 커지면 변화는 느려지고 τ는 선형으로 커져야 한다.</p>
+          </div>
+
+          <div class="pcb-bridge bridge-card">
+            <p class="block-label">PCB에서</p>
+            <p>
+              IC가 edge 순간 요구하는 전류는 멀리 있는 regulator에서 즉시 올 수 없다. package와 plane의
+              인덕턴스가 di/dt를 방해하므로 가까운 decoupling capacitor가 국소 전하 저장고 역할을 한다.
+              반대로 relay coil이나 motor를 끊을 때 인덕터 전류의 연속성이 큰 전압을 만들므로 flyback 경로,
+              snubber, clamp가 필요하다. 배선 자체도 nH 단위 인덕턴스를 갖는다.
+            </p>
+          </div>
+
+          <div class="measurement-note note-card">
+            <p class="block-label">측정에서</p>
+            <p>
+              RC 곡선의 10–90% rise time은 약 2.2RC다. scope cursors로 두 지점을 읽어 τ를 역산할 수 있지만,
+              probe input capacitance가 원래 C에 병렬로 더해진다. 높은 임피던스 노드에서는 10× passive
+              probe의 수 pF도 시간상수를 눈에 띄게 바꿀 수 있다.
+            </p>
+          </div>
+
+          <div class="misconception warning-card">
+            <p class="block-label">오개념 경보</p>
+            <p><strong>“커패시터는 DC를 막고 AC를 통과시킨다.”</strong></p>
+            <p>
+              회로 동작을 압축한 말일 뿐 원리는 아니다. 커패시터 전류는 dv/dt에 비례한다. 정상 DC에서
+              dv/dt = 0이므로 이상 C 전류가 0이고, 변화가 빠를수록 더 큰 전류가 흐른다. 실제 부품에는 leakage,
+              ESR, ESL과 breakdown이 있다.
+            </p>
+          </div>
+
+          <div class="self-check">
+            <p class="block-label">셀프 체크</p>
+            <details><summary>커패시터 전압이 순간 점프할 수 없는 이유는?</summary><p>유한한 C에서 순간 전압 변화는 무한한 dv/dt와 전류를 요구하기 때문이다.</p></details>
+            <details><summary>5τ가 자주 쓰이는 이유는?</summary><p>1차 응답 오차가 e⁻⁵≈0.67%로 작아져 많은 실용 조건에서 정착으로 간주할 수 있기 때문이다.</p></details>
+            <details><summary>coil을 끌 때 큰 전압이 생기는 이유는?</summary><p>인덕터가 기존 전류를 유지하려고 v=L·di/dt에 필요한 극성의 전압을 만들기 때문이다.</p></details>
+          </div>
+        </section>
+
+
+  <nav class="chapter-pager" aria-label="장 이동">
+
+  <a class="pager-link pager-previous" href="02-dc-circuits.html">
+    <span>이전 장</span>
+    <strong>02 · DC 회로</strong>
+  </a>
+
+  <a class="pager-link pager-next" href="04-ac-frequency-and-resonance.html">
+    <span>다음 장</span>
+    <strong>04 · AC와 주파수</strong>
+  </a>
+  </nav>
+      </main>
+
+  <aside class="context-rail" aria-label="현재 장 정보">
+    <section class="rail-current">
+      <p class="eyebrow">NOW READING</p>
+      <strong>03</strong>
+      <h2>커패시터와 인덕터</h2>
+      <button type="button" class="chapter-complete-button"
+        data-chapter-complete="chapter-3" aria-pressed="false">이 장을 학습 완료로 표시</button>
+    </section>
+    <section>
+      <p class="rail-label">KEY TERMS</p>
+      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+    </section>
+    <section>
+      <p class="rail-label">SOURCE CHECK</p>
+      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+    </section>
+  </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"chapter","chapterId":"chapter-3","chapterCount":16,"chapterSlug":"03-capacitors-and-inductors","assetPrefix":"../"}</script>
+  </body>
+</html>

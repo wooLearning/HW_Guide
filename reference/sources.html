@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ko" data-theme="light">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="설명의 근거와 표준·공식 자료를 추적하는 source trail.">
+    <meta name="theme-color" content="#fffefa">
+    <title>참고문헌과 검증 기준 — PCB HW Design &amp; Validation</title>
+    <link rel="stylesheet" href="../assets/styles.css?v=20260727-1">
+    <script defer src="../assets/calculators.js"></script>
+    <script defer src="../assets/visualizations.js"></script>
+    <script type="module" src="../assets/three-scenes.js"></script>
+    <script defer src="../assets/search.js"></script>
+    <script defer src="../assets/app.js?v=20260727-1"></script>
+  </head>
+  <body data-page-kind="reference">
+
+  <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+  <div class="reading-progress" aria-hidden="true"><span data-reading-progress></span></div>
+  <header class="site-header">
+    <a class="site-mark" href="../index.html" aria-label="가이드 홈">
+      <span>HW</span>
+      <strong>Design &amp; Validation</strong>
+    </a>
+    <div class="site-tools" aria-label="읽기 도구">
+      <button class="tool-button menu-button" type="button" data-menu-toggle aria-expanded="false">
+        목차
+      </button>
+      <button class="tool-button" type="button" data-search-open>검색 <kbd>/</kbd></button>
+      <div class="type-controls" aria-label="글자 크기">
+        <button type="button" data-font-step="-1" aria-label="글자 작게">A−</button>
+        <button type="button" data-font-step="1" aria-label="글자 크게">A+</button>
+      </div>
+      <button class="tool-button" type="button" data-theme-toggle aria-label="다크 모드 켜기">명암</button>
+      <button class="completion-count" type="button" data-completion-count aria-label="학습 완료 수">0/16</button>
+    </div>
+  </header>
+
+    <div class="site-grid reference-grid">
+
+  <aside class="chapter-navigation">
+    <div class="navigation-heading">
+      <p class="eyebrow">CONTENTS</p>
+      <strong>전체 16장</strong>
+    </div>
+    <nav class="book-nav" aria-label="주요 목차">
+
+        <section class="nav-part">
+          <p><span>Orientation</span>모델과 학습 지도</p>
+
+            <a
+              href="../chapters/00-models-and-scale.html"
+              data-chapter-link="chapter-0"
+
+            >
+              <span>00</span>
+              <strong>지도를 먼저 보자</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Circuit Language</span>회로를 읽는 언어</p>
+
+            <a
+              href="../chapters/01-electrical-quantities.html"
+              data-chapter-link="chapter-1"
+
+            >
+              <span>01</span>
+              <strong>단위·전하·전압·전류·전력</strong>
+            </a>
+            <a
+              href="../chapters/02-dc-circuits.html"
+              data-chapter-link="chapter-2"
+
+            >
+              <span>02</span>
+              <strong>DC 회로</strong>
+            </a>
+            <a
+              href="../chapters/03-capacitors-and-inductors.html"
+              data-chapter-link="chapter-3"
+
+            >
+              <span>03</span>
+              <strong>커패시터와 인덕터</strong>
+            </a>
+            <a
+              href="../chapters/04-ac-frequency-and-resonance.html"
+              data-chapter-link="chapter-4"
+
+            >
+              <span>04</span>
+              <strong>AC와 주파수</strong>
+            </a>
+            <a
+              href="../chapters/05-real-components.html"
+              data-chapter-link="chapter-5"
+
+            >
+              <span>05</span>
+              <strong>실제 부품</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Fields &amp; Waves</span>회로도 밖의 물리</p>
+
+            <a
+              href="../chapters/06-electromagnetics.html"
+              data-chapter-link="chapter-6"
+
+            >
+              <span>06</span>
+              <strong>전자기학의 최소 골격</strong>
+            </a>
+            <a
+              href="../chapters/07-transmission-lines.html"
+              data-chapter-link="chapter-7"
+
+            >
+              <span>07</span>
+              <strong>전송선로</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>PCB Physics</span>PCB라는 물리 구조</p>
+
+            <a
+              href="../chapters/08-pcb-materials-stackup-and-vias.html"
+              data-chapter-link="chapter-8"
+
+            >
+              <span>08</span>
+              <strong>PCB 재료·스택업·비아</strong>
+            </a>
+            <a
+              href="../chapters/09-placement-routing-and-return-paths.html"
+              data-chapter-link="chapter-9"
+
+            >
+              <span>09</span>
+              <strong>배치·배선·귀환 경로</strong>
+            </a>
+            <a
+              href="../chapters/10-signal-integrity.html"
+              data-chapter-link="chapter-10"
+
+            >
+              <span>10</span>
+              <strong>Signal Integrity</strong>
+            </a>
+            <a
+              href="../chapters/11-power-integrity.html"
+              data-chapter-link="chapter-11"
+
+            >
+              <span>11</span>
+              <strong>Power Integrity</strong>
+            </a>
+            <a
+              href="../chapters/12-emc-and-emi.html"
+              data-chapter-link="chapter-12"
+
+            >
+              <span>12</span>
+              <strong>EMC와 EMI</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Measurement</span>보이는 것과 실제 신호</p>
+
+            <a
+              href="../chapters/13-oscilloscope-fundamentals.html"
+              data-chapter-link="chapter-13"
+
+            >
+              <span>13</span>
+              <strong>오실로스코프</strong>
+            </a>
+            <a
+              href="../chapters/14-probing-and-measurement.html"
+              data-chapter-link="chapter-14"
+
+            >
+              <span>14</span>
+              <strong>프로브와 측정</strong>
+            </a>
+        </section>
+        <section class="nav-part">
+          <p><span>Validation</span>검증과 문제 해결</p>
+
+            <a
+              href="../chapters/15-bringup-validation-and-debug.html"
+              data-chapter-link="chapter-15"
+
+            >
+              <span>15</span>
+              <strong>Bring-up·검증·고장분석</strong>
+            </a>
+        </section>
+    </nav>
+  </aside>
+      <main class="reading-column reference-page" id="main-content">
+        <header class="reference-header">
+          <p class="chapter-kicker">REFERENCE · A.4</p>
+          <h1>참고문헌과 검증 기준</h1>
+          <p>설명의 근거와 표준·공식 자료를 추적하는 source trail.</p>
+        </header>
+        <article class="reference-content appendix" aria-labelledby="references-title">
+          <p class="chapter-kicker">SOURCE TRAIL</p>
+          <h2 id="references-title">참고문헌과 검증 기준</h2>
+          <p class="chapter-lead">
+            설명은 아래 층위를 우선해 교차검증했다. 표준 전문은 유료일 수 있으며 이 가이드는 표준을
+            대체하지 않는다. 제품의 적용 규격·edition·시험 조건은 공식 기관과 공인 시험소에서 다시 확인한다.
+          </p>
+
+          <div class="source-tier">
+            <h3><span>TIER 1</span> 표준·공식 기관</h3>
+            <ol class="source-list">
+              <li class="source-entry">
+                <a href="https://www.ipc.org/ipc-design-standards" target="_blank" rel="noreferrer">
+                  IPC · PCB Design Standards
+                </a>
+                <p>IPC-2221/2222/2228, IPC-7351 등 board design 표준의 공식 색인. 2026-07-25 확인.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ipc.org/ipc-document-revision-table" target="_blank" rel="noreferrer">
+                  IPC · Document Revision Table
+                </a>
+                <p>현재 revision, obsolete/superseded/no-longer-maintained 상태 확인용. 2026-07-25 확인.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ipc.org/TOC/IPC-2152.pdf" target="_blank" rel="noreferrer">
+                  IPC-2152 · Current Carrying Capacity — Official TOC
+                </a>
+                <p>PCB conductor current/temperature 주제의 공식 공개 목차. IPC revision table상 더 이상 유지관리되지 않는 상태이므로 현재 요구사항으로 단독 적용하지 않는다.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://webstore.iec.ch/en/publication/70473" target="_blank" rel="noreferrer">
+                  IEC TR 61000-1-1:2023
+                </a>
+                <p>EMC 기본 정의, electromagnetic environment, source–coupling–victim 개념의 공식 기술보고서.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ecfr.gov/current/title-47/chapter-I/subchapter-A/part-15" target="_blank" rel="noreferrer">
+                  U.S. eCFR · 47 CFR Part 15
+                </a>
+                <p>미국 radio-frequency device 관련 현행 공식 규정. 적용 subpart와 최신 날짜를 제품별로 확인.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://standards.ieee.org/ieee/370/6165/" target="_blank" rel="noreferrer">
+                  IEEE Std 370 · Electrical Characterization of PCB Interconnects
+                </a>
+                <p>interconnect measurement와 fixture/de-embedding 품질을 다루는 IEEE 표준 정보 페이지.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="source-tier">
+            <h3><span>TIER 2</span> 계측기·반도체 제조사 공식 자료</h3>
+            <ol class="source-list" start="7">
+              <li class="source-entry">
+                <a href="https://www.tek.com/en/documents/whitepaper/abcs-probes-primer" target="_blank" rel="noreferrer">
+                  Tektronix · ABCs of Probes Primer
+                </a>
+                <p>probe bandwidth, loading, attenuation, ground lead와 probe 종류의 기초.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.tek.com/en/documents/primer/xyzs-oscilloscopes-primer" target="_blank" rel="noreferrer">
+                  Tektronix · XYZs of Oscilloscopes Primer
+                </a>
+                <p>oscilloscope architecture, bandwidth, sampling, acquisition과 trigger 입문.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.tek.com/en/products/oscilloscopes/oscilloscope-probes" target="_blank" rel="noreferrer">
+                  Tektronix · Oscilloscope Probes Fundamentals
+                </a>
+                <p>probe 선택, attenuation, voltage rating, scope compatibility 공식 안내.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ti.com/lit/an/scaa082/scaa082.pdf" target="_blank" rel="noreferrer">
+                  Texas Instruments · High-Speed Layout Guidelines
+                </a>
+                <p>fast digital interface의 layout, return, crosstalk과 termination에 관한 application report.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.ti.com/lit/an/slla414/slla414.pdf" target="_blank" rel="noreferrer">
+                  Texas Instruments · High-Speed Interface Layout Guidelines
+                </a>
+                <p>여러 high-speed interface의 routing와 layout 고려사항을 정리한 공식 application note.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.analog.com/media/en/training-seminars/tutorials/MT-031.pdf" target="_blank" rel="noreferrer">
+                  Analog Devices · MT-031 Grounding Data Converters
+                </a>
+                <p>mixed-signal grounding, return current와 partitioning을 설명하는 공식 tutorial.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://www.analog.com/media/en/training-seminars/tutorials/MT-101.pdf" target="_blank" rel="noreferrer">
+                  Analog Devices · MT-101 Decoupling Techniques
+                </a>
+                <p>capacitor parasitic, local decoupling과 connection inductance 기초.</p>
+              </li>
+              <li class="source-entry">
+                <a href="https://scdn.rohde-schwarz.com/ur/pws/dl_downloads/dl_common_library/dl_brochures_and_datasheets/pdf_1/Oscilloscope-Fundamentals_bro_en_3608-2720-62_v0200.pdf" target="_blank" rel="noreferrer">
+                  Rohde &amp; Schwarz · Oscilloscope Fundamentals
+                </a>
+                <p>digital oscilloscope의 기본 설정, trigger와 measurement 개념.</p>
+              </li>
+            </ol>
+          </div>
+
+          <div class="source-tier">
+            <h3><span>TIER 3</span> 정평 있는 교재</h3>
+            <ol class="source-list" start="15">
+              <li class="source-entry"><cite>Eric Bogatin, Signal and Power Integrity—Simplified, 3rd ed.</cite><p>transmission line, SI/PI와 측정의 직관적 연결.</p></li>
+              <li class="source-entry"><cite>Henry W. Ott, Electromagnetic Compatibility Engineering.</cite><p>coupling, grounding, shielding, filtering과 EMC 설계 원리.</p></li>
+              <li class="source-entry"><cite>Howard Johnson &amp; Martin Graham, High-Speed Digital Design.</cite><p>fast logic의 interconnect, return current와 measurement.</p></li>
+              <li class="source-entry"><cite>Stephen H. Hall &amp; Howard L. Heck, Advanced Signal Integrity for High-Speed Digital Designs.</cite><p>channel modeling, via, crosstalk과 serial-link SI.</p></li>
+              <li class="source-entry"><cite>Paul Horowitz &amp; Winfield Hill, The Art of Electronics, 3rd ed.</cite><p>실제 component와 measurement를 잇는 회로 설계 참고서.</p></li>
+              <li class="source-entry"><cite>David J. Griffiths, Introduction to Electrodynamics.</cite><p>electric/magnetic field와 Maxwell equation의 이론적 기초.</p></li>
+              <li class="source-entry"><cite>Charles K. Alexander &amp; Matthew N. O. Sadiku, Fundamentals of Electric Circuits.</cite><p>회로법칙, transient, AC와 network analysis 기초.</p></li>
+            </ol>
+          </div>
+
+          <aside class="source-policy">
+            <h3>이 자료의 주장 처리 방식</h3>
+            <ul>
+              <li>정의와 표준 번호는 공식 기관 페이지에서 revision 상태를 확인한다.</li>
+              <li>경험칙은 법칙처럼 쓰지 않고 edge, geometry, 허용오차 등 적용 조건을 함께 적는다.</li>
+              <li>제조사 자료는 유용하지만 특정 제품과 fixture 조건이 있으므로 다른 자료와 교차검증한다.</li>
+              <li>안전·규제·제품 합격 판정은 이 가이드가 아니라 적용 표준, 장비 매뉴얼, 자격 있는 책임자의 절차를 따른다.</li>
+            </ul>
+          </aside>
+        </article>
+
+      </main>
+      <aside class="context-rail reference-rail">
+        <p class="eyebrow">REFERENCE DESK</p>
+        <nav aria-label="참조 자료">
+          <a href="formulas.html">공식·단위</a>
+          <a href="glossary.html">한–영 용어집</a>
+          <a href="checklists.html">체크리스트</a>
+          <a href="sources.html">출처·검증</a>
+        </nav>
+      </aside>
+    </div>
+
+  <dialog class="search-dialog" id="search-dialog" aria-labelledby="search-title">
+    <div class="search-dialog-head">
+      <div>
+        <p class="eyebrow">SEARCH THE GUIDE</p>
+        <h2 id="search-title">개념 찾기</h2>
+      </div>
+      <button class="tool-button" type="button" data-search-close aria-label="검색 닫기">닫기</button>
+    </div>
+    <label class="search-field" for="book-search">
+      <span class="sr-only">검색어</span>
+      <input type="search" id="book-search" autocomplete="off"
+        placeholder="예: 반사계수, 리턴 전류, 프로브 로딩">
+    </label>
+    <p class="search-hint">두 글자 이상 입력하세요. 제목·핵심어·본문을 함께 검색합니다.</p>
+    <div id="search-results" class="search-results" aria-live="polite"></div>
+  </dialog>
+    <script id="guide-page-data" type="application/json">{"pageKind":"reference","chapterCount":16,"assetPrefix":"../"}</script>
+  </body>
+</html>
