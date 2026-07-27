@@ -201,9 +201,11 @@
   </aside>
       <main class="reading-column" id="main-content">
         <section class="chapter" id="chapter-11" data-part="3">
-          <p class="chapter-kicker">PART III · THE PHYSICAL BOARD</p>
-          <h2><span>11</span> Power Integrity</h2>
-          <p class="chapter-lead">PDN과 target impedance로 전원 노이즈를 설계한다.</p>
+          <header class="chapter-header">
+            <p class="chapter-kicker">CHAPTER 11 · PCB PHYSICS</p>
+            <h2><span>11</span> Power Integrity</h2>
+            <p class="chapter-thesis">PDN과 target impedance로 전원 노이즈를 설계한다.</p>
+          </header>
           <div class="keyword-row"><span>PDN</span><span>target impedance</span><span>decoupling</span><span>anti-resonance</span></div>
 
           <div class="intuition concept-block">
@@ -374,12 +376,18 @@
     </section>
     <section>
       <p class="rail-label">KEY TERMS</p>
-      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+      <dl><div><dt>Target impedance</dt><dd>허용 voltage ripple을 부하 current step으로 나눈 PDN impedance 목표.</dd></div><div><dt>반공진</dt><dd>여러 reactive branch의 상호작용으로 PDN impedance peak가 커지는 현상.</dd></div></dl>
     </section>
 
     <section>
       <p class="rail-label">SOURCE CHECK</p>
-      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+
+          <a href="https://www.analog.com/MT-101?doc=AN-1224.pdf" target="_blank" rel="noreferrer">
+            Analog Devices · MT-101: Decoupling Techniques
+          </a>
+          <a href="https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140" target="_blank" rel="noreferrer">
+            Pearson · Signal and Power Integrity — Simplified
+          </a>
     </section>
   </aside>
     </div>

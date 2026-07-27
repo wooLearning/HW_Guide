@@ -201,9 +201,11 @@
   </aside>
       <main class="reading-column" id="main-content">
         <section class="chapter" id="chapter-9" data-part="3">
-          <p class="chapter-kicker">PART III · THE PHYSICAL BOARD</p>
-          <h2><span>09</span> 배치·배선·귀환 경로</h2>
-          <p class="chapter-lead">신호선만이 아니라 닫힌 전류 루프를 설계한다.</p>
+          <header class="chapter-header">
+            <p class="chapter-kicker">CHAPTER 09 · PCB PHYSICS</p>
+            <h2><span>09</span> 배치·배선·귀환 경로</h2>
+            <p class="chapter-thesis">신호선만이 아니라 닫힌 전류 루프를 설계한다.</p>
+          </header>
           <div class="keyword-row"><span>return current</span><span>loop area</span><span>reference plane</span><span>via transition</span></div>
 
           <div class="intuition concept-block">
@@ -393,12 +395,18 @@
     </section>
     <section>
       <p class="rail-label">KEY TERMS</p>
-      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+      <dl><div><dt>귀환 경로</dt><dd>신호 전류가 source로 돌아가 닫힌 회로를 완성하는 실제 분포.</dd></div><div><dt>기준면 불연속</dt><dd>plane split·void·층 전환으로 인접 return path가 끊기거나 멀어지는 구조.</dd></div></dl>
     </section>
 
     <section>
       <p class="rail-label">SOURCE CHECK</p>
-      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+
+          <a href="https://www.ti.com/lit/an/slla414a/slla414a.pdf" target="_blank" rel="noreferrer">
+            Texas Instruments · High-Speed Interface Layout Guidelines
+          </a>
+          <a href="https://www.ti.com/lit/an/scaa082a/scaa082a.pdf" target="_blank" rel="noreferrer">
+            Texas Instruments · High-Speed Layout Guidelines
+          </a>
     </section>
   </aside>
     </div>

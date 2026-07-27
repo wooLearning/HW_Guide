@@ -73,6 +73,8 @@ test("book includes a dedicated references section", () => {
 });
 
 const requiredChapterBlocks = [
+  "chapter-header",
+  "chapter-thesis",
   "intuition",
   "equation",
   "pcb-bridge",

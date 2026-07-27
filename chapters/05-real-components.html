@@ -201,9 +201,11 @@
   </aside>
       <main class="reading-column" id="main-content">
         <section class="chapter" id="chapter-5" data-part="1">
-          <p class="chapter-kicker">PART I · CIRCUIT LANGUAGE</p>
-          <h2><span>05</span> 실제 부품</h2>
-          <p class="chapter-lead">기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다.</p>
+          <header class="chapter-header">
+            <p class="chapter-kicker">CHAPTER 05 · CIRCUIT LANGUAGE</p>
+            <h2><span>05</span> 실제 부품</h2>
+            <p class="chapter-thesis">기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다.</p>
+          </header>
           <div class="keyword-row"><span>parasitic</span><span>ESR</span><span>ESL</span><span>operating point</span></div>
 
           <div class="intuition concept-block">
@@ -357,12 +359,18 @@
     </section>
     <section>
       <p class="rail-label">KEY TERMS</p>
-      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+      <dl><div><dt>ESR</dt><dd>실제 reactive 부품의 손실을 직렬 저항으로 나타낸 모델 항.</dd></div><div><dt>자기공진 SRF</dt><dd>부품의 의도된 reactance와 기생 reactance가 상쇄되는 주파수.</dd></div></dl>
     </section>
 
     <section>
       <p class="rail-label">SOURCE CHECK</p>
-      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+
+          <a href="https://www.analog.com/MT-101?doc=AN-1224.pdf" target="_blank" rel="noreferrer">
+            Analog Devices · MT-101: Decoupling Techniques
+          </a>
+          <a href="https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140" target="_blank" rel="noreferrer">
+            Pearson · Signal and Power Integrity — Simplified
+          </a>
     </section>
   </aside>
     </div>

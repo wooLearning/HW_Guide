@@ -10,20 +10,244 @@
     { "id": "part-5", "label": "Validation", "title": "검증과 문제 해결" }
   ],
   "chapters": [
-    { "id": "chapter-0", "number": "00", "part": "part-0", "slug": "00-models-and-scale", "title": "지도를 먼저 보자", "lead": "집중소자 회로에서 실제 PCB까지, 언제 모델을 바꿔야 하는지 배운다." },
-    { "id": "chapter-1", "number": "01", "part": "part-1", "slug": "01-electrical-quantities", "title": "단위·전하·전압·전류·전력", "lead": "전기량을 에너지와 보존법칙의 언어로 다시 정의한다." },
-    { "id": "chapter-2", "number": "02", "part": "part-1", "slug": "02-dc-circuits", "title": "DC 회로", "lead": "Ohm, KCL/KVL, 등가회로와 부하 효과를 연결한다." },
-    { "id": "chapter-3", "number": "03", "part": "part-1", "slug": "03-capacitors-and-inductors", "title": "커패시터와 인덕터", "lead": "에너지 저장과 연속조건으로 과도응답을 이해한다." },
-    { "id": "chapter-4", "number": "04", "part": "part-1", "slug": "04-ac-frequency-and-resonance", "title": "AC와 주파수", "lead": "복소수, 페이저, 임피던스, 공진과 Bode 관점을 익힌다." },
-    { "id": "chapter-5", "number": "05", "part": "part-1", "slug": "05-real-components", "title": "실제 부품", "lead": "기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다." },
-    { "id": "chapter-6", "number": "06", "part": "part-2", "slug": "06-electromagnetics", "title": "전자기학의 최소 골격", "lead": "E, H, B, flux와 Maxwell 방정식의 물리적 메시지를 잡는다." },
-    { "id": "chapter-7", "number": "07", "part": "part-2", "slug": "07-transmission-lines", "title": "전송선로", "lead": "파동, 특성임피던스, 지연, 반사와 종단을 이해한다." },
-    { "id": "chapter-8", "number": "08", "part": "part-3", "slug": "08-pcb-materials-stackup-and-vias", "title": "PCB 재료·스택업·비아", "lead": "동박, 유전체, 비아와 제조 공차를 전기적 구조로 읽는다." },
-    { "id": "chapter-9", "number": "09", "part": "part-3", "slug": "09-placement-routing-and-return-paths", "title": "배치·배선·귀환 경로", "lead": "신호선만이 아니라 닫힌 전류 루프를 설계한다." },
-    { "id": "chapter-10", "number": "10", "part": "part-3", "slug": "10-signal-integrity", "title": "Signal Integrity", "lead": "빠른 edge, 불연속, 크로스토크와 타이밍 여유를 연결한다." },
-    { "id": "chapter-11", "number": "11", "part": "part-3", "slug": "11-power-integrity", "title": "Power Integrity", "lead": "PDN과 target impedance로 전원 노이즈를 설계한다." },
-    { "id": "chapter-12", "number": "12", "part": "part-3", "slug": "12-emc-and-emi", "title": "EMC와 EMI", "lead": "source–path–victim과 공통 모드 관점으로 방출과 내성을 본다." },
-    { "id": "chapter-13", "number": "13", "part": "part-4", "slug": "13-oscilloscope-fundamentals", "title": "오실로스코프", "lead": "대역폭, 샘플링, 메모리와 트리거가 화면을 만드는 방식을 익힌다." },
+    {
+      "id": "chapter-0",
+      "number": "00",
+      "part": "part-0",
+      "slug": "00-models-and-scale",
+      "title": "지도를 먼저 보자",
+      "lead": "집중소자 회로에서 실제 PCB까지, 언제 모델을 바꿔야 하는지 배운다.",
+      "keywords": ["모델", "rise time", "전파 지연", "lumped", "distributed", "scale"],
+      "keyTerms": [
+        { "term": "모델", "definition": "질문에 필요한 성질만 남겨 물리계를 단순화한 표현." },
+        { "term": "전파 지연", "definition": "변화가 interconnect를 따라 한 지점에서 다른 지점으로 이동하는 시간." }
+      ],
+      "sources": [
+        { "title": "Circuits and Electronics", "organization": "MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/", "type": "open-course" },
+        { "title": "Signal and Power Integrity — Simplified", "organization": "Pearson", "url": "https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140", "type": "textbook" }
+      ]
+    },
+    {
+      "id": "chapter-1",
+      "number": "01",
+      "part": "part-1",
+      "slug": "01-electrical-quantities",
+      "title": "단위·전하·전압·전류·전력",
+      "lead": "전기량을 에너지와 보존법칙의 언어로 다시 정의한다.",
+      "keywords": ["전하", "전압", "전류", "전력", "에너지", "SI 단위"],
+      "keyTerms": [
+        { "term": "전압 V", "definition": "두 점 사이의 단위 전하당 에너지 차이, J/C." },
+        { "term": "전류 I", "definition": "기준 단면을 통과하는 전하의 시간 변화율, dQ/dt." }
+      ],
+      "sources": [
+        { "title": "Circuits and Electronics", "organization": "MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/", "type": "open-course" },
+        { "title": "University Physics Volume 2", "organization": "OpenStax", "url": "https://openstax.org/books/university-physics-volume-2/pages/index", "type": "open-textbook" }
+      ]
+    },
+    {
+      "id": "chapter-2",
+      "number": "02",
+      "part": "part-1",
+      "slug": "02-dc-circuits",
+      "title": "DC 회로",
+      "lead": "Ohm, KCL/KVL, 등가회로와 부하 효과를 연결한다.",
+      "keywords": ["Ohm 법칙", "KCL", "KVL", "Thevenin", "Norton", "부하 효과"],
+      "keyTerms": [
+        { "term": "KCL", "definition": "한 노드에 드나드는 전류의 대수합이 0이라는 전하 보존식." },
+        { "term": "Thevenin 등가", "definition": "선형 두 단자망을 이상 전압원과 직렬 저항으로 치환한 모델." }
+      ],
+      "sources": [
+        { "title": "Circuits and Electronics", "organization": "MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/", "type": "open-course" },
+        { "title": "University Physics Volume 2", "organization": "OpenStax", "url": "https://openstax.org/books/university-physics-volume-2/pages/index", "type": "open-textbook" }
+      ]
+    },
+    {
+      "id": "chapter-3",
+      "number": "03",
+      "part": "part-1",
+      "slug": "03-capacitors-and-inductors",
+      "title": "커패시터와 인덕터",
+      "lead": "에너지 저장과 연속조건으로 과도응답을 이해한다.",
+      "keywords": ["커패시터", "인덕터", "시간상수", "과도응답", "연속조건", "저장 에너지"],
+      "keyTerms": [
+        { "term": "시간상수 τ", "definition": "1차 회로 응답이 최종값에 접근하는 속도를 정하는 RC 또는 L/R." },
+        { "term": "연속조건", "definition": "이상 소자에서 capacitor 전압과 inductor 전류가 순간적으로 뛰지 못한다는 제약." }
+      ],
+      "sources": [
+        { "title": "Circuits and Electronics", "organization": "MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/", "type": "open-course" },
+        { "title": "University Physics Volume 2", "organization": "OpenStax", "url": "https://openstax.org/books/university-physics-volume-2/pages/index", "type": "open-textbook" }
+      ]
+    },
+    {
+      "id": "chapter-4",
+      "number": "04",
+      "part": "part-1",
+      "slug": "04-ac-frequency-and-resonance",
+      "title": "AC와 주파수",
+      "lead": "복소수, 페이저, 임피던스, 공진과 Bode 관점을 익힌다.",
+      "keywords": ["AC", "페이저", "임피던스", "공진", "Bode plot", "주파수 응답"],
+      "keyTerms": [
+        { "term": "임피던스 Z", "definition": "주파수 영역에서 전압과 전류의 크기·위상 관계를 나타내는 복소 비." },
+        { "term": "공진", "definition": "inductive와 capacitive energy 교환이 특정 주파수에서 강화되는 상태." }
+      ],
+      "sources": [
+        { "title": "Circuits and Electronics", "organization": "MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/6-002-circuits-and-electronics-spring-2007/", "type": "open-course" },
+        { "title": "University Physics Volume 2", "organization": "OpenStax", "url": "https://openstax.org/books/university-physics-volume-2/pages/index", "type": "open-textbook" }
+      ]
+    },
+    {
+      "id": "chapter-5",
+      "number": "05",
+      "part": "part-1",
+      "slug": "05-real-components",
+      "title": "실제 부품",
+      "lead": "기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다.",
+      "keywords": ["ESR", "ESL", "self resonance", "DC bias", "derating", "기생 성분"],
+      "keyTerms": [
+        { "term": "ESR", "definition": "실제 reactive 부품의 손실을 직렬 저항으로 나타낸 모델 항." },
+        { "term": "자기공진 SRF", "definition": "부품의 의도된 reactance와 기생 reactance가 상쇄되는 주파수." }
+      ],
+      "sources": [
+        { "title": "MT-101: Decoupling Techniques", "organization": "Analog Devices", "url": "https://www.analog.com/MT-101?doc=AN-1224.pdf", "type": "manufacturer-tutorial" },
+        { "title": "Signal and Power Integrity — Simplified", "organization": "Pearson", "url": "https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140", "type": "textbook" }
+      ]
+    },
+    {
+      "id": "chapter-6",
+      "number": "06",
+      "part": "part-2",
+      "slug": "06-electromagnetics",
+      "title": "전자기학의 최소 골격",
+      "lead": "E, H, B, flux와 Maxwell 방정식의 물리적 메시지를 잡는다.",
+      "keywords": ["전기장", "자기장", "Maxwell 방정식", "자속", "Poynting vector", "경계조건"],
+      "keyTerms": [
+        { "term": "전기장 E", "definition": "단위 전하가 받는 힘을 공간마다 나타낸 vector field." },
+        { "term": "Poynting vector", "definition": "E×H로 나타내는 전자기 power-flow density와 방향." }
+      ],
+      "sources": [
+        { "title": "Physics II: Electricity and Magnetism", "organization": "MIT OpenCourseWare", "url": "https://ocw.mit.edu/courses/8-02-physics-ii-electricity-and-magnetism-spring-2019/", "type": "open-course" },
+        { "title": "University Physics Volume 2", "organization": "OpenStax", "url": "https://openstax.org/books/university-physics-volume-2/pages/index", "type": "open-textbook" }
+      ]
+    },
+    {
+      "id": "chapter-7",
+      "number": "07",
+      "part": "part-2",
+      "slug": "07-transmission-lines",
+      "title": "전송선로",
+      "lead": "파동, 특성임피던스, 지연, 반사와 종단을 이해한다.",
+      "keywords": ["전송선로", "특성임피던스", "반사계수", "종단", "전파 지연", "TDR"],
+      "keyTerms": [
+        { "term": "특성임피던스 Z₀", "definition": "진행파의 전압과 전류 비로 정해지는 분포정수 구조의 성질." },
+        { "term": "반사계수 Γ", "definition": "경계에서 입사파에 대한 반사파의 크기와 극성 비." }
+      ],
+      "sources": [
+        { "title": "Signal and Power Integrity — Simplified", "organization": "Pearson", "url": "https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140", "type": "textbook" },
+        { "title": "High-Speed Layout Guidelines", "organization": "Texas Instruments", "url": "https://www.ti.com/lit/an/scaa082a/scaa082a.pdf", "type": "application-report" }
+      ]
+    },
+    {
+      "id": "chapter-8",
+      "number": "08",
+      "part": "part-3",
+      "slug": "08-pcb-materials-stackup-and-vias",
+      "title": "PCB 재료·스택업·비아",
+      "lead": "동박, 유전체, 비아와 제조 공차를 전기적 구조로 읽는다.",
+      "keywords": ["stackup", "Dk", "Df", "동박", "비아", "제조 공차", "IPC-2221"],
+      "keyTerms": [
+        { "term": "스택업", "definition": "PCB의 copper와 dielectric layer 순서·재료·두께 구성." },
+        { "term": "유효 유전율", "definition": "field가 여러 재료에 걸칠 때 전파와 임피던스를 지배하는 등가 permittivity." }
+      ],
+      "sources": [
+        { "title": "PCB Design Standards", "organization": "IPC", "url": "https://www.ipc.org/ipc-design-standards", "type": "standards-index" },
+        { "title": "High-Speed Layout Guidelines", "organization": "Texas Instruments", "url": "https://www.ti.com/lit/an/scaa082a/scaa082a.pdf", "type": "application-report" }
+      ]
+    },
+    {
+      "id": "chapter-9",
+      "number": "09",
+      "part": "part-3",
+      "slug": "09-placement-routing-and-return-paths",
+      "title": "배치·배선·귀환 경로",
+      "lead": "신호선만이 아니라 닫힌 전류 루프를 설계한다.",
+      "keywords": ["귀환 전류", "기준면", "루프 면적", "층 전환", "stitching via", "배치"],
+      "keyTerms": [
+        { "term": "귀환 경로", "definition": "신호 전류가 source로 돌아가 닫힌 회로를 완성하는 실제 분포." },
+        { "term": "기준면 불연속", "definition": "plane split·void·층 전환으로 인접 return path가 끊기거나 멀어지는 구조." }
+      ],
+      "sources": [
+        { "title": "High-Speed Interface Layout Guidelines", "organization": "Texas Instruments", "url": "https://www.ti.com/lit/an/slla414a/slla414a.pdf", "type": "application-report" },
+        { "title": "High-Speed Layout Guidelines", "organization": "Texas Instruments", "url": "https://www.ti.com/lit/an/scaa082a/scaa082a.pdf", "type": "application-report" }
+      ]
+    },
+    {
+      "id": "chapter-10",
+      "number": "10",
+      "part": "part-3",
+      "slug": "10-signal-integrity",
+      "title": "Signal Integrity",
+      "lead": "빠른 edge, 불연속, 크로스토크와 타이밍 여유를 연결한다.",
+      "keywords": ["signal integrity", "crosstalk", "jitter", "eye diagram", "impedance discontinuity", "S-parameter"],
+      "keyTerms": [
+        { "term": "Signal Integrity", "definition": "receiver에서 요구 voltage와 timing margin을 유지하는 interconnect 품질." },
+        { "term": "크로스토크", "definition": "인접 회로 사이의 capacitive·inductive unwanted coupling." }
+      ],
+      "sources": [
+        { "title": "Signal and Power Integrity — Simplified", "organization": "Pearson", "url": "https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140", "type": "textbook" },
+        { "title": "IEEE Std 370", "organization": "IEEE Standards Association", "url": "https://standards.ieee.org/ieee/370/6165/", "type": "standard" }
+      ]
+    },
+    {
+      "id": "chapter-11",
+      "number": "11",
+      "part": "part-3",
+      "slug": "11-power-integrity",
+      "title": "Power Integrity",
+      "lead": "PDN과 target impedance로 전원 노이즈를 설계한다.",
+      "keywords": ["PDN", "target impedance", "decoupling", "anti-resonance", "ESL", "voltage ripple"],
+      "keyTerms": [
+        { "term": "Target impedance", "definition": "허용 voltage ripple을 부하 current step으로 나눈 PDN impedance 목표." },
+        { "term": "반공진", "definition": "여러 reactive branch의 상호작용으로 PDN impedance peak가 커지는 현상." }
+      ],
+      "sources": [
+        { "title": "MT-101: Decoupling Techniques", "organization": "Analog Devices", "url": "https://www.analog.com/MT-101?doc=AN-1224.pdf", "type": "manufacturer-tutorial" },
+        { "title": "Signal and Power Integrity — Simplified", "organization": "Pearson", "url": "https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140", "type": "textbook" }
+      ]
+    },
+    {
+      "id": "chapter-12",
+      "number": "12",
+      "part": "part-3",
+      "slug": "12-emc-and-emi",
+      "title": "EMC와 EMI",
+      "lead": "source–path–victim과 공통 모드 관점으로 방출과 내성을 본다.",
+      "keywords": ["EMC", "EMI", "공통 모드", "차동 모드", "source-path-victim", "near field", "LISN"],
+      "keyTerms": [
+        { "term": "EMC", "definition": "과도한 disturbance를 내지 않고 주어진 환경에서 정상 동작하는 능력." },
+        { "term": "공통 모드", "definition": "여러 conductor가 reference에 대해 같은 방향으로 움직이는 전압·전류 성분." }
+      ],
+      "sources": [
+        { "title": "IEC TR 61000-1-1:2023", "organization": "IEC", "url": "https://webstore.iec.ch/en/publication/70473", "type": "technical-report" },
+        { "title": "Electromagnetic Compatibility Engineering", "organization": "Wiley", "url": "https://onlinelibrary.wiley.com/doi/book/10.1002/9780470508510", "type": "textbook" }
+      ]
+    },
+    {
+      "id": "chapter-13",
+      "number": "13",
+      "part": "part-4",
+      "slug": "13-oscilloscope-fundamentals",
+      "title": "오실로스코프",
+      "lead": "대역폭, 샘플링, 메모리와 트리거가 화면을 만드는 방식을 익힌다.",
+      "keywords": ["oscilloscope", "대역폭", "sample rate", "record length", "trigger", "aliasing"],
+      "keyTerms": [
+        { "term": "대역폭", "definition": "scope가 정해진 amplitude 정확도로 통과시키는 주파수 범위." },
+        { "term": "기록길이", "definition": "한 acquisition에서 저장하는 sample 수로 관측 시간과 시간 분해능을 함께 제한." }
+      ],
+      "sources": [
+        { "title": "Evaluating Oscilloscopes", "organization": "Tektronix", "url": "https://www.tek.com/en/documents/primer/evaluating-oscilloscopes", "type": "manufacturer-primer" },
+        { "title": "Oscilloscope Learning Hub", "organization": "Keysight Technologies", "url": "https://www.keysight.com/zz/en/learn/hubs/oscilloscopes.html", "type": "manufacturer-education" }
+      ]
+    },
     {
       "id": "chapter-14",
       "number": "14",
@@ -49,6 +273,22 @@
         { "title": "How Oscilloscope Probes Affect Your Measurement", "organization": "Keysight Technologies", "url": "https://www.keysight.com/blogs/en/tech/educ/oscilloscope-probe", "type": "manufacturer-education" }
       ]
     },
-    { "id": "chapter-15", "number": "15", "part": "part-5", "slug": "15-bringup-validation-and-debug", "title": "Bring-up·검증·고장분석", "lead": "가설–측정–판정의 반복으로 안전하게 원인을 좁힌다." }
+    {
+      "id": "chapter-15",
+      "number": "15",
+      "part": "part-5",
+      "slug": "15-bringup-validation-and-debug",
+      "title": "Bring-up·검증·고장분석",
+      "lead": "가설–측정–판정의 반복으로 안전하게 원인을 좁힌다.",
+      "keywords": ["bring-up", "validation", "fault isolation", "current limit", "golden board", "root cause"],
+      "keyTerms": [
+        { "term": "Bring-up", "definition": "새 board를 제한된 위험 아래 순차적으로 처음 동작·검증하는 과정." },
+        { "term": "Root cause", "definition": "제거했을 때 문제의 재발 mechanism을 없애는 가장 근본적인 원인." }
+      ],
+      "sources": [
+        { "title": "PCB Design Standards", "organization": "IPC", "url": "https://www.ipc.org/ipc-design-standards", "type": "standards-index" },
+        { "title": "Evaluating Oscilloscopes", "organization": "Tektronix", "url": "https://www.tek.com/en/documents/primer/evaluating-oscilloscopes", "type": "manufacturer-primer" }
+      ]
+    }
   ]
 }
