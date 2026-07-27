@@ -2040,6 +2040,50 @@ figcaption,
   background: var(--paper-soft);
 }
 
+.editorial-plate img {
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background: #fffefa;
+}
+
+.causal-chain {
+  margin: 2.2rem 0 3.75rem;
+  padding: 1.15rem 1.3rem;
+  border: 1px solid color-mix(in srgb, var(--orange) 26%, var(--line));
+  border-radius: 0.85rem;
+  background: color-mix(in srgb, var(--orange) 5%, var(--paper));
+}
+
+.causal-chain strong {
+  color: var(--orange);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+.causal-chain p {
+  margin: 0.45rem 0 0;
+  color: var(--ink-muted);
+}
+
+.probe-practice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 2.5rem 0 3.75rem;
+}
+
+.probe-practice-grid > article {
+  margin: 0;
+}
+
+.probe-practice-grid ul {
+  margin-bottom: 0;
+  padding-left: 1.2rem;
+}
+
+.probe-practice-grid li + li {
+  margin-top: 0.45rem;
+}
+
 .visual-media img,
 .visual-panel img {
   display: block;
@@ -2118,6 +2162,29 @@ figcaption,
 
 .context-rail dl > div + div {
   margin-top: 0.85rem;
+}
+
+.context-rail ul {
+  margin: 0;
+  padding-left: 1rem;
+}
+
+.context-rail li {
+  color: var(--ink-muted);
+  font-size: 0.7rem;
+  line-height: 1.55;
+}
+
+.context-rail li + li {
+  margin-top: 0.38rem;
+}
+
+.context-rail section > a {
+  display: block;
+}
+
+.context-rail section > a + a {
+  margin-top: 0.65rem;
 }
 
 .context-rail dt {
@@ -2536,7 +2603,8 @@ figcaption,
 
   .chapter-card-grid,
   .route-grid,
-  .context-rail {
+  .context-rail,
+  .probe-practice-grid {
     grid-template-columns: 1fr;
   }
 

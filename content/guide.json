@@ -24,7 +24,31 @@
     { "id": "chapter-11", "number": "11", "part": "part-3", "slug": "11-power-integrity", "title": "Power Integrity", "lead": "PDN과 target impedance로 전원 노이즈를 설계한다." },
     { "id": "chapter-12", "number": "12", "part": "part-3", "slug": "12-emc-and-emi", "title": "EMC와 EMI", "lead": "source–path–victim과 공통 모드 관점으로 방출과 내성을 본다." },
     { "id": "chapter-13", "number": "13", "part": "part-4", "slug": "13-oscilloscope-fundamentals", "title": "오실로스코프", "lead": "대역폭, 샘플링, 메모리와 트리거가 화면을 만드는 방식을 익힌다." },
-    { "id": "chapter-14", "number": "14", "part": "part-4", "slug": "14-probing-and-measurement", "title": "프로브와 측정", "lead": "프로브 로딩, ground lead와 안전이 측정 결과에 미치는 영향을 본다." },
+    {
+      "id": "chapter-14",
+      "number": "14",
+      "part": "part-4",
+      "slug": "14-probing-and-measurement",
+      "title": "프로브와 측정",
+      "lead": "프로브 로딩, ground lead와 안전이 측정 결과에 미치는 영향을 본다.",
+      "keywords": ["프로브 로딩", "ground lead", "루프 인덕턴스", "spring ground", "CMRR", "differential probe", "측정 안전"],
+      "keyTerms": [
+        { "term": "루프 인덕턴스 L", "definition": "전류 귀환 루프의 면적과 경로가 만드는 기생 인덕턴스." },
+        { "term": "프로브 로딩", "definition": "프로브 입력 R·C·L이 DUT의 동작점과 파형을 바꾸는 현상." },
+        { "term": "CMRR", "definition": "두 입력에 공통으로 들어온 성분을 차동 측정계가 억제하는 능력." }
+      ],
+      "benchCheck": [
+        "스프링 접지 또는 매우 짧은 ground 접속",
+        "probe tip과 return을 test point에 근접 배치",
+        "대역폭 제한 전후 파형 비교",
+        "동일 신호를 다른 접지 방식으로 반복 측정",
+        "probe와 scope의 common-mode 및 안전 정격 확인"
+      ],
+      "sources": [
+        { "title": "ABCs of Probes Primer", "organization": "Tektronix", "url": "https://www.tek.com/en/documents/whitepaper/abcs-probes-primer", "type": "manufacturer-primer" },
+        { "title": "How Oscilloscope Probes Affect Your Measurement", "organization": "Keysight Technologies", "url": "https://www.keysight.com/blogs/en/tech/educ/oscilloscope-probe", "type": "manufacturer-education" }
+      ]
+    },
     { "id": "chapter-15", "number": "15", "part": "part-5", "slug": "15-bringup-validation-and-debug", "title": "Bring-up·검증·고장분석", "lead": "가설–측정–판정의 반복으로 안전하게 원인을 좁힌다." }
   ]
 }

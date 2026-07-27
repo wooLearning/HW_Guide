@@ -201,10 +201,48 @@
   </aside>
       <main class="reading-column" id="main-content">
         <section class="chapter" id="chapter-14" data-part="4">
-          <p class="chapter-kicker">PART IV · MEASUREMENT</p>
-          <h2><span>14</span> 프로브와 측정</h2>
-          <p class="chapter-lead">프로브 로딩, ground lead와 안전이 측정 결과에 미치는 영향을 본다.</p>
+          <header class="chapter-header">
+            <p class="chapter-kicker">CHAPTER 14 · PROBING &amp; MEASUREMENT</p>
+            <h2><span>14</span> 프로브가 파형을 바꾸는 방식</h2>
+            <p class="chapter-thesis">
+              프로브와 접지선은 회로의 일부다. 의심스러운 링잉이 보이면 DUT보다 먼저
+              측정 루프의 인덕턴스와 대역폭을 확인한다.
+            </p>
+          </header>
           <div class="keyword-row"><span>loading</span><span>ground lead</span><span>differential probe</span><span>safety</span></div>
+
+          <figure class="visual-panel editorial-plate probe-comparison-plate" data-visual-medium="imagegen">
+            <div class="visual-heading">
+              <div><span class="visual-number">PLATE 14.1</span><h3 id="section-14-1">같은 DUT, 다른 측정 루프</h3></div>
+              <p>보이는 링잉이 DUT에서 왔는지 프로브에서 왔는지 먼저 분리한다.</p>
+            </div>
+            <img src="../assets/images/probe-ground-comparison-editorial.webp" width="1672" height="941"
+              alt="같은 PCB 신호를 긴 프로브 접지선과 짧은 스프링 접지로 측정했을 때 루프 면적, 자기장 결합, 링잉 파형을 나란히 비교한 기술 그림">
+            <figcaption>
+              왼쪽은 긴 ground clip이 신호 경로와 멀리 떨어져 큰 측정 루프를 만들고, 오른쪽은
+              spring ground가 tip 바로 옆에서 귀환 경로를 닫는다. 주황색은 측정계가 더한 에너지와
+              오차, 파란색은 작은 루프에서 얻은 더 신뢰할 수 있는 edge를 뜻한다.
+            </figcaption>
+          </figure>
+
+          <div class="equation equation-panel measurement-loop-equation">
+            <p class="block-label">측정 artifact를 만드는 핵심 식</p>
+            <p class="formula">V<sub>error</sub> = L<sub>loop</sub> · di/dt</p>
+            <dl class="symbol-list">
+              <div><dt>V<sub>error</sub></dt><dd>ground lead와 귀환 경로에 생겨 화면에 더해지는 오차 전압</dd></div>
+              <div><dt>L<sub>loop</sub></dt><dd>probe tip–DUT–ground 접점이 이루는 전체 측정 루프의 기생 인덕턴스</dd></div>
+              <div><dt>di/dt</dt><dd>빠른 edge 동안 측정 루프 전류가 변하는 속도</dd></div>
+            </dl>
+            <p>
+              접지선 길이만 보는 것보다 폐곡선의 면적과 귀환 경로를 함께 본다. 같은 edge에서도
+              루프가 커지면 유도 전압과 외부 자속 pickup이 동시에 증가한다.
+            </p>
+          </div>
+
+          <div class="causal-chain" aria-label="긴 접지선이 잘못된 판정으로 이어지는 인과관계">
+            <strong>긴 접지선 → 큰 루프 인덕턴스 → 공진·링잉 → 잘못된 판정</strong>
+            <p>링잉을 억제하려고 DUT에 저항이나 커패시터를 추가하기 전에 접지 방식을 바꿔 같은 신호를 다시 본다.</p>
+          </div>
 
           <div class="intuition concept-block">
             <p class="block-label">한 문장 직관</p>
@@ -235,9 +273,30 @@
             </p>
           </div>
 
+          <div class="probe-practice-grid">
+            <article class="measurement-note note-card">
+              <p class="block-label">먼저 이렇게 측정한다</p>
+              <ul>
+                <li>probe tip과 return 접점을 같은 부품의 양단 또는 인접한 pad pair에 둔다.</li>
+                <li>spring ground, ground blade, coax pigtail처럼 루프를 물리적으로 작게 만든다.</li>
+                <li>대역폭 제한 전후와 서로 다른 timebase에서 파형의 반복성을 비교한다.</li>
+                <li>가능하면 두 번째 probe 또는 differential probe로 같은 현상을 교차 확인한다.</li>
+              </ul>
+            </article>
+            <article class="warning-card probe-symptoms">
+              <p class="block-label">측정계 artifact를 의심할 증상</p>
+              <ul>
+                <li>ground clip 위치를 몇 mm 옮겼는데 링잉 주파수나 크기가 크게 바뀐다.</li>
+                <li>신호선에 손이나 probe cable을 가까이 했을 때 noise가 달라진다.</li>
+                <li>두 채널의 probe 접지 위치에 따라 같은 노드의 파형이 달라진다.</li>
+                <li>대역폭 제한을 켜면 기능 동작은 그대로인데 링잉만 크게 줄어든다.</li>
+              </ul>
+            </article>
+          </div>
+
           <div class="visual-panel interactive" data-visualization="probe-ringing" data-visual-medium="canvas">
             <div class="visual-heading">
-              <div><span class="visual-number">LAB 14</span><h3 id="section-14-1">ground lead 길이와 가짜 ringing</h3></div>
+              <div><span class="visual-number">LAB 14</span><h3 id="section-14-2">ground lead 길이와 가짜 ringing</h3></div>
               <p>ground inductance와 probe capacitance가 만드는 공진을 비교한다.</p>
             </div>
             <div class="interactive-controls inline-controls">
@@ -253,7 +312,7 @@
 
           <figure class="visual-panel media-figure" data-visual-medium="draw">
             <div class="visual-heading">
-              <div><span class="visual-number">DRAW 14</span><h3 id="section-14-2">ground clip과 spring ground의 차이</h3></div>
+              <div><span class="visual-number">DRAW 14</span><h3 id="section-14-3">ground clip과 spring ground의 차이</h3></div>
               <p>측정 루프의 면적과 lead inductance가 DUT에 없던 전압을 만든다.</p>
             </div>
             <img src="../assets/diagrams/probe-ground-comparison.png" width="1536" height="1024" loading="lazy"
@@ -266,7 +325,7 @@
 
           <div class="visual-panel three-figure" data-visual-medium="three">
             <div class="visual-heading">
-              <div><span class="visual-number">3D 14</span><h3 id="section-14-3">probe loop area를 입체로 확인하기</h3></div>
+              <div><span class="visual-number">3D 14</span><h3 id="section-14-4">probe loop area를 입체로 확인하기</h3></div>
               <p>측정점과 ground 접점을 회전해 보며 loop가 외부 자속을 끌어안는 면적을 확인한다.</p>
             </div>
             <div class="visual-stage three-stage" data-three-scene="probe-loop-3d"
@@ -389,11 +448,22 @@
     </section>
     <section>
       <p class="rail-label">KEY TERMS</p>
-      <p>핵심 정의는 본문과 함께 정리됩니다.</p>
+      <dl><div><dt>루프 인덕턴스 L</dt><dd>전류 귀환 루프의 면적과 경로가 만드는 기생 인덕턴스.</dd></div><div><dt>프로브 로딩</dt><dd>프로브 입력 R·C·L이 DUT의 동작점과 파형을 바꾸는 현상.</dd></div><div><dt>CMRR</dt><dd>두 입력에 공통으로 들어온 성분을 차동 측정계가 억제하는 능력.</dd></div></dl>
     </section>
+
+      <section class="rail-bench-check">
+        <p class="rail-label">BENCH CHECK</p>
+        <ul><li>스프링 접지 또는 매우 짧은 ground 접속</li><li>probe tip과 return을 test point에 근접 배치</li><li>대역폭 제한 전후 파형 비교</li><li>동일 신호를 다른 접지 방식으로 반복 측정</li><li>probe와 scope의 common-mode 및 안전 정격 확인</li></ul>
+      </section>
     <section>
       <p class="rail-label">SOURCE CHECK</p>
-      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+
+          <a href="https://www.tek.com/en/documents/whitepaper/abcs-probes-primer" target="_blank" rel="noreferrer">
+            Tektronix · ABCs of Probes Primer
+          </a>
+          <a href="https://www.keysight.com/blogs/en/tech/educ/oscilloscope-probe" target="_blank" rel="noreferrer">
+            Keysight Technologies · How Oscilloscope Probes Affect Your Measurement
+          </a>
     </section>
   </aside>
     </div>

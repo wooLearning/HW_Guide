@@ -31,9 +31,19 @@ const renderContextRail = (chapter) => `
       <p class="rail-label">KEY TERMS</p>
       ${renderKeyTerms(chapter)}
     </section>
+    ${chapter.benchCheck?.length ? `
+      <section class="rail-bench-check">
+        <p class="rail-label">BENCH CHECK</p>
+        <ul>${chapter.benchCheck.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+      </section>` : ""}
     <section>
       <p class="rail-label">SOURCE CHECK</p>
-      <a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>
+      ${chapter.sources?.length
+        ? chapter.sources.map((source) => `
+          <a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">
+            ${escapeHtml(source.organization)} · ${escapeHtml(source.title)}
+          </a>`).join("")
+        : '<a href="../reference/sources.html">전체 참고문헌과 검증 원칙 보기</a>'}
     </section>
   </aside>`;
 

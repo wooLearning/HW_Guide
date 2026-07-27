@@ -49,3 +49,16 @@ test("Three.js is pinned and loaded only from local assets", () => {
   assert.match(threeCore, /Three\.js Authors/);
   assert.doesNotMatch(html, /https?:\/\/[^"]*three(?:\.module)?(?:\.min)?\.js/i);
 });
+
+test("chapter 14 leads with a static probe comparison before controls", async () => {
+  const chapter = await readFile(
+    new URL("../chapters/14-probing-and-measurement.html", import.meta.url),
+    "utf8",
+  );
+  const plate = chapter.indexOf("probe-ground-comparison-editorial.webp");
+  const interactive = chapter.indexOf('data-visualization="probe-ringing"');
+  assert.ok(plate >= 0);
+  assert.ok(interactive >= 0);
+  assert.ok(plate < interactive);
+  assert.match(chapter, /긴 접지선 → 큰 루프 인덕턴스 → 공진·링잉 → 잘못된 판정/);
+});
