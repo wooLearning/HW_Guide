@@ -201,3 +201,30 @@ test("guide connects circuit design, artwork, fabrication, SMT, and PCBA release
   assert.match(chapter08, /Bare PCB[\s\S]*SMT[\s\S]*PCBA/);
   assert.match(chapter08, /solder paste[\s\S]*SPI[\s\S]*pick-and-place[\s\S]*reflow[\s\S]*AOI/i);
 });
+
+test("reference pages expose PCB production terms and release checklists", async () => {
+  const [glossary, checklists] = await Promise.all([
+    readFile(new URL("../reference/glossary.html", import.meta.url), "utf8"),
+    readFile(new URL("../reference/checklists.html", import.meta.url), "utf8"),
+  ]);
+  for (const term of [
+    "Artwork",
+    "Bare PCB",
+    "PCBA",
+    "SMT",
+    "SPI",
+    "AOI",
+    "DFA",
+    "Centroid data",
+  ]) {
+    assert.match(glossary, new RegExp(term, "i"), `glossary term ${term}`);
+  }
+  for (const heading of [
+    "회로설계 릴리스",
+    "Artwork·SI·PI 검토",
+    "PCB 제작 릴리스",
+    "SMT 조립 릴리스",
+  ]) {
+    assert.match(checklists, new RegExp(heading), `checklist ${heading}`);
+  }
+});
