@@ -326,6 +326,43 @@
             </p>
           </div>
 
+          <article class="deep-dive" aria-labelledby="design-handoff-title">
+            <header>
+              <span>DESIGN HANDOFF</span>
+              <h3 id="design-handoff-title">회로설계는 연결도가 아니라 인수물의 흐름이다</h3>
+            </header>
+            <p>
+              회로설계의 완료 기준은 회로도가 그려졌다는 사실이 아니라, 요구사항에서 나온 판단과 가정이
+              Artwork·SI/PI·구매·펌웨어·기구·검증 담당자에게 추적 가능한 인수물로 전달됐다는 것이다.
+            </p>
+            <ol class="development-flow" aria-label="요구사항에서 보드 검증까지의 개발 흐름">
+              <li><b>요구사항</b><span>동작 상태, 인터페이스, 환경과 합격 기준</span></li>
+              <li><b>블록도·전원 트리</b><span>전압 도메인, clock/reset과 보호 경계</span></li>
+              <li><b>부품 선정</b><span>권장 동작, 공차, derating과 대체품</span></li>
+              <li><b>회로도</b><span>계산·simulation·ERC와 peer review</span></li>
+              <li><b>BOM·제약조건</b><span>net class, layout constraint와 test point</span></li>
+              <li><b>검증 인수</b><span>revision과 acceptance evidence 연결</span></li>
+            </ol>
+            <p>
+              <strong>ERC 통과는 연결 규칙을 확인할 뿐 정격·안정도·SI/PI margin·안전·layout 품질을 보장하지 않는다.</strong>
+              계산과 simulation도 적용 조건과 모델 revision을 남기고, 실제 보드의 acceptance evidence로 닫아야 한다.
+            </p>
+            <div class="table-scroll" tabindex="0" aria-label="회로설계 인수물 책임 표">
+              <table class="handoff-table">
+                <thead>
+                  <tr><th>담당 질문</th><th>주요 입력</th><th>릴리스 출력</th><th>다음 검토자</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>무엇을 만족해야 하나?</td><td>사용 상태·환경·interface</td><td>정량 요구사항·acceptance</td><td>시스템·검증</td></tr>
+                  <tr><td>어떤 구조로 나눌까?</td><td>요구사항</td><td>block diagram·power tree</td><td>전원·펌웨어·기구</td></tr>
+                  <tr><td>회로가 margin을 갖나?</td><td>datasheet·worst case</td><td>회로도·계산·simulation·ERC 이슈</td><td>peer reviewer·SI/PI</td></tr>
+                  <tr><td>보드에 어떻게 구현하나?</td><td>회로도·BOM</td><td>net class·layout constraint·test point</td><td>Artwork·검증</td></tr>
+                  <tr><td>같은 설계를 만들고 판정할 수 있나?</td><td>모든 승인 인수물</td><td>release revision·BOM 대체품·acceptance evidence</td><td>구매·제조·품질</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+
           <div class="self-check">
             <p class="block-label">셀프 체크</p>
             <details><summary>capacitor가 self resonance 위에서 inductive한 이유는?</summary><p>주파수가 오르면 1/(ωC)는 작아지고 ωESL은 커져 결국 직렬 기생 인덕턴스가 지배하기 때문이다.</p></details>
@@ -359,7 +396,7 @@
     </section>
     <section>
       <p class="rail-label">KEY TERMS</p>
-      <dl><div><dt>ESR</dt><dd>실제 reactive 부품의 손실을 직렬 저항으로 나타낸 모델 항.</dd></div><div><dt>자기공진 SRF</dt><dd>부품의 의도된 reactance와 기생 reactance가 상쇄되는 주파수.</dd></div></dl>
+      <dl><div><dt>ESR</dt><dd>실제 reactive 부품의 손실을 직렬 저항으로 나타낸 모델 항.</dd></div><div><dt>자기공진 SRF</dt><dd>부품의 의도된 reactance와 기생 reactance가 상쇄되는 주파수.</dd></div><div><dt>회로설계 인수물 · Design handoff</dt><dd>요구사항과 설계 판단을 회로도·BOM·layout constraint·test point·검증 evidence로 다음 담당자에게 전달하는 revision-controlled 자료.</dd></div><div><dt>ERC · Electrical Rules Check</dt><dd>회로도 연결 규칙의 위반 가능성을 찾는 검사로 정격·안정도·SI/PI margin이나 안전을 보증하지 않는다.</dd></div></dl>
     </section>
 
     <section>
@@ -370,6 +407,9 @@
           </a>
           <a href="https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140" target="_blank" rel="noreferrer">
             Pearson · Signal and Power Integrity — Simplified
+          </a>
+          <a href="https://www.ipc.org/ipc-design-standards" target="_blank" rel="noreferrer">
+            IPC · PCB Design Standards
           </a>
     </section>
   </aside>

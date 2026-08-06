@@ -186,3 +186,18 @@ test("body and captions meet the new readable type floor", () => {
   assert.match(styles, /--body-size:\s*1\.0625rem/);
   assert.match(styles, /--caption-size:\s*0\.8125rem/);
 });
+
+test("guide connects circuit design, artwork, fabrication, SMT, and PCBA release", async () => {
+  const [chapter05, chapter08] = await Promise.all([
+    readFile(new URL("../chapters/05-real-components.html", import.meta.url), "utf8"),
+    readFile(
+      new URL("../chapters/08-pcb-materials-stackup-and-vias.html", import.meta.url),
+      "utf8",
+    ),
+  ]);
+
+  assert.match(chapter05, /요구사항[\s\S]*블록도[\s\S]*회로도[\s\S]*BOM[\s\S]*layout constraint/);
+  assert.match(chapter05, /ERC[^.]*보장하지/);
+  assert.match(chapter08, /Bare PCB[\s\S]*SMT[\s\S]*PCBA/);
+  assert.match(chapter08, /solder paste[\s\S]*SPI[\s\S]*pick-and-place[\s\S]*reflow[\s\S]*AOI/i);
+});
