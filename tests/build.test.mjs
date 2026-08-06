@@ -101,3 +101,25 @@ test("generated local links resolve and chapter pager boundaries are correct", a
   assert.match(last, /pager-previous/);
   assert.doesNotMatch(last, /pager-next/);
 });
+
+test("search index exposes circuit handoff and SMT vocabulary", async () => {
+  const entries = JSON.parse(
+    await readFile(new URL("../assets/search-index.json", import.meta.url), "utf8"),
+  );
+  const text = entries
+    .flatMap(({ title, keywords = [], body = "" }) => [title, ...keywords, body])
+    .join(" ");
+
+  for (const term of [
+    "회로설계",
+    "Artwork",
+    "Bare PCB",
+    "PCBA",
+    "SMT",
+    "SPI",
+    "AOI",
+    "centroid",
+  ]) {
+    assert.match(text, new RegExp(term, "i"), `search vocabulary ${term}`);
+  }
+});

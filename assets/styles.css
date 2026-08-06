@@ -605,6 +605,58 @@ main {
   color: var(--ink-muted);
 }
 
+.development-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.development-flow li {
+  display: grid;
+  gap: 0.35rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--paper-soft);
+}
+
+.development-flow span {
+  color: var(--ink-muted);
+  font-size: 0.82rem;
+}
+
+.table-scroll {
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.handoff-table {
+  width: 100%;
+  min-width: 38rem;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.handoff-table th,
+.handoff-table td {
+  padding: 0.75rem;
+  border: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.handoff-table th {
+  background: var(--paper-soft);
+  color: var(--ink);
+}
+
+.handoff-table td {
+  color: var(--ink-muted);
+}
+
 .principle-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1546,6 +1598,10 @@ main {
   .principle-grid,
   .derivation-row,
   .time-scale {
+    grid-template-columns: 1fr;
+  }
+
+  .development-flow {
     grid-template-columns: 1fr;
   }
 

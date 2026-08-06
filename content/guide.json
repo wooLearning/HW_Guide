@@ -102,14 +102,17 @@
       "slug": "05-real-components",
       "title": "실제 부품",
       "lead": "기생 RLC와 반도체의 비이상성이 회로를 바꾸는 방식을 본다.",
-      "keywords": ["ESR", "ESL", "self resonance", "DC bias", "derating", "기생 성분"],
+      "keywords": ["ESR", "ESL", "self resonance", "DC bias", "derating", "기생 성분", "회로설계", "block diagram", "power tree", "BOM", "ERC", "Artwork", "layout constraint"],
       "keyTerms": [
         { "term": "ESR", "definition": "실제 reactive 부품의 손실을 직렬 저항으로 나타낸 모델 항." },
-        { "term": "자기공진 SRF", "definition": "부품의 의도된 reactance와 기생 reactance가 상쇄되는 주파수." }
+        { "term": "자기공진 SRF", "definition": "부품의 의도된 reactance와 기생 reactance가 상쇄되는 주파수." },
+        { "term": "회로설계 인수물 · Design handoff", "definition": "요구사항과 설계 판단을 회로도·BOM·layout constraint·test point·검증 evidence로 다음 담당자에게 전달하는 revision-controlled 자료." },
+        { "term": "ERC · Electrical Rules Check", "definition": "회로도 연결 규칙의 위반 가능성을 찾는 검사로 정격·안정도·SI/PI margin이나 안전을 보증하지 않는다." }
       ],
       "sources": [
         { "title": "MT-101: Decoupling Techniques", "organization": "Analog Devices", "url": "https://www.analog.com/MT-101?doc=AN-1224.pdf", "type": "manufacturer-tutorial" },
-        { "title": "Signal and Power Integrity — Simplified", "organization": "Pearson", "url": "https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140", "type": "textbook" }
+        { "title": "Signal and Power Integrity — Simplified", "organization": "Pearson", "url": "https://www.pearson.com/en-us/subject-catalog/p/signal-and-power-integrity---simplified/P200000000140", "type": "textbook" },
+        { "title": "PCB Design Standards", "organization": "IPC", "url": "https://www.ipc.org/ipc-design-standards", "type": "standards-body-catalog" }
       ]
     },
     {
@@ -153,14 +156,19 @@
       "slug": "08-pcb-materials-stackup-and-vias",
       "title": "PCB 재료·스택업·비아",
       "lead": "동박, 유전체, 비아와 제조 공차를 전기적 구조로 읽는다.",
-      "keywords": ["stackup", "Dk", "Df", "동박", "비아", "제조 공차", "IPC-2221"],
+      "keywords": ["stackup", "Dk", "Df", "동박", "비아", "제조 공차", "IPC-2221", "Bare PCB", "PCBA", "SMT", "SPI", "AOI", "centroid", "reflow"],
       "keyTerms": [
         { "term": "스택업", "definition": "PCB의 copper와 dielectric layer 순서·재료·두께 구성." },
-        { "term": "유효 유전율", "definition": "field가 여러 재료에 걸칠 때 전파와 임피던스를 지배하는 등가 permittivity." }
+        { "term": "유효 유전율", "definition": "field가 여러 재료에 걸칠 때 전파와 임피던스를 지배하는 등가 permittivity." },
+        { "term": "베어 PCB · Bare PCB", "definition": "부품 실장 전에 제작과 전기검사를 마친 인쇄회로기판." },
+        { "term": "PCBA · Printed Circuit Board Assembly", "definition": "PCB에 부품을 실장·납땜하고 필요한 검사와 시험을 연결한 조립체." },
+        { "term": "표면실장기술 · SMT", "definition": "solder paste 인쇄, 부품 배치, reflow와 검사를 통해 표면실장 부품을 PCB에 조립하는 기술." }
       ],
       "sources": [
         { "title": "PCB Design Standards", "organization": "IPC", "url": "https://www.ipc.org/ipc-design-standards", "type": "standards-index" },
-        { "title": "High-Speed Layout Guidelines", "organization": "Texas Instruments", "url": "https://www.ti.com/lit/an/scaa082a/scaa082a.pdf", "type": "application-report" }
+        { "title": "High-Speed Layout Guidelines", "organization": "Texas Instruments", "url": "https://www.ti.com/lit/an/scaa082a/scaa082a.pdf", "type": "application-report" },
+        { "title": "IPC Document Revision Table", "organization": "IPC", "url": "https://www.ipc.org/ipc-document-revision-table", "type": "standards-body-revision-resource" },
+        { "title": "IPC Releases J Revisions to Two Leading Standards for Electronics Assembly", "organization": "IPC", "url": "https://www.ipc.org/news-release/ipc-releases-j-revisions-two-leading-standards-electronics-assembly", "type": "standards-body-news-release" }
       ]
     },
     {

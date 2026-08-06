@@ -95,6 +95,48 @@
             </p>
           </div>
 
+          <article class="deep-dive" aria-labelledby="smt-handoff-title">
+            <header>
+              <span>FABRICATION TO ASSEMBLY</span>
+              <h3 id="smt-handoff-title">Bare PCB 제작과 SMT 조립은 서로 다른 릴리스다</h3>
+            </header>
+            <p>
+              <strong>Bare PCB</strong>는 부품 실장 전에 동박 패턴·홀·표면처리와 전기검사를 마친 기판이고,
+              <strong>SMT</strong>는 표면실장 부품을 인쇄·배치·납땜·검사하는 기술이다. 그 결과물인
+              <strong>PCBA</strong>는 PCB에 부품이 조립되고 필요한 검사와 시험까지 연결된 보드 조립체다.
+            </p>
+            <ol class="development-flow" aria-label="Bare PCB 제작부터 PCBA 검사까지의 흐름">
+              <li><b>Bare PCB 제작</b><span>imaging·etching·lamination·drilling·plating</span></li>
+              <li><b>표면 형성</b><span>solder mask·surface finish·electrical test</span></li>
+              <li><b>Paste 인쇄</b><span>stencil과 solder paste, SPI로 높이·면적 확인</span></li>
+              <li><b>Pick-and-place</b><span>centroid·rotation·polarity·fiducial 기준</span></li>
+              <li><b>Reflow</b><span>paste·부품·보드·oven 조건별 thermal profile</span></li>
+              <li><b>검사·시험</b><span>AOI·필요 시 X-ray·전기/기능 시험·통제된 rework</span></li>
+            </ol>
+            <div class="table-scroll" tabindex="0" aria-label="PCB 제작 데이터와 SMT 조립 데이터 비교">
+              <table class="handoff-table">
+                <thead><tr><th>PCB 제작 릴리스</th><th>SMT 조립 릴리스</th></tr></thead>
+                <tbody>
+                  <tr><td>Gerber/ODB++/IPC-2581와 NC drill</td><td>BOM과 승인 대체품</td></tr>
+                  <tr><td>stackup·재료·controlled impedance</td><td>centroid X/Y·rotation·side</td></tr>
+                  <tr><td>fabrication drawing·홀·외형</td><td>assembly drawing·polarity·pin 1</td></tr>
+                  <tr><td>netlist·coupon·acceptance notes</td><td>paste data·fiducial·inspection criteria</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="principle-grid" aria-label="대표 SMT 결함과 원인 방향">
+              <article><h4>Paste 양</h4><p>insufficient solder는 약한 joint·open, excess solder는 bridging 위험을 키운다.</p></article>
+              <article><h4>젖음과 열 균형</h4><p>pad 간 젖음·열 비대칭은 tombstoning, 불완전 젖음은 open을 만들 수 있다.</p></article>
+              <article><h4>숨은 접합</h4><p>BGA류의 void와 head-in-pillow 같은 hidden joint는 위에서 보는 AOI만으로 판정하기 어렵다.</p></article>
+              <article><h4>배치 기준</h4><p>centroid, rotation, polarity, pin-1 또는 fiducial 오류는 skew와 orientation error로 이어진다.</p></article>
+            </div>
+            <p>
+              SPI는 reflow 전 paste 상태, AOI는 보이는 배치·극성·접합 외관, X-ray는 숨은 접합 구조에 강점이 있다.
+              세 검사는 detection coverage가 서로 다르며 어느 하나도 전기 기능이나 lifetime reliability를 독립적으로
+              보장하지 않는다. 전기시험·기능시험과 lot/revision 추적, 승인된 rework 기록을 함께 판정 근거로 쓴다.
+            </p>
+          </article>
+
           <div class="self-check">
             <p class="block-label">셀프 체크</p>
             <details><summary>Dk가 커지면 전파 속도는 어떻게 되는가?</summary><p>다른 조건이 같다면 vp≈c/√εeff이므로 느려진다.</p></details>

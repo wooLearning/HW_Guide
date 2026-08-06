@@ -115,7 +115,14 @@
       "self resonance",
       "DC bias",
       "derating",
-      "기생 성분"
+      "기생 성분",
+      "회로설계",
+      "block diagram",
+      "power tree",
+      "BOM",
+      "ERC",
+      "Artwork",
+      "layout constraint"
     ]
   },
   {
@@ -132,7 +139,14 @@
       "self resonance",
       "DC bias",
       "derating",
-      "기생 성분"
+      "기생 성분",
+      "회로설계",
+      "block diagram",
+      "power tree",
+      "BOM",
+      "ERC",
+      "Artwork",
+      "layout constraint"
     ]
   },
   {
@@ -149,7 +163,14 @@
       "self resonance",
       "DC bias",
       "derating",
-      "기생 성분"
+      "기생 성분",
+      "회로설계",
+      "block diagram",
+      "power tree",
+      "BOM",
+      "ERC",
+      "Artwork",
+      "layout constraint"
     ]
   },
   {
@@ -166,7 +187,14 @@
       "self resonance",
       "DC bias",
       "derating",
-      "기생 성분"
+      "기생 성분",
+      "회로설계",
+      "block diagram",
+      "power tree",
+      "BOM",
+      "ERC",
+      "Artwork",
+      "layout constraint"
     ]
   },
   {
@@ -183,7 +211,38 @@
       "self resonance",
       "DC bias",
       "derating",
-      "기생 성분"
+      "기생 성분",
+      "회로설계",
+      "block diagram",
+      "power tree",
+      "BOM",
+      "ERC",
+      "Artwork",
+      "layout constraint"
+    ]
+  },
+  {
+    "id": "chapter-5:design-handoff-title",
+    "chapterId": "chapter-5",
+    "chapterNumber": "05",
+    "chapterTitle": "실제 부품",
+    "sectionTitle": "회로설계는 연결도가 아니라 인수물의 흐름이다",
+    "href": "chapters/05-real-components.html#design-handoff-title",
+    "text": "회로설계의 완료 기준은 회로도가 그려졌다는 사실이 아니라, 요구사항에서 나온 판단과 가정이 Artwork·SI/PI·구매·펌웨어·기구·검증 담당자에게 추적 가능한 인수물로 전달됐다는 것이다. 요구사항 동작 상태, 인터페이스, 환경과 합격 기준 블록도·전원 트리 전압 도메인, clock/reset과 보호 경계 부품 선정 권장 동작, 공차, derating과 대체품 회로도 계산·simulation·ERC와 peer review BOM·제약조건 net class, layout constraint와 test point 검증 인수 revision과 acceptance evidence 연결 ERC 통과는 연결 규칙을 확인할 뿐 정격·안정도·SI/PI margin·안전·layout 품질을 보장하지 않는다. 계산과 simulation도 적용 조건과 모델 revision을 남기고, 실제 보드의 acceptance evidence로 닫아야 한다. 담당 질문 주요 입력 릴리스 출력 다음 검토자 무엇을 만족해야 하나? 사용 상태·환경·interface 정량 요구사항·acceptance 시스템·검증 어떤 구조로 나눌까? 요구사항 block diagram·power tree 전원·펌웨어·기구 회로가 margin을 갖나? datasheet·worst case 회로도·계산·simulation·ERC 이슈 peer reviewer·SI/PI 보드에 어떻게 구현하나? 회로도·BOM net class·layout constraint·test point Artwork·검증 같은 설계를 만들고 판정할 수 있나? 모든 승인 인수물 release revision·BOM 대체품·acceptance evidence 구매·제조·품질 셀프 체크 capacitor가 self resonance 위에서 inductive한 이유는? 주파수가 오르면 1/(ωC)는 작아지고 ωESL은 커져 결국 직렬 기생 인덕턴스가 지배하기 때문이다. MLCC의 capacitance를 어떤 조건에서 확인해야 하는가? DC bias, 온도, 주파수, tolerance와 aging을 실제 동작점에 맞춰 확인한다. MOSFET 선택에서 RDS(on)만 보면 놓치는 것은? switching loss를 만드는 gate charge·capacitance, diode reverse recovery, voltage/current transient, SOA와 열 조건을 놓친다.",
+    "keywords": [
+      "ESR",
+      "ESL",
+      "self resonance",
+      "DC bias",
+      "derating",
+      "기생 성분",
+      "회로설계",
+      "block diagram",
+      "power tree",
+      "BOM",
+      "ERC",
+      "Artwork",
+      "layout constraint"
     ]
   },
   {
@@ -337,7 +396,39 @@
       "동박",
       "비아",
       "제조 공차",
-      "IPC-2221"
+      "IPC-2221",
+      "Bare PCB",
+      "PCBA",
+      "SMT",
+      "SPI",
+      "AOI",
+      "centroid",
+      "reflow"
+    ]
+  },
+  {
+    "id": "chapter-8:smt-handoff-title",
+    "chapterId": "chapter-8",
+    "chapterNumber": "08",
+    "chapterTitle": "PCB 재료·스택업·비아",
+    "sectionTitle": "Bare PCB 제작과 SMT 조립은 서로 다른 릴리스다",
+    "href": "chapters/08-pcb-materials-stackup-and-vias.html#smt-handoff-title",
+    "text": "Bare PCB 는 부품 실장 전에 동박 패턴·홀·표면처리와 전기검사를 마친 기판이고, SMT 는 표면실장 부품을 인쇄·배치·납땜·검사하는 기술이다. 그 결과물인 PCBA 는 PCB에 부품이 조립되고 필요한 검사와 시험까지 연결된 보드 조립체다. Bare PCB 제작 imaging·etching·lamination·drilling·plating 표면 형성 solder mask·surface finish·electrical test Paste 인쇄 stencil과 solder paste, SPI로 높이·면적 확인 Pick-and-place centroid·rotation·polarity·fiducial 기준 Reflow paste·부품·보드·oven 조건별 thermal profile 검사·시험 AOI·필요 시 X-ray·전기/기능 시험·통제된 rework PCB 제작 릴리스 SMT 조립 릴리스 Gerber/ODB++/IPC-2581와 NC drill BOM과 승인 대체품 stackup·재료·controlled impedance centroid X/Y·rotation·side fabrication drawing·홀·외형 assembly drawing·polarity·pin 1 netlist·coupon·acceptance notes paste data·fiducial·inspection criteria Paste 양 insufficient solder는 약한 joint·open, excess solder는 bridging 위험을 키운다. 젖음과 열 균형 pad 간 젖음·열 비대칭은 tombstoning, 불완전 젖음은 open을 만들 수 있다. 숨은 접합 BGA류의 void와 head-in-pillow 같은 hidden joint는 위에서 보는 AOI만으로 판정하기 어렵다. 배치 기준 centroid, rotation, polarity, pin-1 또는 fiducial 오류는 skew와 orientation error로 이어진다. SPI는 reflow 전 paste 상태, AOI는 보이는 배치·극성·접합 외관, X-ray는 숨은 접합 구조에 강점이 있다. 세 검사는 detection coverage가 서로 다르며 어느 하나도 전기 기능이나 lifetime reliability를 독립적으로 보장하지 않는다. 전기시험·기능시험과 lot/revision 추적, 승인된 rework 기록을 함께 판정 근거로 쓴다. 셀프 ",
+    "keywords": [
+      "stackup",
+      "Dk",
+      "Df",
+      "동박",
+      "비아",
+      "제조 공차",
+      "IPC-2221",
+      "Bare PCB",
+      "PCBA",
+      "SMT",
+      "SPI",
+      "AOI",
+      "centroid",
+      "reflow"
     ]
   },
   {

@@ -211,15 +211,44 @@
             </div>
             <div class="checklist-collection">
               <div class="print-checklist">
-                <h4>회로도·PCB 설계 검토</h4>
-                <label><input type="checkbox"> 전압·전류·power/thermal budget과 tolerance가 있다</label>
-                <label><input type="checkbox"> power tree, sequencing, reset dependency가 보인다</label>
-                <label><input type="checkbox"> 모든 signal의 source–load–return path를 설명할 수 있다</label>
-                <label><input type="checkbox"> stackup과 controlled impedance를 fabricator와 맞췄다</label>
-                <label><input type="checkbox"> layer transition의 reference via와 connector return pin을 봤다</label>
-                <label><input type="checkbox"> decoupling은 값뿐 아니라 mounting loop를 검토했다</label>
-                <label><input type="checkbox"> high dv/dt/di/dt node의 면적과 coupling path를 제한했다</label>
-                <label><input type="checkbox"> test point, isolation option, debug port가 있다</label>
+                <h4>회로설계 릴리스</h4>
+                <label><input type="checkbox"> 동작 상태·환경·interface와 정량 합격 기준이 승인됐다</label>
+                <label><input type="checkbox"> power tree, sequencing, reset dependency와 보호 경계가 보인다</label>
+                <label><input type="checkbox"> 정격·공차·온도·aging을 반영한 worst case와 derating 근거가 있다</label>
+                <label><input type="checkbox"> ERC 이슈를 닫았고 ERC가 보장하지 않는 항목을 별도로 검토했다</label>
+                <label><input type="checkbox"> BOM 제조사 부품번호와 승인 대체품 조건이 정의됐다</label>
+                <label><input type="checkbox"> net class·layout constraint·test point 요구가 회로도와 연결됐다</label>
+                <label><input type="checkbox"> 회로도·계산·simulation·BOM·요구사항 revision이 일치한다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>Artwork·SI·PI 검토</h4>
+                <label><input type="checkbox"> footprint, pin map, package option과 polarity를 독립 검토했다</label>
+                <label><input type="checkbox"> 모든 critical signal의 source–load–return 경로를 설명할 수 있다</label>
+                <label><input type="checkbox"> stackup·reference plane·controlled impedance가 승인 데이터와 일치한다</label>
+                <label><input type="checkbox"> layer transition마다 return 경로와 stitching via를 검토했다</label>
+                <label><input type="checkbox"> clock·switch node·고전류 loop의 면적과 coupling 경로를 제한했다</label>
+                <label><input type="checkbox"> decoupling 값과 mounting loop·via 연결을 함께 검토했다</label>
+                <label><input type="checkbox"> DRC 규칙의 적용 범위와 예외가 revision과 함께 승인됐다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>PCB 제작 릴리스</h4>
+                <label><input type="checkbox"> Gerber/ODB++/IPC-2581 출력이 승인 source와 일치한다</label>
+                <label><input type="checkbox"> NC drill의 PTH·NPTH·slot과 단위·좌표 원점을 확인했다</label>
+                <label><input type="checkbox"> stackup·재료·finished copper·controlled impedance를 명시했다</label>
+                <label><input type="checkbox"> fabrication drawing에 외형·홀·공차·표면처리·특기사항이 있다</label>
+                <label><input type="checkbox"> 제조 netlist와 필요 coupon·microsection 요구를 포함했다</label>
+                <label><input type="checkbox"> 독립 viewer에서 layer·polarity·aperture·drill 정합을 확인했다</label>
+                <label><input type="checkbox"> 모든 파일명·도면·acceptance note의 release revision이 같다</label>
+              </div>
+              <div class="print-checklist">
+                <h4>SMT 조립 릴리스</h4>
+                <label><input type="checkbox"> BOM과 승인 대체품·미실장 option을 확정했다</label>
+                <label><input type="checkbox"> centroid X/Y·rotation·side·좌표 원점을 검증했다</label>
+                <label><input type="checkbox"> assembly drawing의 reference·polarity·pin 1 표시를 확인했다</label>
+                <label><input type="checkbox"> paste layer와 stencil 관련 주의사항을 조립사와 합의했다</label>
+                <label><input type="checkbox"> fiducial·courtyard·nozzle/inspection 접근성을 검토했다</label>
+                <label><input type="checkbox"> SPI·AOI·필요 시 X-ray·전기/기능 시험의 acceptance를 정의했다</label>
+                <label><input type="checkbox"> first article·rework·lot·board/BOM revision 추적 방법이 있다</label>
               </div>
               <div class="print-checklist">
                 <h4>전원 인가 전·첫 전원</h4>
@@ -242,17 +271,6 @@
                 <label><input type="checkbox"> bandwidth, sample rate, record length, channel 수를 기록했다</label>
                 <label><input type="checkbox"> trigger source/level/slope와 acquisition mode를 기록했다</label>
                 <label><input type="checkbox"> 다른 probe/setup으로 의심 파형을 재현했다</label>
-              </div>
-              <div class="print-checklist">
-                <h4>SI·PI·EMC 사전 점검</h4>
-                <label><input type="checkbox"> fastest edge와 interconnect delay의 비를 계산했다</label>
-                <label><input type="checkbox"> impedance discontinuity와 coupled length를 검토했다</label>
-                <label><input type="checkbox"> rail별 ΔV/ΔI target impedance가 있다</label>
-                <label><input type="checkbox"> DC bias가 반영된 capacitor model을 썼다</label>
-                <label><input type="checkbox"> cable/connector common-mode return을 그렸다</label>
-                <label><input type="checkbox"> source–path–victim 가설로 hotspot을 분류했다</label>
-                <label><input type="checkbox"> near-field/current probe before–after 조건을 고정했다</label>
-                <label><input type="checkbox"> 적용 EMC standard와 edition을 공식 경로로 확인했다</label>
               </div>
             </div>
           </article>
